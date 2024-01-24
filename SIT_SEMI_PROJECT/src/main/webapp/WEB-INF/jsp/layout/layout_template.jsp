@@ -20,7 +20,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Language" content="ko" >
-<title>박상진의 홈페이지</title>
+<title>SIT의 홈페이지</title>
 
 <!-- common.css  -->
 <link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css" >
@@ -34,19 +34,6 @@
 
 <!-- CK editor 스크립트 -->
 <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
-
-<!-- FullCallendar API  -->
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
-
-<!-- amCharts5 -->
-<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
-
-<!-- amCharts4 -->
-<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
-<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
-<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
 
 </head>
 <style>
