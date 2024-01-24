@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mainDAO">
+	
+	<select id="mainDAO.testSelectAll" resultType="SIT_SEMI_PROJECT.main.MemberVO">
+		SELECT * FROM MEMBER
+	</select>
+	
+	<select id="mainDAO.selectLogin" parameterType="SIT_SEMI_PROJECT.main.MemberVO" resultType="SIT_SEMI_PROJECT.main.MemberVO">
+		SELECT * FROM MEMBER
+		WHERE MEM_ID LIKE #{memId}
+		AND MEM_PASS LIKE #{memPass}
+		AND MEM_AUTH != 0
+	</select>
+	
+	<select id="mainDAO.selectAllBoard" resultType="SIT_SEMI_PROJECT.main.BoardVO">
+		SELECT ROWNUM AS RNUM, A.* 
+		FROM(
+			SELECT BO_TITLE, BO_NO, BO_WRITER, BO_CONTENT, BO_REGDATE, BO_TYPE 
+			FROM BOARD 
+			WHERE BO_TYPE = 0
+			ORDER BY BO_REGDATE DESC
+		) A
+		<![CDATA[  
+		WHERE ROWNUM <= 10
+		]]>
+	</select>
+	
+	<select id="mainDAO.selectAllNotiBoard" resultType="SIT_SEMI_PROJECT.main.BoardVO">
+		SELECT * 
+		FROM(
+			SELECT ROWNUM AS RNUM, BO_TITLE, BO_NO, BO_WRITER, BO_CONTENT, BO_REGDATE, BO_TYPE 
+			FROM BOARD 
+			WHERE BO_TYPE = 3
+			ORDER BY BO_REGDATE DESC
+		)
+		<![CDATA[  
+		WHERE RNUM <= 5
+		]]>
+	</select>
+	
+	<insert id="mainDAO.insertBoard" parameterType="SIT_SEMI_PROJECT.main.BoardVO">
+		INSERT INTO BOARD VALUES
+		(SEQ_BOARD.NEXTVAL, #{boTitle}, #{boWriter}, #{boContent}, SYSDATE, '0')
+	</insert>
+	
+	<select id="mainDAO.selectBoard" resultType="SIT_SEMI_PROJECT.main.BoardVO" parameterType="SIT_SEMI_PROJECT.main.BoardVO">
+		SELECT * FROM BOARD
+		WHERE BO_NO = #{boNo}
+		AND BO_TYPE = #{boType}
+	</select>
+	
+	<update id="mainDAO.updateBoard" parameterType="SIT_SEMI_PROJECT.main.BoardVO">
+		UPDATE BOARD 
+		SET BO_TITLE = #{boTitle}, 
+		BO_CONTENT = #{boContent},
+		BO_REGDATE = SYSDATE
+		WHERE BO_NO = #{boNo}
+		AND BO_TYPE = #{boType} 
+	</update>
+	
+	<delete id="mainDAO.deleteBoard" parameterType="SIT_SEMI_PROJECT.main.BoardVO">
+		DELETE 
+		FROM BOARD
+		WHERE BO_NO = #{boNo}
+		AND BO_TYPE = #{boType}
+	</delete>
+	
+	<select id="mainDAO.validationMember" parameterType="SIT_SEMI_PROJECT.main.MemberVO" resultType="SIT_SEMI_PROJECT.main.MemberVO">
+		SELECT * FROM MEMBER
+		WHERE MEM_AUTH != 0
+		AND MEM_ID = #{memId}
+	</select>
+	
+	<insert id="mainDAO.joinMember" parameterType="SIT_SEMI_PROJECT.main.MemberVO">
+		INSERT INTO 
+		MEMBER (MEM_ID, MEM_PASS, MEM_NAME, MEM_MAIL) 
+		VALUES(
+			#{memId}, #{memPass}, #{memName}, #{memMail}
+		)
+	</insert>
+	
+</mapper>
