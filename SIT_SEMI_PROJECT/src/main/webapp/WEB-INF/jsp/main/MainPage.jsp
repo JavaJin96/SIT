@@ -113,6 +113,6 @@ $( document ).ready(function() {
 </script>
 
 <div id="main_Div">
-	<h1><c:out value="${queryResult }"/></h1>
-	<h1>${queryResult }</h1>
+
+
 </div>
