@@ -22,8 +22,8 @@ public class MainController {
 	public ModelAndView goMain() {
 		ModelAndView mav = new ModelAndView();
 		
-		String queryResult = "seoifjeso";
-		mav.addObject("queryResult", queryResult);
+//		String queryResult = "seoifjeso";
+//		mav.addObject("queryResult", queryResult);
 		mav.setViewName("mainPage");
 		return mav;
 	}
