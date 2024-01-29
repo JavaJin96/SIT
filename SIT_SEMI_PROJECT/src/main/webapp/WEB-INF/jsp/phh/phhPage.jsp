@@ -28,7 +28,6 @@ $( document ).ready(function() {
       <h2>게시판</h2>
 	<c:forEach var="test" items="${test}" varStatus="status">
 		<div>
-		저장테스트
 			${test.no}
 			${test.content}
 		</div>
