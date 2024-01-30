@@ -18,4 +18,8 @@
 		delete from phh_user WHERE no = #{no}
 	</delete>
 	
+	<select id="puserDAO.doLogin" resultType="SIT_SEMI_PROJECT.PHH.user.PuserVO" parameterType="SIT_SEMI_PROJECT.PHH.user.PuserVO">
+		SELECT no, id, pass, name, role, DATE_FORMAT(reg_date, '%Y-%m-%d') AS regDate FROM phh_user WHERE id=#{id} and pass=#{pass}
+	</select>
+	
 </mapper>

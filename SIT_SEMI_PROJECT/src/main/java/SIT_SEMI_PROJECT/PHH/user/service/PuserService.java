@@ -25,7 +25,11 @@ public class PuserService {
 	
 	public int insertUser(PuserVO vo) {
 		return puserDao.insertUser(vo);
-	}	
+	}
+	
+	public PuserVO doLogin(PuserVO vo) {
+		return puserDao.doLogin(vo);
+	}
 
 
 }

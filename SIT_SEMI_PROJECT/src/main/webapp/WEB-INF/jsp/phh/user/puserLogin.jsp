@@ -10,6 +10,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
+
+window.onload = function(){
+    var loginFailed = ${loginFailed};
+    if (loginFailed) {
+        alert("로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요.");
+    }
+};
+
+
 function signup(){
 	window.location.href = '<c:out value="puserSignup.do" />';
 	
@@ -24,23 +33,23 @@ $( document ).ready(function() {
 <body>
 
 <div class="container text-center">
-<div class="col-sm-8 col-sm-offset-3 text-center">
+<div class="col-sm-12 text-center">
   <h2>로그인</h2>
-  <form class="form-horizontal" action="phh/puserDoLogin.do">
+  <form class="form-horizontal" action="puserDoLogin.do">
     <div class="form-group">
-      <label class="control-label col-sm-3" for="id">아이디 : </label>
+      <label class="control-label col-sm-4" for="id">아이디 : </label>
       <div class="col-sm-6">
         <input type="text" class="form-control" id="id" placeholder="아이디를 입력해주세요" name="id">
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-3" for="pass">비밀번호 : </label>
+      <label class="control-label col-sm-4" for="pass">비밀번호 : </label>
       <div class="col-sm-6">          
         <input type="password" class="form-control" id="pass" placeholder="비밀번호를 입력해주세요" name="pass">
       </div>
     </div>
     <div class="form-group text-right">        
-      <div class="col-sm-offset-2 col-sm-6">
+      <div class="col-sm-10">
         <button type="submit" class="btn btn-primary">로그인</button>
   </form>        
         <button type="button" class="btn btn-success" onclick="signup()">회원가입</button>

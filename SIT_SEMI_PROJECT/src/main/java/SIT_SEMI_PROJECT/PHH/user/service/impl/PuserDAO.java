@@ -22,6 +22,8 @@ public class PuserDAO extends EgovAbstractMapper{
 		return insert("puserDAO.insertUser", vo);
 	}
 	
-	
+	public PuserVO doLogin(PuserVO vo) {
+		return selectOne("puserDAO.doLogin", vo);
+	}
 	
 }

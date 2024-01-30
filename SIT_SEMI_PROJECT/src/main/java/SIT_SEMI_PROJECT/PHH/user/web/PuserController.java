@@ -45,12 +45,34 @@ public class PuserController {
 		return mav;
 	}
 	
+	@RequestMapping(value="phh/puserDoLogin.do")
+	public ModelAndView doLogin(@RequestParam String id, @RequestParam String pass) {
+		
+		PuserVO vo = new PuserVO();
+		vo.setId(id);
+		vo.setPass(pass);
+		
+		vo = puserService.doLogin(vo);
+		
+		ModelAndView mav = new ModelAndView();
+		
+		if (vo != null) {
+			mav.addObject("vo", vo);
+			mav.setView(new RedirectView("puserList.do"));
+		} else {
+			mav.addObject("loginFailed", true);
+			mav.setViewName("puserLogin");
+		}
+		
+		return mav;
+	}	
+	
 	@RequestMapping(value="phh/puserSignup.do")
 	public ModelAndView goSignup() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("puserSignup");
 		return mav;
-	}	
+	}
 	
 	
 	@RequestMapping(value="phh/puserInsert.do")
@@ -67,6 +89,6 @@ public class PuserController {
 		mav.setView(new RedirectView("puserList.do"));
 		
 		return mav;
-	}	
+	}
 
 }
