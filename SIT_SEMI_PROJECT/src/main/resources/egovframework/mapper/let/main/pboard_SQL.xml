@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pboardDAO">
+
+	<select id="pboardDAO.selectBoard" resultType="SIT_SEMI_PROJECT.PHH.board.PboardVO">
+		SELECT 
+			b.no
+			, b.user_no AS userNo
+			, u.name AS name
+			, b.title
+			, b.contents
+			, b.file_name AS fileName
+			, DATE_FORMAT(b.cre_date, '%Y-%m-%d') AS creDate
+			, DATE_FORMAT(b.mod_date, '%Y-%m-%d') AS modDate
+			, b.gubun
+		FROM
+			phh_board b
+		JOIN phh_user u ON b.user_no = u.no;
+	</select>
+	
+	<insert id="pboardDAO.insertBoard" parameterType="SIT_SEMI_PROJECT.PHH.board.PboardVO">
+		INSERT into phh_board(
+			user_no
+			, title
+			, contents
+			, count
+		) VALUES (
+			#{userNo}
+			, #{title}
+			, #{contents}
+			, #{count}
+		)
+	</insert>
+
+
+</mapper>

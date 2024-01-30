@@ -12,18 +12,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-function userDelete(no){
-	if(confirm("정말 삭제하시겠습니까?") == true){
-		window.location.href = '<c:out value="puserDelete.do?no=" />'+no;	
-	}else{
-		return false;
-	}
-	
-	
+function boardWrite(){
+	window.location.href = '<c:out value="pboardWrite.do"/>';
 }
 
-$( document ).ready(function() {
 
+$( document ).ready(function() {
+	
 	
 });
 		
@@ -32,29 +27,41 @@ $( document ).ready(function() {
 <body>
 
 <div class="container">
-  <h2>회원관리</h2>            
+  <div class="row">
+    <div class="col-md-6">
+      <h2>자유게시판</h2>
+    </div>
+    <div class="col-md-6 text-right">
+      <br>
+      <c:if test="${sessionScope.userId==null || sessionScope.userId==''}">
+      	<button type="button" class="btn btn-primary" onclick="boardWrite()" disabled="disabled">글 작성</button>
+      </c:if>
+      <c:if test="${sessionScope.userId!=null && sessionScope.userId!=''}">
+      	<button type="button" class="btn btn-primary" onclick="boardWrite()">글 작성</button>
+      </c:if>
+      <br>
+    </div>
+  </div>
+<!--   <table> -->
+<!-- 	<td><h2>자유게시판</h2></td> -->
+<!-- 	<td style="text-align : right;"><button type="button" class="btn btn-primary" onclick="boardInsert()">글 작성</button></td> -->
+<!--   </table> -->
   <table class="table table-striped">
     <thead>
       <tr>
         <th>NO</th>
-        <th>아이디</th>
-        <th>비밀번호</th>
-        <th>닉네임</th>
-        <th>역할</th>
-        <th>가입일자</th>
-        <th>삭제</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일자</th>
       </tr>
     </thead>
     <tbody>
 	<c:forEach var="list" items="${list}" varStatus="status">
 	<tr>
 		<td>${list.no}</td>
-		<td>${list.id}</td>
-		<td>${list.pass}</td>
+		<td>${list.title}</td>
 		<td>${list.name}</td>
-		<td>${list.role}</td>
-		<td>${list.regDate}</td>
-		<td><button type="button" class="btn btn-danger btn-xs" onclick="userDelete(${list.no})">삭제</button></td>
+		<td>${list.creDate}</td>
 	</tr>
 	</c:forEach>    
     </tbody>

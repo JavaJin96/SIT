@@ -64,6 +64,7 @@ public class PuserController {
 			mav.setView(new RedirectView("puserList.do"));
 			HttpSession session = request.getSession();
 			session.setAttribute("userId", vo.getId());
+			session.setAttribute("userNo", vo.getNo());		
 			session.setAttribute("userName", vo.getName());			
 		} else {
 			mav.addObject("loginFailed", true);
@@ -107,20 +108,11 @@ public class PuserController {
 		return mav;
 	}
 	
-//	@RequestMapping(value="phh/puserDbCheck.do")
-//	public ModelAndView dbCheck(@RequestParam String id) {
-//		ModelAndView mav = new ModelAndView();
-//		
-//	    String dbId = puserService.dbCheck(id);
-//	    
-//	    mav.addObject("dbId", dbId);
-//	    return mav;
-//	}	
-	
 	@RequestMapping(value="phh/puserDbCheck.do", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public String dbCheck(@RequestParam String id) {
 	    String dbId = puserService.dbCheck(id);
+	    // Ajax 방식으로 돌려주기
 	    return "{\"dbId\":\"" + dbId + "\"}";
 	}	
 
