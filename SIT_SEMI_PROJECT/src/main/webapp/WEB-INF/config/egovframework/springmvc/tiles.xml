@@ -12,6 +12,11 @@
 		<put-attribute name="footer" value="/WEB-INF/jsp/layout/Footer.jsp" />
 	</definition>
 	
+	<definition name="phh-layout" template="/WEB-INF/jsp/layout/phh_layout_template.jsp">
+		<put-attribute name="topnav" value="/WEB-INF/jsp/layout/phhTopnav.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/layout/phhFooter.jsp" />
+	</definition>	
+	
 	<!-- =================main================= -->
 	
 	<definition name="mainPage" extends="standar-layout">
@@ -23,6 +28,21 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/phh/phhPage.jsp" />
 		<put-attribute name="title" value="메인" />
 	</definition>
+	
+	<definition name="puserList" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/user/puserList.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>
+	
+	<definition name="puserLogin" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/user/puserLogin.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>		
+
+	<definition name="puserSignup" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/user/puserSignup.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>			
 	
 	<!-- =================main================= -->
 	

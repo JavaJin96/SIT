@@ -54,6 +54,7 @@
 	    <property name="suffix" value=".jsp" />
 	    <property name="order" value="2" />
 	</bean>
+	
 
 	<!-- tiles 설정 -->
 	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
