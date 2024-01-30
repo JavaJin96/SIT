@@ -3,10 +3,13 @@ package SIT_SEMI_PROJECT.PHH.user.web;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -46,7 +49,7 @@ public class PuserController {
 	}
 	
 	@RequestMapping(value="phh/puserDoLogin.do")
-	public ModelAndView doLogin(@RequestParam String id, @RequestParam String pass) {
+	public ModelAndView doLogin(@RequestParam String id, @RequestParam String pass, HttpServletRequest request) {
 		
 		PuserVO vo = new PuserVO();
 		vo.setId(id);
@@ -59,13 +62,26 @@ public class PuserController {
 		if (vo != null) {
 			mav.addObject("vo", vo);
 			mav.setView(new RedirectView("puserList.do"));
+			HttpSession session = request.getSession();
+			session.setAttribute("userId", vo.getId());
+			session.setAttribute("userName", vo.getName());			
 		} else {
 			mav.addObject("loginFailed", true);
 			mav.setViewName("puserLogin");
 		}
 		
 		return mav;
-	}	
+	}
+	
+	@RequestMapping(value="phh/puserDoLogout.do")
+	public ModelAndView doLogout(HttpServletRequest request) {
+		
+		ModelAndView mav = new ModelAndView();
+		request.getSession().invalidate();
+		mav.setView(new RedirectView("puserList.do"));
+		
+		return mav;
+	}		
 	
 	@RequestMapping(value="phh/puserSignup.do")
 	public ModelAndView goSignup() {
@@ -90,5 +106,22 @@ public class PuserController {
 		
 		return mav;
 	}
+	
+//	@RequestMapping(value="phh/puserDbCheck.do")
+//	public ModelAndView dbCheck(@RequestParam String id) {
+//		ModelAndView mav = new ModelAndView();
+//		
+//	    String dbId = puserService.dbCheck(id);
+//	    
+//	    mav.addObject("dbId", dbId);
+//	    return mav;
+//	}	
+	
+	@RequestMapping(value="phh/puserDbCheck.do", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String dbCheck(@RequestParam String id) {
+	    String dbId = puserService.dbCheck(id);
+	    return "{\"dbId\":\"" + dbId + "\"}";
+	}	
 
 }

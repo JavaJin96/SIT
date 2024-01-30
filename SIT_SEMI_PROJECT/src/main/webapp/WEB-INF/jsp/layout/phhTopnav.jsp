@@ -38,7 +38,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Ssoho</a>
+      <a class="navbar-brand" href="#" onclick="location.href='/SIT/phh/puserList.do'">Ssoho</a>
     </div>
     <ul class="nav navbar-nav">
       <li><a href="#" onclick="location.href='/SIT/main/main.do'">SIT_MAIN</a></li>
@@ -47,10 +47,12 @@
       <li><a href="#">관리자</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-<!--     현재 로그아웃이면 -->
+	<c:if test="${sessionScope.userId==null || sessionScope.userId==''}">
       <li><a href="/SIT/phh/puserGoLogin.do"><span class="glyphicon glyphicon-user"></span> 로그인</a></li>
-<!--       현재 로그인이면 -->
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 로그아웃</a></li>
+    </c:if>
+	<c:if test="${sessionScope.userId!=null && sessionScope.userId!=''}">
+      <li><a href="/SIT/phh/puserDoLogout.do"><span class="glyphicon glyphicon-log-in"></span> 로그아웃</a></li>
+	</c:if>      
     </ul>
   </div>
 </nav>

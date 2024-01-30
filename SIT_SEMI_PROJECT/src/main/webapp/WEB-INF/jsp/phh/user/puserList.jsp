@@ -12,7 +12,12 @@
 <title>Insert title here</title>
 <script>
 function userDelete(no){
-	window.location.href = '<c:out value="puserDelete.do?no=" />'+no;
+	if(confirm("정말 삭제하시겠습니까?") == true){
+		window.location.href = '<c:out value="puserDelete.do?no=" />'+no;	
+	}else{
+		return false;
+	}
+	
 	
 }
 
