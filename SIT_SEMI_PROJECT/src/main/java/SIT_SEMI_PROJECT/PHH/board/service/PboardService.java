@@ -23,6 +23,18 @@ public class PboardService {
 		return pboardDao.insertBoard(vo);
 	}
 	
+	public int updateBoard(PboardVO vo) {
+		return pboardDao.updateBoard(vo);
+	}
+	
+	public int countBoard(int no) {
+		return pboardDao.countBoard(no);
+	}
+	
+	public int deleteBoard(int no) {
+		return pboardDao.deleteBoard(no);
+	}
+	
 	public PboardVO viewBoard(int no) {
 		return pboardDao.viewBoard(no);
 	}

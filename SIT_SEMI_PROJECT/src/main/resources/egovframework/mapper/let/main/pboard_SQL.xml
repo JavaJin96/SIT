@@ -9,6 +9,7 @@
 			, u.name AS name
 			, b.title
 			, b.contents
+			, b.count
 			, b.file_name AS fileName
 			, DATE_FORMAT(b.cre_date, '%Y-%m-%d') AS creDate
 			, DATE_FORMAT(b.mod_date, '%Y-%m-%d') AS modDate
@@ -25,6 +26,7 @@
 			, u.name AS name
 			, b.title
 			, b.contents
+			, b.count
 			, b.file_name AS fileName
 			, DATE_FORMAT(b.cre_date, '%Y-%m-%d') AS creDate
 			, DATE_FORMAT(b.mod_date, '%Y-%m-%d') AS modDate
@@ -33,7 +35,7 @@
 		FROM
 			phh_board b
 		JOIN phh_user u ON b.user_no = u.no
-		WHERE b.no = ${no};
+		WHERE b.no = #{no};
 	</select>	
 	
 	<insert id="pboardDAO.insertBoard" parameterType="SIT_SEMI_PROJECT.PHH.board.PboardVO">
@@ -49,6 +51,24 @@
 			, #{count}
 		)
 	</insert>
+	
+	<update id="pboardDAO.updateBoard" parameterType="SIT_SEMI_PROJECT.PHH.board.PboardVO">
+		UPDATE phh_board 
+			SET title= #{title}
+			, contents= #{contents}
+			, mod_date = NOW()
+			WHERE no = #{no}
+	</update>
+	
+	<update id="pboardDAO.countBoard" parameterType="int">
+		UPDATE phh_board
+			SET count = count + 1
+			WHERE no = #{no}
+	</update>
+	
+	<delete id="pboardDAO.deleteBoard" parameterType="int">
+		delete from phh_board WHERE no = #{no}
+	</delete>
 
 
 </mapper>

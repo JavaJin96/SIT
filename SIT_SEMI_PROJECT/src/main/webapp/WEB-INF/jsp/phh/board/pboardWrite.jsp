@@ -44,7 +44,7 @@ $(function(){
 })
 
 function listFn(){
-	window.location.href = '<c:out value="pboardList.do"/>'; 
+	location.href = '<c:out value="pboardList.do"/>'; 
 }
 
 $( document ).ready(function() {

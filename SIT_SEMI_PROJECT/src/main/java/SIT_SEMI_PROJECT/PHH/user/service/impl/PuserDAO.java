@@ -30,4 +30,8 @@ public class PuserDAO extends EgovAbstractMapper{
 		return selectOne("puserDAO.dbCheck", id);
 	}
 	
+	public String nameCheck(String name) {
+		return selectOne("puserDAO.nameCheck", name);
+	}	
+	
 }

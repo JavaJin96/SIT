@@ -94,7 +94,7 @@ public class PuserController {
 	
 	
 	@RequestMapping(value="phh/puserInsert.do")
-	public ModelAndView insertUser(@RequestParam String id, @RequestParam String name, @RequestParam String pass) {
+	public ModelAndView insertUser(@RequestParam String id, @RequestParam String name, @RequestParam String pass, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		
 		PuserVO vo = new PuserVO();
@@ -103,6 +103,12 @@ public class PuserController {
 		vo.setPass(pass);
 		
 		puserService.insertUser(vo);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("userId", vo.getId());
+		session.setAttribute("userNo", vo.getNo());		
+		session.setAttribute("userName", vo.getName());
+		session.setAttribute("userRole", vo.getRole());
 		
 		mav.setView(new RedirectView("puserList.do"));
 		
@@ -116,5 +122,13 @@ public class PuserController {
 	    // Ajax 방식으로 돌려주기
 	    return "{\"dbId\":\"" + dbId + "\"}";
 	}	
+	
+	@RequestMapping(value="phh/puserNameCheck.do", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String nameCheck(@RequestParam String name) {
+	    String dbName = puserService.nameCheck(name);
+	    // Ajax 방식으로 돌려주기
+	    return "{\"dbName\":\"" + dbName + "\"}";
+	}		
 
 }

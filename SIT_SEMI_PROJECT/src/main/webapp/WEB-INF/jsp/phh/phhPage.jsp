@@ -12,7 +12,7 @@
 <script type="text/javascript">
 
 function goHome(){
-	window.location.href = '<c:out value="puserList.do" />';
+	location.href = '<c:out value="puserList.do" />';
 }
 
 $( document ).ready(function() {

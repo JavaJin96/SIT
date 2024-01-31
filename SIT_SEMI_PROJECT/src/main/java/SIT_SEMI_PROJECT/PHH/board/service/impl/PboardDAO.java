@@ -18,8 +18,22 @@ public class PboardDAO extends EgovAbstractMapper{
 		return insert("pboardDAO.insertBoard", vo);
 	}
 	
+	public int updateBoard(PboardVO vo) {
+		return update("pboardDAO.updateBoard", vo);
+	}
+	
+	public int countBoard(int no) {
+		return update("pboardDAO.countBoard", no);
+	}
+	
+	public int deleteBoard(int no) {
+		return delete("pboardDAO.deleteBoard", no);
+	}
+	
 	public PboardVO viewBoard(int no) {
 		return selectOne("pboardDAO.viewBoard", no);
 	}
+	
+	
 
 }

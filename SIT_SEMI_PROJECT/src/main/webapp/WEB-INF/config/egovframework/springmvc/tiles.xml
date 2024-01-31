@@ -63,4 +63,9 @@
 		<put-attribute name="title" value="메인" />
 	</definition>
 	
+	<definition name="pboardUpdatePage" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardUpdatePage.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>	
+	
 </tiles-definitions>

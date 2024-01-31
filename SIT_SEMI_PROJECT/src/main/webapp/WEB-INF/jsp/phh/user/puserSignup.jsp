@@ -19,6 +19,8 @@ $(function(){
 		var name = $('#name').val();
 		var pass = $('#pass').val();
 		var repass = $('#repass').val();
+		$("#id").removeAttr("disabled");
+		$("#name").removeAttr("disabled");
 		
 		if (pass != repass){
 			alert('비밀번호가 다릅니다. 다시 입력해주세요.')
@@ -56,18 +58,48 @@ $(function(){
 
 function updateSignupButton() {
     // isIdAvailable 값에 따라 회원가입 버튼 활성화 또는 비활성화
+//     var isIdAvailable = $("#isIdAvailable").val();
+//     if (isIdAvailable == 'true') {
+//         // 사용 가능한 경우
+//         $("button[type='submit']").removeAttr("disabled");
+//         $("#id").attr("disabled", "disabled");
+//     } else {
+//         // 사용 불가능한 경우
+//         $("button[type='submit']").attr("disabled", "disabled");
+//         $("#id").removeAttr("disabled");
+//     }
+    
     var isIdAvailable = $("#isIdAvailable").val();
+    var isNameAvailable = $("#isNameAvailable").val();
+    
     if (isIdAvailable == 'true') {
         // 사용 가능한 경우
-        $("button[type='submit']").removeAttr("disabled");
+        $("#id").attr("disabled", "disabled");
     } else {
         // 사용 불가능한 경우
-        $("button[type='submit']").attr("disabled", "disabled");
+        $("#id").removeAttr("disabled");
+    }    
+    
+    if (isNameAvailable == 'true') {
+        // 사용 가능한 경우
+        $("#name").attr("disabled", "disabled");
+    } else {
+        // 사용 불가능한 경우
+        $("#name").removeAttr("disabled");
     }
+    
+    if (isIdAvailable == 'true' && isNameAvailable == 'true'){
+    	$("button[type='submit']").removeAttr("disabled");
+    } else{
+    	$("button[type='submit']").attr("disabled", "disabled");
+    }
+    
 }	
 
 function checkId() {
     var userId = document.getElementById("id").value;
+    // 한글문자열 문제해결
+    var encodedName = encodeURIComponent(userName);    
     $.ajax({
     	url : "<c:url value='puserDbCheck.do' />",
         type: 'GET',
@@ -87,6 +119,31 @@ function checkId() {
     });
 }	
 
+function checkName() {
+    var userName = document.getElementById("name").value;
+    // 한글문자열 문제해결
+    var encodedName = encodeURIComponent(userName);
+    $.ajax({
+    	url : "<c:url value='puserNameCheck.do' />",
+        type: 'GET',
+        data: {"name" : userName},
+        success: function(data) {
+            if (data.dbName !== null && data.dbName === userName) {
+            	alert(data.dbName);
+                alert("중복된 닉네임입니다. 다른 닉네임을 사용해주세요.");
+            } else {
+            	alert(data.dbName);
+                alert("사용 가능한 닉네임입니다.");
+                $("#isNameAvailable").val("true");
+                updateSignupButton();
+            }          
+        },
+        error: function() {
+            alert('서버와의 통신 중 오류가 발생했습니다.');
+        }
+    });
+}	
+
 $( document ).ready(function() {
 	updateSignupButton();
 });
@@ -94,10 +151,11 @@ $( document ).ready(function() {
 </script>
 <body>
 <input type="hidden" id="isIdAvailable" value="" />
+<input type="hidden" id="isNameAvailable" value="" />
 <div class="container text-center">
 <div class="col-sm-12 text-center">
   <h2>회원가입</h2>
-  <form class="form-horizontal" action="puserInsert.do">
+  <form class="form-horizontal" action="puserInsert.do" method="post">
     <div class="form-group">
         <c:if test="${loginFailed}">
             <div class="alert alert-danger" role="alert">
@@ -129,7 +187,12 @@ $( document ).ready(function() {
     <div class="form-group">
       <label class="control-label col-sm-4" for="name">닉네임 : </label>
       <div class="col-sm-6">          
-        <input type="text" class="form-control" id="name" placeholder="닉네임을 입력해주세요" name="name">
+      <table>
+      <tr>
+        <td><input type="text" class="form-control" id="name" placeholder="닉네임을 입력해주세요" name="name"></td>
+        <td><input type="button" value="중복체크" onclick="checkName()" class="btn btn-warning"></td>      
+      </tr>
+      </table>      
       </div>
     </div>
     <div class="form-group text-right">        

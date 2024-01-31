@@ -33,7 +33,10 @@ public class PuserService {
 	
 	public String dbCheck(String id) {
 		return puserDao.dbCheck(id);
-		
+	}
+	
+	public String nameCheck(String name) {
+		return puserDao.nameCheck(name);
 	}
 
 

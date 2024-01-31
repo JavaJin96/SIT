@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -13,7 +12,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 function boardWrite(){
-	window.location.href = '<c:out value="pboardWrite.do"/>';
+	location.href = '<c:out value="pboardWrite.do"/>';
 }
 
 
@@ -28,21 +27,22 @@ $( document ).ready(function() {
 
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
-      <h2> <a href = "/pboardList.do" style="color: inherit; text-decoration: none;" >자유게시판</a> </h2>
-    </div>
-    <div class="col-md-6 text-right">
-      <br>
-      <c:if test="${sessionScope.userId==null || sessionScope.userId==''}">
-      	<button type="button" class="btn btn-primary" onclick="boardWrite()" disabled="disabled">글 작성</button>
-      </c:if>
-      <c:if test="${sessionScope.userId!=null && sessionScope.userId!=''}">
-      	<button type="button" class="btn btn-primary" onclick="boardWrite()">글 작성</button>
-      </c:if>
-      <br>
-    </div>
+<!--     <div class="col-md-6"> -->
+<!--       <h2> <a href = "pboardList.do" style="color: inherit; text-decoration: none;" >자유게시판</a> </h2> -->
+<!--     </div> -->
+<!--     <div class="col-md-6 text-right"> -->
+<!--       <br> -->
+<%--       <c:if test="${sessionScope.userId==null || sessionScope.userId==''}"> --%>
+<!--       	<button type="button" class="btn btn-primary" onclick="boardWrite()" disabled="disabled">글 작성</button> -->
+<%--       </c:if> --%>
+<%--       <c:if test="${sessionScope.userId!=null && sessionScope.userId!=''}"> --%>
+<!--       	<button type="button" class="btn btn-primary" onclick="boardWrite()">글 작성</button> -->
+<%--       </c:if> --%>
+<!--       <br> -->
+<!--     </div> -->
   </div>
   <table class="table table-striped">
+  <h2> <a href = "pboardList.do" style="color: inherit; text-decoration: none;" >자유게시판</a> </h2>
 	<colgroup>
 		<col style="width:10%" >
 		<col style="width:40%" >
@@ -72,6 +72,15 @@ $( document ).ready(function() {
 	</c:forEach>    
     </tbody>
   </table>
+  <div align='right'>
+      <c:if test="${sessionScope.userId==null || sessionScope.userId==''}">
+      	<button type="button" class="btn btn-primary" onclick="boardWrite()" disabled="disabled">글 작성</button>
+      </c:if>
+      <c:if test="${sessionScope.userId!=null && sessionScope.userId!=''}">
+      	<button type="button" class="btn btn-primary" onclick="boardWrite()">글 작성</button>
+      </c:if>
+  </div>
+
 </div>
 
 
