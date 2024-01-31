@@ -18,6 +18,24 @@
 		JOIN phh_user u ON b.user_no = u.no;
 	</select>
 	
+	<select id="pboardDAO.viewBoard" parameterType="int" resultType="SIT_SEMI_PROJECT.PHH.board.PboardVO">
+		SELECT 
+			b.no
+			, b.user_no AS userNo
+			, u.name AS name
+			, b.title
+			, b.contents
+			, b.file_name AS fileName
+			, DATE_FORMAT(b.cre_date, '%Y-%m-%d') AS creDate
+			, DATE_FORMAT(b.mod_date, '%Y-%m-%d') AS modDate
+			, b.gubun
+			, u.pass
+		FROM
+			phh_board b
+		JOIN phh_user u ON b.user_no = u.no
+		WHERE b.no = ${no};
+	</select>	
+	
 	<insert id="pboardDAO.insertBoard" parameterType="SIT_SEMI_PROJECT.PHH.board.PboardVO">
 		INSERT into phh_board(
 			user_no

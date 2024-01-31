@@ -12,6 +12,7 @@ public class PboardVO {
 	String modDate;
 	int gubun;
 	int count;
+	String pass;
 	
 	public int getNo() {
 		return no;
@@ -72,6 +73,12 @@ public class PboardVO {
 	}
 	public void setCount(int count) {
 		this.count = count;
+	}
+	public String getPass() {
+		return pass;
+	}
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 	
 }

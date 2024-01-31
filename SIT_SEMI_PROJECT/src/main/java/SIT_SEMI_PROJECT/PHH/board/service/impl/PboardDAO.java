@@ -17,5 +17,9 @@ public class PboardDAO extends EgovAbstractMapper{
 	public int insertBoard(PboardVO vo) {
 		return insert("pboardDAO.insertBoard", vo);
 	}
+	
+	public PboardVO viewBoard(int no) {
+		return selectOne("pboardDAO.viewBoard", no);
+	}
 
 }

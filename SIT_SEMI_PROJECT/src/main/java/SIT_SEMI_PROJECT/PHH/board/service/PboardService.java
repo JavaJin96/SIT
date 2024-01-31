@@ -23,5 +23,9 @@ public class PboardService {
 		return pboardDao.insertBoard(vo);
 	}
 	
+	public PboardVO viewBoard(int no) {
+		return pboardDao.viewBoard(no);
+	}
+	
 	
 }

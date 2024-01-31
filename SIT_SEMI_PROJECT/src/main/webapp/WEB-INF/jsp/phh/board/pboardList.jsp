@@ -29,7 +29,7 @@ $( document ).ready(function() {
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <h2>자유게시판</h2>
+      <h2> <a href = "/pboardList.do" style="color: inherit; text-decoration: none;" >자유게시판</a> </h2>
     </div>
     <div class="col-md-6 text-right">
       <br>
@@ -42,26 +42,32 @@ $( document ).ready(function() {
       <br>
     </div>
   </div>
-<!--   <table> -->
-<!-- 	<td><h2>자유게시판</h2></td> -->
-<!-- 	<td style="text-align : right;"><button type="button" class="btn btn-primary" onclick="boardInsert()">글 작성</button></td> -->
-<!--   </table> -->
   <table class="table table-striped">
+	<colgroup>
+		<col style="width:10%" >
+		<col style="width:40%" >
+		<col style="width:15%" >
+		<col style="width:20%" >
+		<col style="width:15%" >
+	</colgroup>  
     <thead>
       <tr>
         <th>NO</th>
         <th>제목</th>
         <th>작성자</th>
         <th>작성일자</th>
+        <th style='text-align : center' >조회수</th>
       </tr>
     </thead>
     <tbody>
-	<c:forEach var="list" items="${list}" varStatus="status">
-	<tr>
-		<td>${list.no}</td>
-		<td>${list.title}</td>
-		<td>${list.name}</td>
-		<td>${list.creDate}</td>
+	<c:forEach var="vo" items="${list}" varStatus="status">
+	<tr onclick="location.href='pboardContent.do?no=${vo.no}'" style="cursor: pointer;">
+<!-- 	<tr> -->
+		<td>${vo.no}</td>
+		<td>${vo.title}</td>
+		<td>${vo.name}</td>
+		<td>${vo.creDate}</td>
+		<td style='text-align : center' >${vo.count}</td>
 	</tr>
 	</c:forEach>    
     </tbody>

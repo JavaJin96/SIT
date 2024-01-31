@@ -65,7 +65,8 @@ public class PuserController {
 			HttpSession session = request.getSession();
 			session.setAttribute("userId", vo.getId());
 			session.setAttribute("userNo", vo.getNo());		
-			session.setAttribute("userName", vo.getName());			
+			session.setAttribute("userName", vo.getName());
+			session.setAttribute("userRole", vo.getRole());
 		} else {
 			mav.addObject("loginFailed", true);
 			mav.setViewName("puserLogin");

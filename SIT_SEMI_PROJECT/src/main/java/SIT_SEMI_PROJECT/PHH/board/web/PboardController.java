@@ -50,8 +50,20 @@ public class PboardController {
 		mav.setView(new RedirectView("pboardList.do"));
 		
 		return mav;
-		
 	}		
+	
+	@RequestMapping(value="phh/pboardContent.do")
+	public ModelAndView viewBoard(@RequestParam int no) {
+		ModelAndView mav = new ModelAndView();
+		
+		PboardVO vo = pboardService.viewBoard(no);
+		
+		mav.addObject("vo", vo);
+		
+		mav.setViewName("pboardContent");
+		return mav;
+		
+	}
 	
 	
 	

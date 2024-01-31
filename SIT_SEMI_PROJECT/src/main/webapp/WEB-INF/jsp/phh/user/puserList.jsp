@@ -47,7 +47,7 @@ $( document ).ready(function() {
     </thead>
     <tbody>
 	<c:forEach var="list" items="${list}" varStatus="status">
-	<c:if test="${status.index ne 0}">
+	<c:if test="${status.index gt 1}">
 	<tr>
 		<td>${list.no}</td>
 		<td>${list.id}</td>
@@ -57,7 +57,7 @@ $( document ).ready(function() {
 		<td>${list.regDate}</td>
 		<td>
 		<c:choose>
-		    <c:when test="${sessionScope.userId == 'admin' || sessionScope.userId==list.id }">
+		    <c:when test="${sessionScope.userId == 'admin' || sessionScope.userRole == '1' || sessionScope.userId==list.id }">
 		        <button type="button" class="btn btn-danger btn-xs" onclick="userDelete(${list.no})">삭제</button>
 		    </c:when>
 		    <c:otherwise>
