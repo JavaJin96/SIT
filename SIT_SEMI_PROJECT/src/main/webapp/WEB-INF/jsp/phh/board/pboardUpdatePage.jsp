@@ -33,14 +33,14 @@
 					alert('글 제목의 길이가 너무 깁니다. 20자 이하로 작성해주세요');
 					return false;
 				}
-				if (content.length >= 1001){
+				if (contents.length >= 1001){
 					alert('글 내용의 길이가 너무 깁니다. 1000자 이하로 작성해주세요');
 					return false;
 				}				
 				
 		        // 줄바꿈 처리 (textarea 에서 개행 처리가 안되는 부분을 해결하기 위함)
-		        contents = contents.replace(/\n/g, '<br/>');
-		        $('#contents').val(contents);		
+				contents = contents.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+		        $('#contents').val(contents);
 			});	
 	});
 	
