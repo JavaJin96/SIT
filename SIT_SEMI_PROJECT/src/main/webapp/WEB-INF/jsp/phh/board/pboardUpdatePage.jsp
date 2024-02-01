@@ -41,7 +41,7 @@
 		        // 줄바꿈 처리 (textarea 에서 개행 처리가 안되는 부분을 해결하기 위함)
 				contents = contents.replace(/(?:\r\n|\r|\n)/g, '<br/>');
 		        $('#contents').val(contents);
-			});	
+			});
 	});
 	
 </script>  

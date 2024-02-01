@@ -16,7 +16,8 @@
 			, b.gubun
 		FROM
 			phh_board b
-		JOIN phh_user u ON b.user_no = u.no;
+		JOIN phh_user u ON b.user_no = u.no
+		WHERE b.gubun = 3;
 	</select>
 	
 	<select id="pboardDAO.viewBoard" parameterType="int" resultType="SIT_SEMI_PROJECT.PHH.board.PboardVO">
