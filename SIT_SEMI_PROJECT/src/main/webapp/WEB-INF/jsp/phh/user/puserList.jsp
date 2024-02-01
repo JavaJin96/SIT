@@ -36,7 +36,7 @@ $( document ).ready(function() {
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>NO</th>
+        <th>고유번호</th>
         <th>아이디</th>
         <th>비밀번호</th>
         <th>닉네임</th>

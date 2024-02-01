@@ -98,8 +98,9 @@ function updateSignupButton() {
 
 function checkId() {
     var userId = document.getElementById("id").value;
+    
     // 한글문자열 문제해결
-    var encodedName = encodeURIComponent(userName);    
+    var encodedId = encodeURIComponent(userId);
     $.ajax({
     	url : "<c:url value='puserDbCheck.do' />",
         type: 'GET',
@@ -129,10 +130,8 @@ function checkName() {
         data: {"name" : userName},
         success: function(data) {
             if (data.dbName !== null && data.dbName === userName) {
-            	alert(data.dbName);
                 alert("중복된 닉네임입니다. 다른 닉네임을 사용해주세요.");
             } else {
-            	alert(data.dbName);
                 alert("사용 가능한 닉네임입니다.");
                 $("#isNameAvailable").val("true");
                 updateSignupButton();
@@ -167,7 +166,7 @@ $( document ).ready(function() {
       <table>
       <tr>
         <td><input type="text" class="form-control" id="id" placeholder="아이디를 입력해주세요" name="id"></td>
-        <td><input type="button" value="중복체크" onclick="checkId()" class="btn btn-warning"></td>      
+        <td><input type="button" value="중복체크" onclick="checkId()" class="btn btn-warning"></td>    
       </tr>
       </table>
       </div>

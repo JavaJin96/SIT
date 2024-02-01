@@ -38,7 +38,23 @@
 			phh_board b
 		JOIN phh_user u ON b.user_no = u.no
 		WHERE b.no = #{no};
-	</select>	
+	</select>
+	
+	<select id="pboardDAO.viewComment" parameterType="int" resultType="SIT_SEMI_PROJECT.PHH.board.PcommentVO">
+		SELECT
+			c.reply_no AS replyNo
+			, c.user_no AS userNo
+			, u.name AS name
+			, c.board_no AS boardNo
+			, c.comment
+			, c.parent_no AS parentNo
+			, DATE_FORMAT(c.cre_date, '%Y-%m-%d') AS creDate
+		FROM
+			phh_comments c
+		JOIN phh_user u ON c.user_no = u.no
+		JOIN phh_board b ON  c.board_no = b.no
+		WHERE b.no = #{no};
+	</select>
 	
 	<insert id="pboardDAO.insertBoard" parameterType="SIT_SEMI_PROJECT.PHH.board.PboardVO">
 		INSERT into phh_board(

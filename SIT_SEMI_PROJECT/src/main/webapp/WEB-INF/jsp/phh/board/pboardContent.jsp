@@ -26,8 +26,12 @@ function deleteBoard(no, gubun){
 	location.href = '<c:out value="pboardDelete.do?no="/>' + no + '&gubun=' + gubun;
 }
 
-function listFn(){
-	location.href = '<c:out value="pboardList.do"/>'; 
+function listFn(gubun){
+	if (gubun == 1){
+		location.href = '<c:out value="pboardNoticeList.do"/>';	
+	} else if(gubun ==3){
+		location.href = '<c:out value="pboardList.do"/>';
+	}
 }
 
 function updateBoard(no){
@@ -36,7 +40,6 @@ function updateBoard(no){
 
 
 $( document ).ready(function() {
-	
 	
 });
 		
@@ -94,19 +97,26 @@ $( document ).ready(function() {
 	</c:if>
 		<tr>
 			<td colspan="4" align="right">
-				<input type="button" value="목록" class='btn btn-info' onclick="listFn()"/>
+				<input type="button" value="목록" class='btn btn-info' onclick="listFn(${vo.gubun})"/>
 				<c:if test="${sessionScope.userNo == vo.userNo || sessionScope.userNo == '1'}">
 					<input type="button" class="btn btn-warning" value="삭제" onclick="openModal()" />
 					<input type="button" class="btn btn-primary" value="수정하기" onclick="updateBoard(${vo.no})" />
 				</c:if>
 			</td>
 		</tr>
-		<c:forEach items="${co}" var="co" varStatus="status">
-		
-		</c:forEach>
 </table>
 
-
+		<c:forEach var="co" items="${co}" varStatus="status">
+		<div>
+			${co.replyNo}
+			${co.userNo}
+			${co.name}
+			${co.boardNo}
+			${co.comment}
+			${co.parentNo}
+			${co.creDate}
+		</div>
+		</c:forEach>
 
 </div>
 <div id="myModal" class="modal">

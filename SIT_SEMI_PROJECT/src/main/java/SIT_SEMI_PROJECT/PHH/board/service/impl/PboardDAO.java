@@ -6,6 +6,7 @@ import org.egovframe.rte.psl.dataaccess.EgovAbstractMapper;
 import org.springframework.stereotype.Repository;
 
 import SIT_SEMI_PROJECT.PHH.board.PboardVO;
+import SIT_SEMI_PROJECT.PHH.board.PcommentVO;
 
 @Repository("pboardDAO")
 public class PboardDAO extends EgovAbstractMapper{
@@ -33,6 +34,10 @@ public class PboardDAO extends EgovAbstractMapper{
 	public PboardVO viewBoard(int no) {
 		return selectOne("pboardDAO.viewBoard", no);
 	}
+	
+	public List<?> viewComment(int no) {
+		return selectList("pboardDAO.viewComment", no);
+	}	
 	
 	public List<?> selectNoticeBoard(){
 		return selectList("pboardDAO.selectNoticeBoard");

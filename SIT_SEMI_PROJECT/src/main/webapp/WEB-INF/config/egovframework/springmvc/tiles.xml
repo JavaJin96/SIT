@@ -16,7 +16,7 @@
 	<definition name="phh-layout" template="/WEB-INF/jsp/layout/phh_layout_template.jsp">
 		<put-attribute name="topnav" value="/WEB-INF/jsp/layout/phhTopnav.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/jsp/layout/phhFooter.jsp" />
-	</definition>	
+	</definition>
 	
 	<!-- =================main================= -->
 	
@@ -66,16 +66,16 @@
 	<definition name="pboardUpdatePage" extends="phh-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardUpdatePage.jsp" />
 		<put-attribute name="title" value="메인" />
-	</definition>	
+	</definition>
 	
 	<definition name="pboardNoticeList" extends="phh-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardNoticeList.jsp" />
 		<put-attribute name="title" value="메인" />
-	</definition>		
+	</definition>
 	
 	<definition name="pboardNoticeWrite" extends="phh-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardNoticeWrite.jsp" />
 		<put-attribute name="title" value="메인" />
-	</definition>	
+	</definition>
 	
 </tiles-definitions>

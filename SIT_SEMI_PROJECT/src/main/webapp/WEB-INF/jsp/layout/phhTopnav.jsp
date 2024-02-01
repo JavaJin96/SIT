@@ -41,10 +41,10 @@
       <a class="navbar-brand" href="#" onclick="location.href='/SIT/phh/puserList.do'">Ssoho</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="#" onclick="location.href='/SIT/main/main.do'">SIT_MAIN</a></li>
       <li><a href="#" onclick="location.href='/SIT/phh/pboardNoticeList.do'">공지사항</a></li>
       <li><a href="#" onclick="location.href='/SIT/phh/pboardList.do'">자유게시판</a></li>
-      <li><a href="#">관리자</a></li>
+      <li><a href="#" onclick="location.href='/SIT/phh/puserList.do'">관리자</a></li>
+      <li><a href="#" onclick="location.href='/SIT/main/main.do'">SIT_MAIN</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
 	<c:if test="${sessionScope.userId==null || sessionScope.userId==''}">

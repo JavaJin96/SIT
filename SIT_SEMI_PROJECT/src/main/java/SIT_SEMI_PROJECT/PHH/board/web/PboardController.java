@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import SIT_SEMI_PROJECT.PHH.board.PboardVO;
+import SIT_SEMI_PROJECT.PHH.board.PcommentVO;
 import SIT_SEMI_PROJECT.PHH.board.service.PboardService;
 
 @Controller
@@ -64,8 +65,10 @@ public class PboardController {
 	public ModelAndView viewBoard(@RequestParam int no) {
 		ModelAndView mav = new ModelAndView();
 		pboardService.countBoard(no);
+		List<?> co = pboardService.viewComment(no);
 		PboardVO vo = pboardService.viewBoard(no);
 		mav.addObject("vo", vo);
+		mav.addObject("co", co);
 		mav.setViewName("pboardContent");
 		return mav;
 	}

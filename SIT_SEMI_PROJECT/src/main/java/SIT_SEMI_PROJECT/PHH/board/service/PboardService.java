@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import SIT_SEMI_PROJECT.PHH.board.PboardVO;
+import SIT_SEMI_PROJECT.PHH.board.PcommentVO;
 import SIT_SEMI_PROJECT.PHH.board.service.impl.PboardDAO;
 
 @Service("pboardService")
@@ -38,6 +39,10 @@ public class PboardService {
 	public PboardVO viewBoard(int no) {
 		return pboardDao.viewBoard(no);
 	}
+	
+	public List<?> viewComment(int no) {
+		return pboardDao.viewComment(no);
+	}	
 	
 	public List<?> selectNoticeBoard(){
 		return pboardDao.selectNoticeBoard();
