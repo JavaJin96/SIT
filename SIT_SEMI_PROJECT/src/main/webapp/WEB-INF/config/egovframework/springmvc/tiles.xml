@@ -68,4 +68,14 @@
 		<put-attribute name="title" value="메인" />
 	</definition>	
 	
+	<definition name="pboardNoticeList" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardNoticeList.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>		
+	
+	<definition name="pboardNoticeWrite" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardNoticeWrite.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>	
+	
 </tiles-definitions>

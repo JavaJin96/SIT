@@ -22,12 +22,14 @@ function closeModal(){
 }
 
 
-function deleteBoard(no){
-	location.href = '<c:out value="pboardDelete.do?no="/>'+no;		
+function deleteBoard(no, gubun){
+	location.href = '<c:out value="pboardDelete.do?no="/>' + no + '&gubun=' + gubun;
 }
+
 function listFn(){
 	location.href = '<c:out value="pboardList.do"/>'; 
 }
+
 function updateBoard(no){
 	location.href = '<c:out value="pboardUpdatePage.do?no="/>'+no; 
 }
@@ -59,7 +61,13 @@ $( document ).ready(function() {
 
 <div class="container">
 	<table class="table">
-	<h2> <a href = "pboardList.do" style="color: inherit; text-decoration: none;" >자유게시판</a> </h2>
+	<c:if test="${vo.gubun == '3'}">
+		<h2> <a href = "pboardList.do" style="color: inherit; text-decoration: none;" >자유게시판</a> </h2>
+	</c:if>
+	<c:if test="${vo.gubun == '1'}">
+		<h2> <a href = "pboardNoticeList.do" style="color: inherit; text-decoration: none;" >공지사항</a> </h2>
+	</c:if>
+	
 	<colgroup>
 		<col style="width:25%" >
 		<col style="width:25%" >
@@ -93,20 +101,26 @@ $( document ).ready(function() {
 				</c:if>
 			</td>
 		</tr>
+		<c:forEach items="${co}" var="co" varStatus="status">
 		
+		</c:forEach>
+</table>
+
+
+
+</div>
 <div id="myModal" class="modal">
 	<div align="center">
 		<div>
 			<label for="check">정말로 삭제하시겠습니까?</label>
 		</div>
 		<div>
-			<button type="button" class="btn btn-primary" onclick="deleteBoard(${vo.no})">확인</button>
+			<button type="button" class="btn btn-primary" onclick="deleteBoard(${vo.no}, ${vo.gubun})">확인</button>
 			<button type="button" class="btn btn-warning" onclick="closeModal()">취소</button>
 		</div>
 	</div>
 </div>
-</table>
-</div>
+
 
 </body>
 </html>

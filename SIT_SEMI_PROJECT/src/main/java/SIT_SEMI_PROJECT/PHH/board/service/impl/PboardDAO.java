@@ -34,6 +34,14 @@ public class PboardDAO extends EgovAbstractMapper{
 		return selectOne("pboardDAO.viewBoard", no);
 	}
 	
+	public List<?> selectNoticeBoard(){
+		return selectList("pboardDAO.selectNoticeBoard");
+	}
+	
+	public int insertNoticeBoard(PboardVO vo) {
+		return insert("pboardDAO.insertNoticeBoard", vo);
+	}	
+	
 	
 
 }

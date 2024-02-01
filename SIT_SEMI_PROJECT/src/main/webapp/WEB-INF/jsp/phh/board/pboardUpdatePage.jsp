@@ -48,9 +48,15 @@
 </head>
 <body>
 <div class="container">
-<h2> <a href = "pboardList.do" style="color: inherit; text-decoration: none;" >자유게시판</a> </h2>
+	<c:if test="${vo.gubun == '3'}">
+		<h2> <a href = "pboardList.do" style="color: inherit; text-decoration: none;" >자유게시판</a> </h2>
+	</c:if>
+	<c:if test="${vo.gubun == '1'}">
+		<h2> <a href = "pboardNoticeList.do" style="color: inherit; text-decoration: none;" >공지사항</a> </h2>
+	</c:if>
 <form name="update" id="update" action = "pboardUpdate.do">
 <input type="hidden" name="no" value="${vo.no}" />
+<input type="hidden" name="gubun" value="${vo.gubun}" />
 <table class="table">
 	<colgroup>
 		<col style="width:25%" >

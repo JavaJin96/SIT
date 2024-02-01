@@ -11,8 +11,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-function boardWrite(){
-	location.href = '<c:out value="pboardWrite.do"/>';
+function boardNoticeWrite(){
+	location.href = '<c:out value="pboardNoticeWrite.do"/>';
 }
 
 
@@ -42,7 +42,7 @@ $( document ).ready(function() {
 <!--     </div> -->
   </div>
   <table class="table table-striped">
-  <h2> <a href = "pboardList.do" style="color: inherit; text-decoration: none;" >자유게시판</a> </h2>
+  <h2> <a href = "pboardNoticeList.do" style="color: inherit; text-decoration: none;" >공지사항</a> </h2>
 	<colgroup>
 		<col style="width:10%" >
 		<col style="width:40%" >
@@ -73,11 +73,11 @@ $( document ).ready(function() {
     </tbody>
   </table>
   <div align='right'>
-      <c:if test="${sessionScope.userId==null || sessionScope.userId==''}">
-      	<button type="button" class="btn btn-primary" onclick="boardWrite()" disabled="disabled">글 작성</button>
+      <c:if test="${sessionScope.userId !='admin'}">
+      	<button type="button" class="btn btn-primary" onclick="boardNoticeWrite()" disabled="disabled">글 작성</button>
       </c:if>
-      <c:if test="${sessionScope.userId!=null && sessionScope.userId!=''}">
-      	<button type="button" class="btn btn-primary" onclick="boardWrite()">글 작성</button>
+      <c:if test="${sessionScope.userId =='admin'}">
+      	<button type="button" class="btn btn-primary" onclick="boardNoticeWrite()">글 작성</button>
       </c:if>
   </div>
 

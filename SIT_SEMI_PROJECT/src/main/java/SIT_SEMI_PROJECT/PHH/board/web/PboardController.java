@@ -49,10 +49,14 @@ public class PboardController {
 	}
 	
 	@RequestMapping(value="phh/pboardDelete.do")
-	public ModelAndView deleteBoard(@RequestParam int no) {
+	public ModelAndView deleteBoard(@RequestParam int no, @RequestParam int gubun) {
 		ModelAndView mav = new ModelAndView();
 		pboardService.deleteBoard(no);
-		mav.setView(new RedirectView("pboardList.do"));
+		if (gubun == 3) {
+			mav.setView(new RedirectView("pboardList.do"));
+		} else if (gubun ==1) {
+			mav.setView(new RedirectView("pboardNoticeList.do"));
+		}
 		return mav;
 	}
 	
@@ -74,19 +78,50 @@ public class PboardController {
 		return mav;
 	}
 	@RequestMapping(value="phh/pboardUpdate.do")
-	public ModelAndView updateBoard(@RequestParam int no, @RequestParam String title, @RequestParam String contents) {
+	public ModelAndView updateBoard(@RequestParam int no, @RequestParam String title, @RequestParam String contents, @RequestParam int gubun) {
 		ModelAndView mav = new ModelAndView();
 		PboardVO vo = new PboardVO(); 
 		vo.setNo(no);
 		vo.setTitle(title);
 		vo.setContents(contents);
 		pboardService.updateBoard(vo);
-		mav.setView(new RedirectView("pboardList.do"));
+		if (gubun == 3) {
+			mav.setView(new RedirectView("pboardList.do"));
+		} else if (gubun == 1) {
+			mav.setView(new RedirectView("pboardNoticeList.do"));
+		}
+		
 		return mav;
 	}
 	
-
+	@RequestMapping(value="phh/pboardNoticeList.do")
+	public ModelAndView goNoticeBoard() {
+		ModelAndView mav = new ModelAndView();
+		List<?> list = pboardService.selectNoticeBoard();
+		mav.addObject("list", list);
+		mav.setViewName("pboardNoticeList");
+		return mav;
+	}
 	
+	@RequestMapping(value="phh/pboardNoticeWrite.do")
+	public ModelAndView writeNoticeBoard() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("pboardNoticeWrite");
+		return mav;
+	}	
 	
+	@RequestMapping(value="phh/pboardNoticeInsert.do")
+	public ModelAndView insertNoticeBoard(@RequestParam int userNo, @RequestParam String title, @RequestParam String contents, @RequestParam int count, @RequestParam int gubun) {
+		ModelAndView mav = new ModelAndView();
+		PboardVO vo = new PboardVO();
+		vo.setUserNo(userNo);
+		vo.setTitle(title);
+		vo.setContents(contents);
+		vo.setCount(count);
+		vo.setGubun(gubun);
+		pboardService.insertNoticeBoard(vo);
+		mav.setView(new RedirectView("pboardNoticeList.do"));
+		return mav;
+	}
 	
 }

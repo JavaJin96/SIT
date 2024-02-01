@@ -39,5 +39,13 @@ public class PboardService {
 		return pboardDao.viewBoard(no);
 	}
 	
+	public List<?> selectNoticeBoard(){
+		return pboardDao.selectNoticeBoard();
+	}	
+	
+	public int insertNoticeBoard(PboardVO vo) {
+		return pboardDao.insertNoticeBoard(vo);
+	}	
+	
 	
 }

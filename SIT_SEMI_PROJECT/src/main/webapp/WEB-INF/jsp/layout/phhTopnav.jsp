@@ -42,7 +42,7 @@
     </div>
     <ul class="nav navbar-nav">
       <li><a href="#" onclick="location.href='/SIT/main/main.do'">SIT_MAIN</a></li>
-      <li><a href="#">공지사항</a></li>
+      <li><a href="#" onclick="location.href='/SIT/phh/pboardNoticeList.do'">공지사항</a></li>
       <li><a href="#" onclick="location.href='/SIT/phh/pboardList.do'">자유게시판</a></li>
       <li><a href="#">관리자</a></li>
     </ul>

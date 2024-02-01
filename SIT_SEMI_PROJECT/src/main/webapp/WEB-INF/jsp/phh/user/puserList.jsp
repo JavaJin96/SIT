@@ -32,7 +32,7 @@ $( document ).ready(function() {
 <body>
 
 <div class="container">
-  <h2>회원관리</h2>            
+	<h2> <a href = "puserList.do" style="color: inherit; text-decoration: none;" >회원관리</a> </h2>    
   <table class="table table-striped">
     <thead>
       <tr>
