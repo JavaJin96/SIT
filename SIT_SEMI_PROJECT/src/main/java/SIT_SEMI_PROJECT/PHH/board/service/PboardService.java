@@ -50,7 +50,15 @@ public class PboardService {
 	
 	public int insertNoticeBoard(PboardVO vo) {
 		return pboardDao.insertNoticeBoard(vo);
-	}	
+	}
+	
+	public int insertComment(PcommentVO vo) {
+		return pboardDao.insertComment(vo);
+	}
+	
+	public int deleteComment(int replyNo) {
+		return pboardDao.deleteComment(replyNo);
+	}
 	
 	
 }

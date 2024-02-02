@@ -12,7 +12,7 @@
 <script type="text/javascript">
 
 function goHome(){
-	location.href = '<c:out value="puserList.do" />';
+	location.href = '<c:out value="pboardNoticeList.do" />';
 }
 
 $( document ).ready(function() {
@@ -56,7 +56,7 @@ $( document ).ready(function() {
 	
 <div class="go_center">
 	<button class="phh_custom" type="button" onclick="goHome()" >현호's</button>
-  <a class="change" href="<c:out value='puserList.do' />">현호의 홈페이지로 이동</a>
+  <a class="change" href="<c:out value='pboardNoticeList.do' />">현호의 홈페이지로 이동</a>
 </div>	
 
 </body>

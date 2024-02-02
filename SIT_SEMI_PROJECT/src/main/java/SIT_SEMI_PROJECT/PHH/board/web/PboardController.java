@@ -127,4 +127,32 @@ public class PboardController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "phh/pcommentWrite.do")
+	public ModelAndView insertComment(@RequestParam int userNo, @RequestParam int boardNo, @RequestParam String comment) {
+		ModelAndView mav = new ModelAndView();
+		PcommentVO co = new PcommentVO();
+		co.setUserNo(userNo);
+		co.setBoardNo(boardNo);
+		co.setComment(comment);
+		pboardService.insertComment(co);
+		
+//		PboardVO vo = pboardService.viewBoard(boardNo);
+//		mav.addObject("vo", vo);
+//		mav.setViewName("pboardContent");
+		
+		mav.setView(new RedirectView("pboardContent.do?no=" + boardNo));
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "phh/pcommentDelete.do")
+	public ModelAndView deleteComment(@RequestParam int replyNo, @RequestParam int boardNo) {
+		ModelAndView mav = new ModelAndView();
+		pboardService.deleteComment(replyNo);
+		
+		mav.setView(new RedirectView("pboardContent.do?no=" + boardNo));
+		
+		return mav;
+	}
+	
 }

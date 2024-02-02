@@ -121,7 +121,25 @@
 			, #{count}
 			, #{gubun}
 		)
-	</insert>	
+	</insert>
+	
+	<insert id="pboardDAO.insertComment" parameterType="SIT_SEMI_PROJECT.PHH.board.PcommentVO">
+		INSERT into phh_comments(
+			user_no
+			, board_no
+			, comment
+		) VALUES (
+			#{userNo}
+			, #{boardNo}
+			, #{comment}
+		)
+	</insert>
+	
+	<delete id="pboardDAO.deleteComment" parameterType="int">
+		DELETE
+			FROM phh_comments
+			WHERE reply_no = #{replyNo}
+	</delete>
 
 
 </mapper>

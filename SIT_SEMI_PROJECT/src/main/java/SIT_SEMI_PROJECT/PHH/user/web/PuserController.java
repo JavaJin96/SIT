@@ -61,7 +61,7 @@ public class PuserController {
 		
 		if (vo != null) {
 			mav.addObject("vo", vo);
-			mav.setView(new RedirectView("puserList.do"));
+			mav.setView(new RedirectView("pboardNoticeList.do"));
 			HttpSession session = request.getSession();
 			session.setAttribute("userId", vo.getId());
 			session.setAttribute("userNo", vo.getNo());		
@@ -80,7 +80,7 @@ public class PuserController {
 		
 		ModelAndView mav = new ModelAndView();
 		request.getSession().invalidate();
-		mav.setView(new RedirectView("puserList.do"));
+		mav.setView(new RedirectView("pboardNoticeList.do"));
 		
 		return mav;
 	}		
@@ -89,6 +89,7 @@ public class PuserController {
 	public ModelAndView goSignup() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("puserSignup");
+		
 		return mav;
 	}
 	
@@ -103,14 +104,16 @@ public class PuserController {
 		vo.setPass(pass);
 		
 		puserService.insertUser(vo);
-		
+				
+		vo = puserService.doLogin(vo);		
 		HttpSession session = request.getSession();
+		
 		session.setAttribute("userId", vo.getId());
 		session.setAttribute("userNo", vo.getNo());		
 		session.setAttribute("userName", vo.getName());
 		session.setAttribute("userRole", vo.getRole());
 		
-		mav.setView(new RedirectView("puserList.do"));
+		mav.setView(new RedirectView("pboardNoticeList.do"));
 		
 		return mav;
 	}

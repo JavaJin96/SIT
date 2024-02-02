@@ -45,7 +45,15 @@ public class PboardDAO extends EgovAbstractMapper{
 	
 	public int insertNoticeBoard(PboardVO vo) {
 		return insert("pboardDAO.insertNoticeBoard", vo);
-	}	
+	}
+	
+	public int insertComment(PcommentVO vo) {
+		return insert("pboardDAO.insertComment", vo);
+	}
+	
+	public int deleteComment(int replyNo) {
+		return delete("pboardDAO.deleteComment", replyNo);
+	}
 	
 	
 

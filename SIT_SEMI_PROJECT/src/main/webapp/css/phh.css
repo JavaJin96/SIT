@@ -62,10 +62,62 @@ float: right;
 border:none;
 }
 
-/* .table input.btn-primary { */
-/* background-color: #66b3f5; */
-/* border-color: #66b3f5; */
+.commentWrite input {
+text-align: left !important;
+width:100%;
+margin-left: 1rem;
+border: 2px solid #cfcfcf;
+border-radius: 0.8rem;
+}
+
+.commentWrite textarea {
+text-align: left !important;
+width:98%;
+margin-left: 1rem;
+border: 2px solid #cfcfcf;
+border-radius: 0.8rem;
+}
+
+.commentWrite input.btn {
+text-align: center !important;
+width:10%;
+float: right;
+margin : 10px;
+border:none;
+border-radius: 0.8rem;
+}
+
+/* .commentWrite * { */
+/* font-size: 1.6rem; */
 /* } */
+
+.comment {
+border-collapse: collapse;
+background-color: #ddd;
+width: 98%;
+padding : 2rem;
+}
+
+.comment > tr > td{
+padding: 2rem;
+}
+
+.comment * {
+font-size: 1.6rem;
+}
+
+.coTitle{
+	height : 5rem;
+	align-items : center;
+}
+
+.coComment td {
+	max-height : 200px;
+	height : 40px;
+	align-items : center;
+/* 	margin : 10rem; */
+	padding : 2rem;
+}
 
 .modal {
 max-height: 100%;
@@ -111,213 +163,4 @@ font-weight:600;
 	font-size : 1.6rem;
 	text-align : right;
 	margin : 2rem 0 2rem 0;
-}
-
-.signin-alert {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.signin-alert-modal {
-  background-color: #000000;
-  border: 2px solid #fe4452;
-  height: auto;    
-  padding: 30px;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.signin-alert-modal p {
-  margin: 0;
-  font-size: 16px;
-}
-
-.signin-alert-modal button {
-  font-family: 'Noto Sans KR', sans-serif;
-  border: none;
-  width: 50%;
-  background-color: #93ff67;
-  color: black;
-  padding: 10px 0;
-  font-weight: 700;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: .2s;
-}
-
-.signin-alert-modal button:hover {
-  background-color: #fe4452;
-}  
-
-.signup-alert {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.signup-alert-modal {
-  background-color: #000000;
-  border: 2px solid #93ff67;
-  height: auto;    
-  padding: 30px;
-  border-radius: 10px;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-  text-align: center;
-}
-
-.signup-alert-modal p {
-  margin: 0;
-  font-size: 16px;
-}
-
-.signup-alert-modal button {
-  font-family: 'Noto Sans KR', sans-serif;
-  border: none;
-  width: 50%;
-  background-color: #fe4452;
-  color: black;
-  padding: 10px 0;
-  font-weight: 700;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: .2s;
-}
-
-.signup-alert-modal button:hover {
-  background-color: #93ff67;
-}    
-
-.submit-btn {
-font-family: 'Noto Sans KR', sans-serif;
-border: none;
-width: 240px;
-background-color: #93ff67;
-color: black;
-padding: 10px 0;
-font-weight: 700;
-border-radius: 5px;
-cursor: pointer;
-transition: .2s;
-}
-
-.submit-btn:hover {
-background-color: #fe4452;
-}
-
-.submit-btn:focus {
-outline: none;
-}
-
-.submit-btn:active {
-background-color: #93ff67;
-transform: translateY(2px);
-}
-
-.signup-background{
-  background-color: #000000;
-  border: 2px solid #fe4452;
-  height: auto;
-  width: 90%;
-  max-width: 350px;
-  padding: 10px;
-  margin: 0 auto;
-  border-radius: 10px;
-  /* box-shadow: 0px 40px 30px -20px rgba(0, 0, 0, 0.3); */
-  text-align: center;  
-}
-
-.signin-background{
-  background-color: #000000;
-  border: 2px solid #93ff67;
-  height: auto;
-  width: 90%;
-  max-width: 350px;
-  padding: 10px;
-  margin: 0 auto;
-  border-radius: 10px;
-  /* box-shadow: 0px 40px 30px -20px rgba(0, 0, 0, 0.3); */
-  text-align: center;  
-}
-
-.signin { /* 로그인 아래 선 같은 거 */
-  font-family: 'Noto Sans KR', sans-serif;
-  border: none;
-  border-bottom: 1px solid #ffffff;
-  background: none;
-  padding: 10px 0;
-  font-weight: 500;
-  font-size: 13px;
-  transition: .25;
-  width: 85%;
-  color: white;
-}
-
-.signin:active,
-.signin:focus,
-.signin:hover {
-  outline: none;
-  border-bottom-color: #93ff67;
-}
-.signin-btn {
-  font-family: 'Noto Sans KR', sans-serif;
-  border: none;
-  width: 70%;
-  background-color: #fe4452;
-  color: black;
-  padding: 10px 0;
-  font-weight: 700;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: .2s;
-}
-.signin-btn:hover {
-  background-color: #93ff67;
-}
-
-.signup-btn{
-  font-family: 'Noto Sans KR', sans-serif;
-  border: none;
-  width: 70%;
-  background-color: #93ff67;
-  color: black;
-  padding: 10px 0;
-  font-weight: 700;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: .2s;
-}
-
-.signup-btn:hover {
-  background-color: #fe4452;
-}
-
-.signupbtn {
-  font-family: 'Noto Sans KR', sans-serif;
-  background-color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  border: none;
-  margin-left: 10px;
-}
-
-.signinbtn {
-  font-family: 'Noto Sans KR', sans-serif;
-  background-color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  border: none;
-  margin-left: 10px;
 }
