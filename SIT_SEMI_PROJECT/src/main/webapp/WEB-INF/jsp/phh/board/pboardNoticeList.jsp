@@ -15,9 +15,14 @@ function boardNoticeWrite(){
 	location.href = '<c:out value="pboardNoticeWrite.do"/>';
 }
 
-
 $( document ).ready(function() {
+	var selectSearch = "<c:out value='${selectSearch}' />"
 	
+	if(selectSearch==null || selectSearch=="" || selectSearch=='undefined' ){
+		$("#selectSearch").val('title');
+	}else{
+		$("#selectSearch").val(selectSearch); 
+	}
 	
 });
 		
@@ -41,8 +46,19 @@ $( document ).ready(function() {
 <!--       <br> -->
 <!--     </div> -->
   </div>
-  <table class="table table-striped">
-  <h2> <a href = "pboardNoticeList.do" style="color: inherit; text-decoration: none;" >공지사항</a> </h2>
+<h2> <a href = "pboardNoticeList.do" style="color: inherit; text-decoration: none;" >공지사항</a> </h2>
+	<div class='search'>
+      	<form action="/psearchNoticeList.do" method="post">
+			<select id="selectSearch" name="selectSearch">
+				<option value="title" selected="selected">글 제목</option>
+				<option value="content">글 내용</option>
+				<option value="name">작성자</option>
+			</select>
+      		<input type="text" id="search" name="search" value="${not empty search ? search : ''}" />
+      		<input type="submit" class='btn btn-warning' value='검색'/>
+      	</form>
+	</div>      
+  <table class="table table-striped">  
 	<colgroup>
 		<col style="width:10%" >
 		<col style="width:40%" >

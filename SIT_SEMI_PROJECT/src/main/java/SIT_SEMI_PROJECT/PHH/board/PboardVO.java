@@ -13,6 +13,8 @@ public class PboardVO {
 	int gubun;
 	int count;
 	String pass;
+	String selectSearch;
+	String search;
 	
 	public int getNo() {
 		return no;
@@ -79,6 +81,18 @@ public class PboardVO {
 	}
 	public void setPass(String pass) {
 		this.pass = pass;
+	}
+	public String getSelectSearch() {
+		return selectSearch;
+	}
+	public void setSelectSearch(String selectSearch) {
+		this.selectSearch = selectSearch;
+	}
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
 	}
 	
 }

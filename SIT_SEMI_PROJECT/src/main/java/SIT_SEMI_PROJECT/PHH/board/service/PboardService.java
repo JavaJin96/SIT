@@ -20,6 +20,10 @@ public class PboardService {
 		return pboardDao.selectBoard();
 	}
 	
+	public List<?> searchBoard(String selectSearch, String search){
+		return pboardDao.searchBoard(selectSearch, search);
+	}
+	
 	public int insertBoard(PboardVO vo) {
 		return pboardDao.insertBoard(vo);
 	}

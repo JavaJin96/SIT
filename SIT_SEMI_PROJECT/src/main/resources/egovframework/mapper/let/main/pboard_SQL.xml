@@ -21,6 +21,32 @@
 		ORDER BY b.no DESC;
 	</select>
 	
+	<select id="pboardDAO.searchBoard" parameterType = "map" resultType="SIT_SEMI_PROJECT.PHH.board.PboardVO">
+		SELECT 
+			b.no
+			, b.user_no AS userNo
+			, u.name AS name
+			, b.title
+			, b.contents
+			, b.count
+			, b.file_name AS fileName
+			, DATE_FORMAT(b.cre_date, '%Y-%m-%d') AS creDate
+			, DATE_FORMAT(b.mod_date, '%Y-%m-%d') AS modDate
+			, b.gubun
+		FROM
+			phh_board b
+		JOIN phh_user u ON b.user_no = u.no
+		WHERE b.gubun = 3 
+		<choose>
+			<when test="selectSearch == 'title'">AND b.title</when>
+			<when test="selectSearch == 'contents'">AND b.contents</when>
+			<when test="selectSearch == 'name'">AND u.name</when>
+		</choose>
+			LIKE '%' || #{search} || '%'
+			
+		ORDER BY b.no DESC;
+	</select>	
+	
 	<select id="pboardDAO.viewBoard" parameterType="int" resultType="SIT_SEMI_PROJECT.PHH.board.PboardVO">
 		SELECT 
 			b.no

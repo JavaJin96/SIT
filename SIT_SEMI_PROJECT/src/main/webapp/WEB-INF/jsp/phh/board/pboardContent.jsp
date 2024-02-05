@@ -29,19 +29,21 @@ function closeModal(){
     modal.style.display = "none";
 }
 
-function openModal2(){
-    var modal = document.getElementById("myModal2");
+function openModal2(replyNo){
+    var modal = document.getElementById("myModal2-"+replyNo);
     modal.style.display = "block";
 }
+
+function closeModal2(replyNo){
+    var modal = document.getElementById("myModal2-"+replyNo);
+    modal.style.display = "none";
+}
+
 
 function deleteComment(replyNo, boardNo){
 	location.href = '<c:out value="pcommentDelete.do?replyNo="/>'+replyNo + '&boardNo=' + boardNo;
 }
 
-function closeModal2(){
-    var modal = document.getElementById("myModal2");
-    modal.style.display = "none";
-}
 
 
 function deleteBoard(no, gubun){
@@ -63,15 +65,15 @@ function updateBoard(no){
 
 function doComment(){
 	var comment = $('#comment').val();
-	var userNo = ${sessionScope.userNo};
-	var boardNo = ${vo.no};		
+	var userNo = "${sessionScope.userNo}";
+	var boardNo = "${vo.no}";		
 	
 	if (comment =='' || comment == null){
 		alert('댓글을 작성 후 클릭바랍니다.');
 		return false;
 	}
-	if (comment.length >= 51){
-		alert('댓글의 내용이 너무 깁니다. 50자 이하로 작성해주세요');
+	if (comment.length >= 101){
+		alert('댓글의 내용이 너무 깁니다. 100자 이하로 작성해주세요');
 		return false;
 	}
 	
@@ -140,7 +142,7 @@ function doComment(){
 			<td colspan="4" align="right">
 				<input type="button" value="목록" class='btn btn-info' onclick="listFn(${vo.gubun})" />
 				<c:if test="${sessionScope.userNo == vo.userNo || sessionScope.userNo == '1'}">
-					<input type="button" class="btn btn-warning" value="삭제" onclick="openModal(board)" />
+					<input type="button" class="btn btn-warning" value="삭제" onclick="openModal()" />
 					<input type="button" class="btn btn-primary" value="수정하기" onclick="updateBoard(${vo.no})" />
 				</c:if>
 			</td>
@@ -168,13 +170,14 @@ function doComment(){
 	       		<td colsapn="1"></td>
 	       		<td colspan="2">${co.comment}</td>
 	       		<c:if test="${sessionScope.userNo == co.userNo || sessionScope.userNo == '1'}">
-	       			<td colspan="1"><input type="button" class="btn btn-danger" value="삭제" onclick="openModal2()" /></td>
+	       			<td colspan="1"><input type="button" class="btn btn-danger" value="삭제" onclick="openModal2(${co.replyNo})" /></td>
 <%-- 	       			<td colspan="1"><input type="button" class="btn btn-danger" value="삭제" onclick="deleteComment(${co.replyNo}, ${co.boardNo})" /></td> --%>
 	       		</c:if>
 	       	</tr>
 		</table> 
 		
-		<div id="myModal2" class="modal">
+<!-- 		각 댓글 번호에 맞는 Modal창을 열기 위함 -->
+		<div id="myModal2-${co.replyNo}" class="modal">
 			<div align="center">
 				<div>
 					<label for="check">정말로 삭제하시겠습니까?</label>
@@ -182,7 +185,7 @@ function doComment(){
 				<div>
 		<%-- 			<button type="button" class="btn btn-primary" onclick="deleteComment(${co.replyNo}, ${co.boardNo})">확인</button> --%>
 					<button type="button" class="btn btn-primary" onclick="deleteComment(${co.replyNo}, ${co.boardNo})">확인</button>
-					<button type="button" class="btn btn-warning" onclick="closeModal2()">취소</button>
+					<button type="button" class="btn btn-warning" onclick="closeModal2(${co.replyNo})">취소</button>
 				</div>
 			</div>
 		</div>		
@@ -195,7 +198,7 @@ function doComment(){
 	<div class="commentWrite">
 	    <h3>댓글</h3>
 	    <c:if test="${sessionScope.userNo != null}">
-        	<textarea id="comment" name="comment" placeholder="댓글을 입력하세요..." required></textarea>
+        	<textarea id="comment" name="comment" placeholder="댓글을 100자 이내로 입력하세요..." required></textarea>
         </c:if>
         <c:if test="${sessionScope.userNo == null || sessionScope.userNo == ''}">
 <!--         	<textarea id="comment" name="comment" placeholder="로그인 후 작성해주세요..." disabled="disabled" required></textarea> -->
