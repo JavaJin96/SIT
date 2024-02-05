@@ -51,7 +51,7 @@
 	<definition name="pboardList" extends="phh-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardList.jsp" />
 		<put-attribute name="title" value="메인" />
-	</definition>			
+	</definition>
 	
 	<definition name="pboardWrite" extends="phh-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardWrite.jsp" />
@@ -77,5 +77,6 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardNoticeWrite.jsp" />
 		<put-attribute name="title" value="메인" />
 	</definition>
+	
 	
 </tiles-definitions>
