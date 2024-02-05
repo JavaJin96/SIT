@@ -33,9 +33,9 @@ public class PboardController {
 	public ModelAndView searchBoard(@RequestParam String selectSearch, @RequestParam String search) {
 		ModelAndView mav = new ModelAndView();
 		List<?> list = pboardService.searchBoard(selectSearch, search);
-		mav.addObject("list", list);
+		mav.addObject("list", list); 
 //		mav.setViewName("psearchList");
-		mav.setViewName("pboardList"); 
+		mav.setViewName("pboardList");
 		return mav;
 	}
 	

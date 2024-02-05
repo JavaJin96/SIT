@@ -52,14 +52,6 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardList.jsp" />
 		<put-attribute name="title" value="메인" />
 	</definition>
-<<<<<<< HEAD
-=======
-	
-<!-- 	<definition name="psearchList" extends="phh-layout"> -->
-<!-- 		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardList.jsp" /> -->
-<!-- 		<put-attribute name="title" value="메인" /> -->
-<!-- 	</definition>	 -->
->>>>>>> refs/remotes/origin/master
 	
 	<definition name="pboardWrite" extends="phh-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardWrite.jsp" />
