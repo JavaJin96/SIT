@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pboardDAO">
+
+	<select id="pboardDAO.selectBoard" resultType="SIT_SEMI_PROJECT.PHH.board.PboardVO">
+		SELECT 
+			b.no
+			, b.user_no AS userNo
+			, u.name AS name
+			, b.title
+			, b.contents
+			, b.count
+			, b.file_name AS fileName
+			, DATE_FORMAT(b.cre_date, '%Y-%m-%d') AS creDate
+			, DATE_FORMAT(b.mod_date, '%Y-%m-%d') AS modDate
+			, b.gubun
+		FROM
+			phh_board b
+		JOIN phh_user u ON b.user_no = u.no
+		WHERE b.gubun = 3
+		ORDER BY b.no DESC;
+	</select>
+	
+	<select id="pboardDAO.viewBoard" parameterType="int" resultType="SIT_SEMI_PROJECT.PHH.board.PboardVO">
+		SELECT 
+			b.no
+			, b.user_no AS userNo
+			, u.name AS name
+			, b.title
+			, b.contents
+			, b.count
+			, b.file_name AS fileName
+			, DATE_FORMAT(b.cre_date, '%Y-%m-%d') AS creDate
+			, DATE_FORMAT(b.mod_date, '%Y-%m-%d') AS modDate
+			, b.gubun
+			, u.pass
+		FROM
+			phh_board b
+		JOIN phh_user u ON b.user_no = u.no
+		WHERE b.no = #{no};
+	</select>
+	
+	<select id="pboardDAO.viewComment" parameterType="int" resultType="SIT_SEMI_PROJECT.PHH.board.PcommentVO">
+		SELECT
+			c.reply_no AS replyNo
+			, c.user_no AS userNo
+			, u.name AS name
+			, c.board_no AS boardNo
+			, c.comment
+			, c.parent_no AS parentNo
+			, DATE_FORMAT(c.cre_date, '%Y-%m-%d') AS creDate
+		FROM
+			phh_comments c
+		JOIN phh_user u ON c.user_no = u.no
+		JOIN phh_board b ON  c.board_no = b.no
+		WHERE b.no = #{no};
+	</select>
+	
+	<insert id="pboardDAO.insertBoard" parameterType="SIT_SEMI_PROJECT.PHH.board.PboardVO">
+		INSERT into phh_board(
+			user_no
+			, title
+			, contents
+			, count
+		) VALUES (
+			#{userNo}
+			, #{title}
+			, #{contents}
+			, #{count}
+		)
+	</insert>
+	
+	<update id="pboardDAO.updateBoard" parameterType="SIT_SEMI_PROJECT.PHH.board.PboardVO">
+		UPDATE phh_board 
+			SET title= #{title}
+			, contents= #{contents}
+			, mod_date = NOW()
+			WHERE no = #{no}
+	</update>
+	
+	<update id="pboardDAO.countBoard" parameterType="int">
+		UPDATE phh_board
+			SET count = count + 1
+			WHERE no = #{no}
+	</update>
+	
+	<delete id="pboardDAO.deleteBoard" parameterType="int">
+		delete from phh_board WHERE no = #{no}
+	</delete>
+	
+	<select id="pboardDAO.selectNoticeBoard" resultType="SIT_SEMI_PROJECT.PHH.board.PboardVO">
+		SELECT 
+			b.no
+			, b.user_no AS userNo
+			, u.name AS name
+			, b.title
+			, b.contents
+			, b.count
+			, b.file_name AS fileName
+			, DATE_FORMAT(b.cre_date, '%Y-%m-%d') AS creDate
+			, DATE_FORMAT(b.mod_date, '%Y-%m-%d') AS modDate
+			, b.gubun
+		FROM
+			phh_board b
+		JOIN phh_user u ON b.user_no = u.no
+		WHERE b.gubun = 1
+		ORDER BY b.no DESC;
+	</select>
+	
+	<insert id="pboardDAO.insertNoticeBoard" parameterType="SIT_SEMI_PROJECT.PHH.board.PboardVO">
+		INSERT into phh_board(
+			user_no
+			, title
+			, contents
+			, count
+			, gubun
+		) VALUES (
+			#{userNo}
+			, #{title}
+			, #{contents}
+			, #{count}
+			, #{gubun}
+		)
+	</insert>
+	
+	<insert id="pboardDAO.insertComment" parameterType="SIT_SEMI_PROJECT.PHH.board.PcommentVO">
+		INSERT into phh_comments(
+			user_no
+			, board_no
+			, comment
+		) VALUES (
+			#{userNo}
+			, #{boardNo}
+			, #{comment}
+		)
+	</insert>
+	
+	<delete id="pboardDAO.deleteComment" parameterType="int">
+		DELETE
+			FROM phh_comments
+			WHERE reply_no = #{replyNo}
+	</delete>
+
+
+</mapper>

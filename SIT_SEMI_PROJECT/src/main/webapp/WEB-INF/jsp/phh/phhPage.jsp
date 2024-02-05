@@ -9,52 +9,55 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script>
+<script type="text/javascript">
+
+function goHome(){
+	location.href = '<c:out value="pboardNoticeList.do" />';
+}
+
 $( document ).ready(function() {
 
 	
 });
 		
 </script>
+
+<style>
+	.change{
+		font-size : 2rem;
+		width:100%;
+	}
+	
+	.phh_custom{
+		background-color: #4CAF50;
+		color: white;
+		border: none;
+		border-radius : 5px;
+		padding: 10px 20px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 2rem;
+		cursor: pointer;	
+	}
+	.phh_custom:hover{
+		background-color : #45a049;
+	}
+	
+	.go_center{
+		item-align : center;
+		text-align : center;
+		padding : 10px 10px;
+	}
+	
+</style>
 </head>
 <body>
-
-<div>
-
 	
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-      <h2>게시판</h2>
-	<c:forEach var="test" items="${test}" varStatus="status">
-		<div>
-			${test.no}
-			${test.content}
-		</div>
-	</c:forEach>
-    </div>
-    <div class="col-sm-4">
-      <h2>공지사항</h2>
-	<c:forEach var="test" items="${test}" varStatus="status">
-		<div>
-			${test.no}
-			${test.content}
-		</div>
-	</c:forEach>
-    </div>
-    <div class="col-sm-4">
-      <h2>회원가입</h2>        
-	<c:forEach var="test" items="${test}" varStatus="status">
-		<div>
-			${test.no}
-			${test.content}
-		</div>
-	</c:forEach>
-    </div>
-  </div>
+<div class="go_center">
+	<button class="phh_custom" type="button" onclick="goHome()" >현호's</button>
+  <a class="change" href="<c:out value='pboardNoticeList.do' />">현호의 홈페이지로 이동</a>
 </div>	
-</div>
-
 
 </body>
 </html>

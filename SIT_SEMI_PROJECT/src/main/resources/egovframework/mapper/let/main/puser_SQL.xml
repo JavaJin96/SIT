@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="puserDAO">
+	
+	<select id="puserDAO.selectUser" resultType="SIT_SEMI_PROJECT.PHH.user.PuserVO">
+		SELECT no, id, pass, name, role, DATE_FORMAT(reg_date, '%Y-%m-%d') AS regDate FROM phh_user
+	</select>
+	
+	<insert id="puserDAO.insertUser" parameterType="SIT_SEMI_PROJECT.PHH.user.PuserVO">
+		insert into phh_user(id, pass, name) values (#{id}, #{pass}, #{name})
+	</insert>
+	
+	<update id="puserDAO.updateUser" parameterType="SIT_SEMI_PROJECT.PHH.user.PuserVO">
+		update phh_user set pass=#{pass}, name=#{name} WHERE no = #{no}
+	</update>	
+	
+	<delete id="puserDAO.deleteUser" parameterType="int">
+		delete from phh_user WHERE no = #{no}
+	</delete>
+	
+	<select id="puserDAO.doLogin" resultType="SIT_SEMI_PROJECT.PHH.user.PuserVO" parameterType="SIT_SEMI_PROJECT.PHH.user.PuserVO">
+		SELECT no, id, pass, name, role, DATE_FORMAT(reg_date, '%Y-%m-%d') AS regDate FROM phh_user WHERE id=#{id} and pass=#{pass}
+	</select>
+	
+	<select id="puserDAO.dbCheck" resultType="String" parameterType="String">
+		SELECT id FROM phh_user WHERE id=#{id}
+	</select>
+	
+	<select id="puserDAO.nameCheck" resultType="String" parameterType="String">
+		SELECT name FROM phh_user WHERE name=#{name}
+	</select>			
+	
+</mapper>

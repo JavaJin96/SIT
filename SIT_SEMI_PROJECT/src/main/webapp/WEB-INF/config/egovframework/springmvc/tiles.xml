@@ -12,18 +12,70 @@
 		<put-attribute name="footer" value="/WEB-INF/jsp/layout/Footer.jsp" />
 	</definition>
 	
+	<!-- phh layout -->
+	<definition name="phh-layout" template="/WEB-INF/jsp/layout/phh_layout_template.jsp">
+		<put-attribute name="topnav" value="/WEB-INF/jsp/layout/phhTopnav.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/layout/phhFooter.jsp" />
+	</definition>
+	
 	<!-- =================main================= -->
 	
 	<definition name="mainPage" extends="standar-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/main/MainPage.jsp" />
 		<put-attribute name="title" value="메인" />
 	</definition>
+			
+	
+	<!-- ================= phh ================= -->
 	
 	<definition name="phhPage" extends="standar-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/phh/phhPage.jsp" />
 		<put-attribute name="title" value="메인" />
 	</definition>
 	
-	<!-- =================main================= -->
+	<definition name="puserList" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/user/puserList.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>
+	
+	<definition name="puserLogin" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/user/puserLogin.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>		
+
+	<definition name="puserSignup" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/user/puserSignup.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>			
+	
+	<definition name="pboardList" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardList.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>			
+	
+	<definition name="pboardWrite" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardWrite.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>
+	
+	<definition name="pboardContent" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardContent.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>
+	
+	<definition name="pboardUpdatePage" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardUpdatePage.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>
+	
+	<definition name="pboardNoticeList" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardNoticeList.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>
+	
+	<definition name="pboardNoticeWrite" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardNoticeWrite.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>
 	
 </tiles-definitions>
