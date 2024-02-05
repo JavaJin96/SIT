@@ -35,7 +35,7 @@ public class PboardController {
 		List<?> list = pboardService.searchBoard(selectSearch, search);
 		mav.addObject("list", list);
 //		mav.setViewName("psearchList");
-		mav.setViewName("pboardList");
+		mav.setViewName("pboardList"); 
 		return mav;
 	}
 	
