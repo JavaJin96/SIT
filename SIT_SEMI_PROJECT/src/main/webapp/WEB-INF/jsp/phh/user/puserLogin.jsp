@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"  %>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,22 +12,13 @@
 <title>Insert title here</title>
 <script>
 
-window.onload = function(){
-    var loginFailed = ${loginFailed};
-    if (loginFailed) {
-        alert("로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요.");
-    }
-};
-
-
 function signup(){
-	window.location.href = '<c:out value="puserSignup.do" />';
-	
+	location.href = '<c:out value="puserSignup.do" />';
 }
 
 $( document ).ready(function() {
 
-	
+
 });
 		
 </script>
@@ -37,6 +29,11 @@ $( document ).ready(function() {
   <h2>로그인</h2>
   <form class="form-horizontal" action="puserDoLogin.do">
     <div class="form-group">
+<%--         <c:if test="${loginFailed}"> --%>
+<!--             <div class="alert alert-danger" role="alert"> -->
+<!--                 로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요. -->
+<!--             </div> -->
+<%--         </c:if>     --%>
       <label class="control-label col-sm-4" for="id">아이디 : </label>
       <div class="col-sm-6">
         <input type="text" class="form-control" id="id" placeholder="아이디를 입력해주세요" name="id">
@@ -50,12 +47,19 @@ $( document ).ready(function() {
     </div>
     <div class="form-group text-right">        
       <div class="col-sm-10">
-        <button type="submit" class="btn btn-primary">로그인</button>
-  </form>        
-        <button type="button" class="btn btn-success" onclick="signup()">회원가입</button>
+        <button type="submit" class="btn btn-primary login">로그인</button>
+        <button type="button" class="btn btn-success signup" onclick="signup()">회원가입</button>
       </div>
     </div>
-</div>
+    </form> 
+    <div class="col-sm-12 text-center">
+        <c:if test="${loginFailed}">
+            <div class="alert alert-danger" role="alert">
+                로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요.
+            </div>
+        </c:if>
+	</div>
+	
 </div>
 
 </body>

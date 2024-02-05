@@ -21,6 +21,7 @@
 
             // 데이터베이스 연결
             String jdbcUrl = "jdbc:mysql://10.0.3.34:3306/sit_semi_project";
+//             String jdbcUrl = "jdbc:mysql://192.168.0.73:3306/sit_semi_project";
             String user = "SIT";
             String password = "sit_12#$";
             connection = DriverManager.getConnection(jdbcUrl, user, password);

@@ -3,10 +3,13 @@ package SIT_SEMI_PROJECT.PHH.user.web;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -46,7 +49,7 @@ public class PuserController {
 	}
 	
 	@RequestMapping(value="phh/puserDoLogin.do")
-	public ModelAndView doLogin(@RequestParam String id, @RequestParam String pass) {
+	public ModelAndView doLogin(@RequestParam String id, @RequestParam String pass, HttpServletRequest request) {
 		
 		PuserVO vo = new PuserVO();
 		vo.setId(id);
@@ -58,25 +61,41 @@ public class PuserController {
 		
 		if (vo != null) {
 			mav.addObject("vo", vo);
-			mav.setView(new RedirectView("puserList.do"));
+			mav.setView(new RedirectView("pboardNoticeList.do"));
+			HttpSession session = request.getSession();
+			session.setAttribute("userId", vo.getId());
+			session.setAttribute("userNo", vo.getNo());		
+			session.setAttribute("userName", vo.getName());
+			session.setAttribute("userRole", vo.getRole());
 		} else {
 			mav.addObject("loginFailed", true);
 			mav.setViewName("puserLogin");
 		}
 		
 		return mav;
-	}	
+	}
+	
+	@RequestMapping(value="phh/puserDoLogout.do")
+	public ModelAndView doLogout(HttpServletRequest request) {
+		
+		ModelAndView mav = new ModelAndView();
+		request.getSession().invalidate();
+		mav.setView(new RedirectView("pboardNoticeList.do"));
+		
+		return mav;
+	}		
 	
 	@RequestMapping(value="phh/puserSignup.do")
 	public ModelAndView goSignup() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("puserSignup");
+		
 		return mav;
 	}
 	
 	
 	@RequestMapping(value="phh/puserInsert.do")
-	public ModelAndView insertUser(@RequestParam String id, @RequestParam String name, @RequestParam String pass) {
+	public ModelAndView insertUser(@RequestParam String id, @RequestParam String name, @RequestParam String pass, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		
 		PuserVO vo = new PuserVO();
@@ -85,10 +104,34 @@ public class PuserController {
 		vo.setPass(pass);
 		
 		puserService.insertUser(vo);
+				
+		vo = puserService.doLogin(vo);		
+		HttpSession session = request.getSession();
 		
-		mav.setView(new RedirectView("puserList.do"));
+		session.setAttribute("userId", vo.getId());
+		session.setAttribute("userNo", vo.getNo());		
+		session.setAttribute("userName", vo.getName());
+		session.setAttribute("userRole", vo.getRole());
+		
+		mav.setView(new RedirectView("pboardNoticeList.do"));
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="phh/puserDbCheck.do", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String dbCheck(@RequestParam String id) {
+	    String dbId = puserService.dbCheck(id);
+	    // Ajax 방식으로 돌려주기
+	    return "{\"dbId\":\"" + dbId + "\"}";
+	}	
+	
+	@RequestMapping(value="phh/puserNameCheck.do", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String nameCheck(@RequestParam String name) {
+	    String dbName = puserService.nameCheck(name);
+	    // Ajax 방식으로 돌려주기
+	    return "{\"dbName\":\"" + dbName + "\"}";
+	}		
 
 }

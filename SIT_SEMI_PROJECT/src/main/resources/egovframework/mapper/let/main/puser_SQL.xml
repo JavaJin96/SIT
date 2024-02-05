@@ -22,4 +22,12 @@
 		SELECT no, id, pass, name, role, DATE_FORMAT(reg_date, '%Y-%m-%d') AS regDate FROM phh_user WHERE id=#{id} and pass=#{pass}
 	</select>
 	
+	<select id="puserDAO.dbCheck" resultType="String" parameterType="String">
+		SELECT id FROM phh_user WHERE id=#{id}
+	</select>
+	
+	<select id="puserDAO.nameCheck" resultType="String" parameterType="String">
+		SELECT name FROM phh_user WHERE name=#{name}
+	</select>			
+	
 </mapper>

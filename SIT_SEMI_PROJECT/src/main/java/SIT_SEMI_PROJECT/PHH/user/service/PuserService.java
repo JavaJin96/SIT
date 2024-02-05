@@ -30,6 +30,14 @@ public class PuserService {
 	public PuserVO doLogin(PuserVO vo) {
 		return puserDao.doLogin(vo);
 	}
+	
+	public String dbCheck(String id) {
+		return puserDao.dbCheck(id);
+	}
+	
+	public String nameCheck(String name) {
+		return puserDao.nameCheck(name);
+	}
 
 
 }
