@@ -29,6 +29,22 @@ public class PboardController {
 		return mav;
 	}
 	
+	@RequestMapping(value="phh/psearchList.do")
+	public ModelAndView searchBoard(@RequestParam String selectSearch, @RequestParam String search) {
+		ModelAndView mav = new ModelAndView();
+		List<?> list = pboardService.searchBoard(selectSearch, search);
+<<<<<<< HEAD
+		mav.addObject("list", list); 
+//		mav.setViewName("psearchList");
+		mav.setViewName("pboardList");
+=======
+		mav.addObject("list", list); 
+//		mav.setViewName("psearchList");
+		mav.setViewName("pboardList");
+>>>>>>> branch 'master' of https://github.com/JavaJin96/SIT.git
+		return mav;
+	}
+	
 	@RequestMapping(value="phh/pboardWrite.do")
 	public ModelAndView writeBoard() {
 		ModelAndView mav = new ModelAndView();
@@ -105,6 +121,15 @@ public class PboardController {
 		mav.setViewName("pboardNoticeList");
 		return mav;
 	}
+	
+	@RequestMapping(value="phh/psearchNoticeList.do")
+	public ModelAndView searchNoticeBoard(@RequestParam String selectSearch, @RequestParam String search) {
+		ModelAndView mav = new ModelAndView();
+		List<?> list = pboardService.searchNoticeBoard(selectSearch, search);
+		mav.addObject("list", list);
+		mav.setViewName("pboardNoticeList");
+		return mav;
+	}		
 	
 	@RequestMapping(value="phh/pboardNoticeWrite.do")
 	public ModelAndView writeNoticeBoard() {

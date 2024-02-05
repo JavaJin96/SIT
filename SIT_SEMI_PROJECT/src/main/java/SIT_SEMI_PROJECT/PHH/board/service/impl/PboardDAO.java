@@ -1,6 +1,8 @@
 package SIT_SEMI_PROJECT.PHH.board.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.egovframe.rte.psl.dataaccess.EgovAbstractMapper;
 import org.springframework.stereotype.Repository;
@@ -14,6 +16,14 @@ public class PboardDAO extends EgovAbstractMapper{
 	public List<?> selectBoard(){
 		return selectList("pboardDAO.selectBoard");
 	}
+	
+	public List<?> searchBoard(String selectSearch, String search) {
+		Map<String, String> para = new HashMap<>();
+		para.put("selectSearch", selectSearch);
+		para.put("search", search);
+		return selectList("pboardDAO.searchBoard", para);
+	}
+
 	
 	public int insertBoard(PboardVO vo) {
 		return insert("pboardDAO.insertBoard", vo);
@@ -42,6 +52,13 @@ public class PboardDAO extends EgovAbstractMapper{
 	public List<?> selectNoticeBoard(){
 		return selectList("pboardDAO.selectNoticeBoard");
 	}
+	
+	public List<?> searchNoticeBoard(String selectSearch, String search) {
+		Map<String, String> para = new HashMap<>();
+		para.put("selectSearch", selectSearch);
+		para.put("search", search);
+		return selectList("pboardDAO.searchNoticeBoard", para);
+	}	
 	
 	public int insertNoticeBoard(PboardVO vo) {
 		return insert("pboardDAO.insertNoticeBoard", vo);
