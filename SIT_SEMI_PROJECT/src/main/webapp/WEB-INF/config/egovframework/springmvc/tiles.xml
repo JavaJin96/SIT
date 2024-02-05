@@ -78,5 +78,12 @@
 		<put-attribute name="title" value="메인" />
 	</definition>
 	
+	<!-- ================= phh SHOP ================= -->
+	
+	<definition name="puserList" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopList.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>
+	
 	
 </tiles-definitions>
