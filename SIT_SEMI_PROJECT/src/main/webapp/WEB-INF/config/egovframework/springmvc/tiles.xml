@@ -53,10 +53,10 @@
 		<put-attribute name="title" value="메인" />
 	</definition>
 	
-	<definition name="psearchList" extends="phh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardList.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>	
+<!-- 	<definition name="psearchList" extends="phh-layout"> -->
+<!-- 		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardList.jsp" /> -->
+<!-- 		<put-attribute name="title" value="메인" /> -->
+<!-- 	</definition>	 -->
 	
 	<definition name="pboardWrite" extends="phh-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardWrite.jsp" />

@@ -53,6 +53,13 @@ public class PboardDAO extends EgovAbstractMapper{
 		return selectList("pboardDAO.selectNoticeBoard");
 	}
 	
+	public List<?> searchNoticeBoard(String selectSearch, String search) {
+		Map<String, String> para = new HashMap<>();
+		para.put("selectSearch", selectSearch);
+		para.put("search", search);
+		return selectList("pboardDAO.searchNoticeBoard", para);
+	}	
+	
 	public int insertNoticeBoard(PboardVO vo) {
 		return insert("pboardDAO.insertNoticeBoard", vo);
 	}

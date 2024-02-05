@@ -48,7 +48,7 @@ $( document ).ready(function() {
   </div>
 <h2> <a href = "pboardNoticeList.do" style="color: inherit; text-decoration: none;" >공지사항</a> </h2>
 	<div class='search'>
-      	<form action="/psearchNoticeList.do" method="post">
+      	<form action="psearchNoticeList.do" method="post">
 			<select id="selectSearch" name="selectSearch">
 				<option value="title" selected="selected">글 제목</option>
 				<option value="content">글 내용</option>

@@ -106,14 +106,13 @@ function doComment(){
 <body>
 
 <div class="container">
-	<table class="table">
 	<c:if test="${vo.gubun == '3'}">
 		<h2> <a href = "pboardList.do" style="color: inherit; text-decoration: none;" >자유게시판</a> </h2>
 	</c:if>
 	<c:if test="${vo.gubun == '1'}">
 		<h2> <a href = "pboardNoticeList.do" style="color: inherit; text-decoration: none;" >공지사항</a> </h2>
 	</c:if>
-	
+	<table class="table">
 	<colgroup>
 		<col style="width:25%" >
 		<col style="width:25%" >
