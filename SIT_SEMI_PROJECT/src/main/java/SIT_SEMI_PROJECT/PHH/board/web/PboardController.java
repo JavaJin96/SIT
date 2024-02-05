@@ -29,6 +29,17 @@ public class PboardController {
 		return mav;
 	}
 	
+	@RequestMapping(value="phh/psearchList.do")
+	public ModelAndView searchBoard(@RequestParam String selectSearch, @RequestParam String search) {
+		ModelAndView mav = new ModelAndView();
+		List<?> list = pboardService.searchBoard(selectSearch, search);
+		mav.addObject("list", list);
+//		mav.setViewName("pboardList");
+		mav.setViewName("psearchList");
+//		mav.setView(new RedirectView("pboardList.do"));
+		return mav;
+	}	
+	
 	@RequestMapping(value="phh/pboardWrite.do")
 	public ModelAndView writeBoard() {
 		ModelAndView mav = new ModelAndView();
