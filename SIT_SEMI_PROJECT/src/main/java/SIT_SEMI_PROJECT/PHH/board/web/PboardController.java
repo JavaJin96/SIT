@@ -33,15 +33,9 @@ public class PboardController {
 	public ModelAndView searchBoard(@RequestParam String selectSearch, @RequestParam String search) {
 		ModelAndView mav = new ModelAndView();
 		List<?> list = pboardService.searchBoard(selectSearch, search);
-<<<<<<< HEAD
 		mav.addObject("list", list); 
 //		mav.setViewName("psearchList");
 		mav.setViewName("pboardList");
-=======
-		mav.addObject("list", list); 
-//		mav.setViewName("psearchList");
-		mav.setViewName("pboardList");
->>>>>>> branch 'master' of https://github.com/JavaJin96/SIT.git
 		return mav;
 	}
 	
