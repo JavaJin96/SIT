@@ -247,6 +247,6 @@
 </script>
 
 <div id="main_Div">
+	<h2>일별 접속자</h2>
     <div id="chartdiv"></div>
-    <h1>ttbb</h1>
 </div>
