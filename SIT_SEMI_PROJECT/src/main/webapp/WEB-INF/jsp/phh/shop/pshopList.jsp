@@ -11,8 +11,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-function boardWrite(){
-	location.href = '<c:out value="pboardWrite.do"/>';
+function shopWrite(){
+	location.href = '<c:out value="pshopWrite.do"/>';
 }
 
 $( document ).ready(function() {
@@ -48,11 +48,10 @@ $( document ).ready(function() {
   </div>
   <h2> <a href = "pshopList.do" style="color: inherit; text-decoration: none;" >혀노SHOP</a> </h2>
 	<div class='search'>
-      	<form action="psearchList.do" method="post">
+      	<form action="pshopSearch.do" method="post">
 			<select id="selectSearch" name="selectSearch">
-				<option value="title" selected="selected">글 제목</option>
-				<option value="contents">글 내용</option>
-				<option value="name">작성자</option>
+				<option value="title" selected="selected">상품 제목</option>
+				<option value="contents">상품 내용</option>
 			</select>
       		<input type="text" id="search" name="search" value="${not empty search ? search : ''}" />
       		<input type="submit" class='btn btn-warning' value='검색'/>
@@ -69,31 +68,28 @@ $( document ).ready(function() {
     <thead>
       <tr>
         <th>NO</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일자</th>
-        <th style='text-align : center' >조회수</th>
+        <th>상품명</th>
+        <th>상품설명</th>
+        <th>판매량</th>
+        <th style='text-align : center' >별점</th>
       </tr>
     </thead>
     <tbody>
 	<c:forEach var="vo" items="${list}" varStatus="status">
-	<tr onclick="location.href='pboardContent.do?no=${vo.no}'" style="cursor: pointer;">
-<!-- 	<tr> -->
+	<tr onclick="location.href='pshopContent.do?no=${vo.no}'" style="cursor: pointer;">
+	<tr>
 		<td>${status.index + 1}</td>
 		<td>${vo.title}</td>
-		<td>${vo.name}</td>
-		<td>${vo.creDate}</td>
-		<td style='text-align : center' >${vo.count}</td>
+		<td>${vo.contents}</td>
+		<td>${vo.sell}</td>
+		<td style='text-align : center' >${vo.star}</td>
 	</tr>
 	</c:forEach>
     </tbody>
   </table>
   <div align='right'>
-      <c:if test="${sessionScope.userId==null || sessionScope.userId==''}">
-      	<button type="button" class="btn btn-primary" onclick="boardWrite()" disabled="disabled">글 작성</button>
-      </c:if>
-      <c:if test="${sessionScope.userId!=null && sessionScope.userId!=''}">
-      	<button type="button" class="btn btn-primary" onclick="boardWrite()">글 작성</button>
+      <c:if test="${sessionScope.userRole='1'}">
+      	<button type="button" class="btn btn-primary" onclick="shopWrite()">상품 등록</button>
       </c:if>
   </div>
 
