@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import SIT_SEMI_PROJECT.PHH.shop.PshopVO;
 import SIT_SEMI_PROJECT.PHH.shop.service.impl.PshopDAO;
 
 @Service("pshopService")
@@ -16,6 +17,10 @@ public class PshopService {
 	
 	public List<?> selectShop(){
 		return pshopDao.selectShop();
+	}
+	
+	public int insertShop(PshopVO vo) {
+		return pshopDao.insertShop(vo);
 	}
 	
 }

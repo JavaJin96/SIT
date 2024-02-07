@@ -6,5 +6,19 @@
 			FROM phh_shop;
 	</select>
 	
+	<insert id="pshopDAO.insertShop" parameterType="SIT_SEMI_PROJECT.PHH.shop.PshopVO">
+		INSERT into phh_shop(
+			user_no
+			, title
+			, contents
+			, filename
+		) VALUES (
+			#{userNo}
+			, #{title}
+			, #{contents}
+			, #{filename}
+		)
+	</insert>	
+	
 
 </mapper>
