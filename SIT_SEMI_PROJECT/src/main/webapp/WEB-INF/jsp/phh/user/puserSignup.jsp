@@ -106,7 +106,7 @@ function checkId() {
         type: 'GET',
         data: {"id" : userId},
         success: function(data) {
-            if (data.dbId !== null && data.dbId === userId) {
+            if (data.dbId !== "null") {
                 alert("중복된 아이디입니다. 다른 아이디를 사용해주세요.");
             } else {
                 alert("사용 가능한 아이디입니다.");
@@ -129,7 +129,7 @@ function checkName() {
         type: 'GET',
         data: {"name" : userName},
         success: function(data) {
-            if (data.dbName !== null && data.dbName === userName) {
+            if (data.dbName !== "null") {
                 alert("중복된 닉네임입니다. 다른 닉네임을 사용해주세요.");
             } else {
                 alert("사용 가능한 닉네임입니다.");

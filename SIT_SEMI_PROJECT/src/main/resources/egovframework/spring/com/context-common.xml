@@ -75,12 +75,14 @@
     <bean id="spring.RegularCommonsMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="100000000" />
         <property name="maxInMemorySize" value="100000000" />
+        <property name="defaultEncoding" value="UTF-8"/>
     </bean>
     <!-- custom multi file resolver -->
     <!-- 확장자 제한 : globals.properties > Globals.fileUpload.Extensions로 설정 -->
     <bean id="local.MultiCommonsMultipartResolver" class="egovframework.com.cmm.web.EgovMultipartResolver">
         <property name="maxUploadSize" value="100000000" />
         <property name="maxInMemorySize" value="100000000" />
+        <property name="defaultEncoding" value="UTF-8"/>
     </bean>
     <!-- choose one from above and alias it to the name Spring expects -->
     <alias name="local.MultiCommonsMultipartResolver" alias="multipartResolver" />

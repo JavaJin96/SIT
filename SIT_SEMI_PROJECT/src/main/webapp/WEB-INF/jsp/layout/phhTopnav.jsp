@@ -45,7 +45,8 @@
       <li><a href="#" onclick="location.href='/SIT/phh/pboardList.do'">자유게시판</a></li>
       <li><a href="#" onclick="location.href='/SIT/phh/pshopList.do'">혀노SHOP</a></li>
       <c:if test="${sessionScope.userNo == '1'}">
-      <li><a href="#" onclick="location.href='/SIT/phh/puserList.do'">관리자</a></li>
+      <li><a href="#" onclick="location.href='/SIT/phh/puserList.do'">관리자_회원관리</a></li>
+      <li><a href="#" onclick="location.href='/SIT/phh/psellList.do'">관리자_상품관리</a></li>
       </c:if>
       <li><a href="#" onclick="location.href='/SIT/main/main.do'">SIT_MAIN</a></li>
     </ul>
