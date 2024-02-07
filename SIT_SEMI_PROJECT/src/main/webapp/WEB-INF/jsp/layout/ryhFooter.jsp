@@ -20,4 +20,4 @@
 		text-align: center;
 	}
 </style>
-<div id="copyright">hhpark@sit21.com<br/>©copyright Ssoho</div>
+<div id="copyright">yhr@sit21.com<br/>©copyright Ssoho</div>

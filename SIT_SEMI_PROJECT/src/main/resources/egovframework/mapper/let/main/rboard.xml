@@ -2,10 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="rboardDAO">
 	
-	<select id ="rboardDAO.listBoard" resultType= "SIT_SEMI_PROJECT.RYH.board.RboardVO">
-		SELECT * FROM ryh_board
-	
-	
+	<select id ="rboardDAO.selectBoard" resultType= "SIT_SEMI_PROJECT.RYH.board.testVO">
+		SELECT no, content FROM test_table;
 	</select>
 	
 	

@@ -13,7 +13,7 @@ public class RboardService {
 	@Resource(name = "rboardDAO")
 	RboardDAO rboardDao;
 	
-	public List<?> listBoard(){
-		return rboardDao.listBoard();
+	public List<?> selectBoard() {
+        return rboardDao.selectBoard();
 	}
 }

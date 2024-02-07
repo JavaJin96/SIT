@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository("rboardDAO")
 public class RboardDAO extends EgovAbstractMapper{
 	
-	public List<?> listBoard(){
-	    return selectList("rboardDAO.listBoard");
+	public List<?> selectBoard(){
+	    return selectList("RboardDAO.selectBoard");
 	}
 
 }

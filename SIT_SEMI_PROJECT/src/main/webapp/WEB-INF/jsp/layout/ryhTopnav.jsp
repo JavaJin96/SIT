@@ -51,10 +51,10 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
 	<c:if test="${sessionScope.userId==null || sessionScope.userId==''}">
-      <li><a href="/SIT/ryh/puserGoLogin.do"><span class="glyphicon glyphicon-user"></span> 로그인</a></li>
+      <li><a href="/SIT/ryh/ruserGoLogin.do"><span class="glyphicon glyphicon-user"></span> 로그인</a></li>
     </c:if>
 	<c:if test="${sessionScope.userId!=null && sessionScope.userId!=''}">
-      <li><a href="/SIT/ryh/puserDoLogout.do"><span class="glyphicon glyphicon-log-in"></span> 로그아웃</a></li>
+      <li><a href="/SIT/ryh/ruserDoLogout.do"><span class="glyphicon glyphicon-log-in"></span> 로그아웃</a></li>
 	</c:if>      
     </ul>
   </div>

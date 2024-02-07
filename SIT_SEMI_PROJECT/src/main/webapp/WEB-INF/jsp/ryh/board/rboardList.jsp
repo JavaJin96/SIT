@@ -19,7 +19,7 @@
 <section class="notice">
   <div class="page-title">
         <div class="container">
-        <a href="/BOARD/bl.do">
+        <a href="">
             <h3>게시판</h3>
         </a>
         </div>
@@ -27,7 +27,7 @@
     <div id="board-search">
         <div class="container">
             <div class="search-window">
-                <form action="/BOARD/st.do" method="post" accept-charset="UTF-8">
+                <form action="" method="post" accept-charset="UTF-8">
                     <div class="search-wrap">
                         <label for="search" class="blind">제목 검색</label>
                         <input id="search" type="search" name="search" placeholder="검색어를 입력해주세요." value="" required>
@@ -49,37 +49,15 @@
                 </tr>
                 </thead>
                 <tbody>
-				  <%
-				  for(boardVO vo : list) {%>
-				    <tr>
-				      <td><%=vo.getNum()%></td>
-				      <td><a href="bc.do?num=<%=vo.getNum()%>"><%=vo.getTitle()%></a></td>
-		              <td><%=vo.getContentDate()%></td>
-				    </tr>
-				  <%  }  %>
+				  <c:forEach var="vo" items="${list}" varStatus="status">
+					<tr onclick="location.href='pboardContent.do?no=${vo.no}'" style="cursor: pointer;">
+						<td>${status.index + 1}</td>
+						<td>${vo.no}</td>
+						<td>${vo.content}</td>
+					</tr>
+				</c:forEach>
 		      	</tbody>				
             </table>
-            
-            <div class="pagination" style="text-align: center;">
-                <%-- 이전 페이지로 이동하는 링크 --%>
-                <% if (currentPage > 1) { %>
-                    <a href="/BOARD/bl.do?page=<%=currentPage - 1%>" class="pagination-link">&lt; 이전</a>
-                <% } else { %>
-                    <span class="pagination-link-disabled">&lt; 이전</span>
-                <% } %>
-
-                <%-- 페이지 번호 출력 --%>
-                <span class="pagination-current" ><%=currentPage%></span>
-
-                <%-- 다음 페이지로 이동하는 링크 --%>
-                <% if (currentPage < totalPages) { %>
-                    <a href="/BOARD/bl.do?page=<%=currentPage + 1%>" class="pagination-link">다음 &gt;</a>
-                <% } else { %>
-                    <span class="pagination-link-disabled">다음 &gt;</span>
-                <% } %>
-            </div>
-            
-            
             
             <br>
             <div class="wrap" style="float: right;">

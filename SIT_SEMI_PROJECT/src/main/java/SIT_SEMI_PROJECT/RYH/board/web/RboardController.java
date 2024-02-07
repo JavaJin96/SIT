@@ -3,8 +3,6 @@ package SIT_SEMI_PROJECT.RYH.board.web;
 import java.util.List;
 
 import javax.annotation.Resource;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,7 +18,7 @@ public class RboardController {
 	@RequestMapping(value="/rboardList.do")
 	public ModelAndView goBoard() {
 		ModelAndView mav = new ModelAndView();
-		List<?> list = rboardService.listBoard();
+		List<?> list = rboardService.selectBoard();
 		mav.addObject("list", list);
 		mav.setViewName("rboardList");
 		return mav;
