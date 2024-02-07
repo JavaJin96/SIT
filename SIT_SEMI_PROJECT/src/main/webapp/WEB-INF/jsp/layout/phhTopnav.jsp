@@ -38,11 +38,12 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#" onclick="location.href='/SIT/phh/pboardNoticeList.do'">Ssoho</a>
+      <a class="navbar-brand" href="#" onclick="location.href='/SIT/phh/pboardNoticeList.do'">한가람 매매 2억</a>
     </div>
     <ul class="nav navbar-nav">
       <li><a href="#" onclick="location.href='/SIT/phh/pboardNoticeList.do'">공지사항</a></li>
       <li><a href="#" onclick="location.href='/SIT/phh/pboardList.do'">자유게시판</a></li>
+      <li><a href="#" onclick="location.href='/SIT/phh/pshopList.do'">혀노SHOP</a></li>
       <c:if test="${sessionScope.userNo == '1'}">
       <li><a href="#" onclick="location.href='/SIT/phh/puserList.do'">관리자</a></li>
       </c:if>

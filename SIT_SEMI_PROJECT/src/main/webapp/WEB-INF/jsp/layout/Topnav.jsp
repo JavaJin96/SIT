@@ -31,7 +31,7 @@
 		<li><a href="#LINK" onclick="location.href='/SIT/psj/main.do'" >PSJ</a></li>
 		<li><a href="#LINK" onclick="location.href='/SIT/phh/main.do'" >PHH</a></li>
 	    <li><a href="#LINK" onclick="location.href='/SIT/ryh/main.do'" >RYH</a></li>
-	    <li><a href="#LINK" onclick="location.href='/SIT/syh/main.do'" >SYH</a></li> 
+	    <li><a href="#LINK" onclick="location.href='/SIT/syh/main.do'" >SYH</a></li>
 	</ul>
 </div>
 

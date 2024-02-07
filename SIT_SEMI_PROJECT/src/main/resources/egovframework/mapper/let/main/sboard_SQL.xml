@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sboardDAO">
+
+	<select id="sboardDAO.selectBoard" resultType="SIT_SEMI_PROJECT.SYH.board.SboardVO">
+		SELECT 
+			b.num
+			, b.userNum
+			, u.name AS name
+			, b.title
+			, b.content
+			, DATE_FORMAT(b.regdate, '%Y-%m-%d')
+			, DATE_FORMAT(b.moddate, '%Y-%m-%d')
+			, b.count
+		FROM
+			syh_board b
+		JOIN syh_user u ON b.userNum = u.num;
+	</select>
+	
+	<insert id="sboardDAO.insertBoard" parameterType="SIT_SEMI_PROJECT.SYH.board.SboardVO">
+		INSERT into syh_board (
+			userNum, title, content, count
+		) VALUES (
+			#{userNum}, #{title}, #{content}, #{count}
+		)
+	</insert>
+
+</mapper>
