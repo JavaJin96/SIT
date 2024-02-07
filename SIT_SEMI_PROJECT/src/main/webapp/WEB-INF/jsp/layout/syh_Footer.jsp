@@ -13,11 +13,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import ="egovframework.com.cmm.LoginVO" %>
 <style>
 	#copyright{
-		font-size:1.6em;
+		font-size:1em;
 		width:100%;
 		text-align: center;
 	}
 </style>
-<div id="copyright">hhpark@sit21c.com<br/>©copyright Ssoho</div>
+<div id="copyright">seo Board<br/>yhseo@sit21.com</div>

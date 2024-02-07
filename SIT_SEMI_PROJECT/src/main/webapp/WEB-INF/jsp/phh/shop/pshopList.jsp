@@ -59,34 +59,29 @@ $( document ).ready(function() {
 	</div>
   <table class="table table-striped">
 	<colgroup>
-		<col style="width:10%" >
-		<col style="width:40%" >
-		<col style="width:15%" >
-		<col style="width:20%" >
-		<col style="width:15%" >
-	</colgroup>  
-    <thead>
-      <tr>
-        <th>NO</th>
-        <th>상품명</th>
-        <th>상품설명</th>
-        <th>판매량</th>
-        <th style='text-align : center' >별점</th>
-      </tr>
-    </thead>
-    <tbody>
-	<c:forEach var="vo" items="${list}" varStatus="status">
-	<tr onclick="location.href='pshopContent.do?no=${vo.no}'" style="cursor: pointer;">
+		<col style="width:33%" >
+		<col style="width:33%" >
+		<col style="width:33%" >
+<%-- 		<col style="width:20%" > --%>
+	</colgroup>    
+	<c:forEach var="list" items="${list}" varStatus="status">
+	<c:if test="${status.index % 3 == 0}">
 	<tr>
-		<td>${status.index + 1}</td>
-		<td>${vo.title}</td>
-		<td>${vo.contents}</td>
-		<td>${vo.sell}</td>
-		<td style='text-align : center' >${vo.star}</td>
+	</c:if>
+		<td onclick="location.href='pshopContent.do?no=${list.no}'" style="cursor: pointer;">
+			<div style='text-align : center'>${list.no}</div>
+			<div style='text-align : center'>${list.title}</div>
+			<div style='text-align : center'>${list.price}</div>
+			<div style='text-align : center'>${list.star}</div>
+		</td>
+	<c:if test="${status.index % 3 == 2}">
 	</tr>
+	</c:if>		
 	</c:forEach>
-    </tbody>
   </table>
+
+  
+  
   <div align='right'>
       <c:if test="${sessionScope.userRole='1'}">
       	<button type="button" class="btn btn-primary" onclick="shopWrite()">상품 등록</button>

@@ -18,6 +18,11 @@ $(function(){
 			var title = $('#title').val();
 			var contents = $('#contents').val();
 			
+			if(${sessionScope.userRole != '1'}){
+				alert('관리자만 글을 작성할 수 있습니다.');
+				return false;
+			}
+			
 			if (title =='' || title == null){
 				alert('글 제목은 필수요소입니다.');
 				return false;

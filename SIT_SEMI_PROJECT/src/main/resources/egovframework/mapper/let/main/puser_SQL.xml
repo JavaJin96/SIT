@@ -23,11 +23,11 @@
 	</select>
 	
 	<select id="puserDAO.dbCheck" resultType="String" parameterType="String">
-		SELECT id FROM phh_user WHERE id=#{id}
+		SELECT id FROM phh_user WHERE (LOWER(REPLACE(id, ' ', '')))=(LOWER(REPLACE(#{id}, ' ', '')))
 	</select>
 	
 	<select id="puserDAO.nameCheck" resultType="String" parameterType="String">
-		SELECT name FROM phh_user WHERE name=#{name}
+		SELECT name FROM phh_user WHERE (LOWER(REPLACE(name, ' ', '')))=(LOWER(REPLACE(#{name}, ' ', '')))
 	</select>			
 	
 </mapper>

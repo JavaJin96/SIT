@@ -1,6 +1,6 @@
 <%--
-  Class Name : EgovIncFooter.jsp
-  Description : 화면하단 Footer(include)
+  Class Name : EgovIncHeader.jsp
+  Description : 화면상단 Header(include)
   Modification Information
  
       수정일         수정자                   수정내용
@@ -13,11 +13,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import ="egovframework.com.cmm.LoginVO" %>
 <style>
-	#copyright{
-		font-size:1.6em;
-		width:100%;
-		text-align: center;
+	#project_title{
+		
+		width: 100%;
+		font-size: 2em;
 	}
 </style>
-<div id="copyright">hhpark@sit21c.com<br/>©copyright Ssoho</div>
+<div id="project_title">
+	<a href="/SIT/syh/sboardMain.do">서윤호의 게시판</a>
+</div>
