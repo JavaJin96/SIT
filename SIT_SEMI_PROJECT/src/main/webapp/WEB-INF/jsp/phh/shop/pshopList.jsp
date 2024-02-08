@@ -69,10 +69,10 @@ $( document ).ready(function() {
 	<tr>
 	</c:if>
 		<td onclick="location.href='pshopContent.do?no=${list.no}'" style="cursor: pointer;">
-			<div style='text-align : center'>${list.no}</div>
+			<div style='text-align : center'><img src="<c:out value='/SIT/download/${list.fileName}'/>" width="200px" height="200px" ></div>
 			<div style='text-align : center'>${list.title}</div>
-			<div style='text-align : center'>${list.price}</div>
-			<div style='text-align : center'>${list.star}</div>
+			<div style='text-align : center'>${list.price}원</div>
+<%-- 			<div style='text-align : center'>${list.star}</div> --%>
 		</td>
 	<c:if test="${status.index % 3 == 2}">
 	</tr>

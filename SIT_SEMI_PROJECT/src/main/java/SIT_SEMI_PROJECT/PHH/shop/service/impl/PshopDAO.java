@@ -17,5 +17,9 @@ public class PshopDAO extends EgovAbstractMapper{
 	public int insertShop(PshopVO vo) {
 		return insert("pshopDAO.insertShop", vo);
 	}
+	
+	public PshopVO contentShop(int no) {
+		return selectOne("pshopDAO.contentShop", no);
+	}
 
 }

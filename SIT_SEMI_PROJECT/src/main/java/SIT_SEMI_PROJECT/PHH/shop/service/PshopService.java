@@ -23,4 +23,8 @@ public class PshopService {
 		return pshopDao.insertShop(vo);
 	}
 	
+	public PshopVO contentshop(int no) {
+		return pshopDao.contentShop(no);
+	}
+	
 }

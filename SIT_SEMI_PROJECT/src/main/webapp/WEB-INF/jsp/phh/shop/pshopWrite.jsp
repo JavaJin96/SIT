@@ -17,6 +17,7 @@ $(function(){
 			
 			var title = $('#title').val();
 			var contents = $('#contents').val();
+			var price = $('#price').val();
 			
 			if (title =='' || title == null){
 				alert('상품명은 필수요소입니다.');
@@ -24,6 +25,8 @@ $(function(){
 			} else if(contents =='' || contents == null){
 				alert('상품설명은 필수요소입니다.');
 				return false;
+			} else if(price == '' || price == null){
+				alert('상품가격은 필수요소입니다.');
 			}
 			
 			if (title.length >= 21){
@@ -33,7 +36,7 @@ $(function(){
 			if (contents.length >= 1001){
 				alert('상품설명의 길이가 너무 깁니다. 1000자 이하로 작성해주세요');
 				return false;
-			}		
+			}
 			
 	        // 줄바꿈 처리 (textarea 에서 개행 처리가 안되는 부분을 해결하기 위함)
 	        contents = contents.replace(/(?:\r\n|\r|\n)/g, '<br/>');
@@ -52,7 +55,7 @@ function add(){
 		var formData = new FormData();
 		formData.append("file", $("input[name=file]")[0].files[0]);
 		$.ajax({
-			url : "<c:url value='upload.do'/>",
+			url : "<c:url value='pupload.do'/>",
 			type : "post",
 			data : formData,
 			// 파일 올릴떈 아래 2개를 추가해줘야함.
@@ -60,19 +63,18 @@ function add(){
 			contentType : false,
 			
 			success : function(data){ // 업로드된 실제파일 이름을 전달받기
-				$('#filename').val(data);
+				// 파일이름 가져오기
+				var filename = data.filename;
+				$('#filename').val(filename);
+				alert("사진첨부가 완료되었습니다.");
 				$("#submit").removeAttr("disabled");
-// 				document.form1.action="<c:url value='/memberInsert.do'/>?mode=fadd"; // text데이터를 저장하는 부분
-// 				document.form1.submit(); // id, pass, name, age, email, phone, filename(있는 경우에)
 			},
 			error : function(){ alert("error"); }
 		});
 		
 	}else{ // 파일이 첨부 되지 않은 경우
 		return false;
-// 		document.form1.action="<c:url value='/memberInsert.do'/>?mode=add"; // text데이터를 저장하는 부분
-// 		document.form1.submit(); // id, pass, name, age, email, phone  
-	} 		
+	}
 }
 
 $( document ).ready(function() {
@@ -106,6 +108,12 @@ $( document ).ready(function() {
 				<td colspan="3"><textarea id="contents" name="contents" rows="10" cols="50"></textarea></td>
 			</tr>
 			<tr class="boardTitle" >
+				<td>상품가격</td>
+				<td colspan="3">
+					<input type="text" id="price" name="price"/>
+				</td>
+			</tr>			
+			<tr class="boardTitle" >
 				<td>상품사진</td>
 				<td colspan="2">
 					<input name="file" type="file"  />
@@ -118,7 +126,7 @@ $( document ).ready(function() {
 			</tr>		
 			<tr>
 				<td colspan="4" align="right">
-					<input type="submit" class="btn btn-primary" name="submit" value="작성완료" disabled="disabled"/>
+					<input type="submit" class="btn btn-primary" id="submit" value="작성완료" disabled="disabled"/>
 					<input type="button" class="btn btn-warning" value="취소" onclick="listFn()" />
 				</td>
 			</tr>

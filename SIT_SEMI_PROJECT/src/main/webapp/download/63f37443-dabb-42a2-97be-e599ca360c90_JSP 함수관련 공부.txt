@@ -1,0 +1,24 @@
+<tr>
+	<td>글 제목</td>
+	<td class="test2" id="test3">
+			<input type="text" name="title" data-title="title"/>
+			<input type="text" id="title"/>
+			<input type="text" class="title"/>
+	</td>	
+</tr>
+
+
+<script>
+	$("input[name=title]").val(); // <input> 내에 name='title'의 value
+	$("#title").val(); // 
+	$(".title").val(); // class = 'title' 의 value
+	$("input[type=text]").val(); // <input> 내에 type='text'의 value
+	$(".test2 input[type=text]").val(); // class = 'test' 인데 <input > 내 type='text'의 value
+	$("#test3 input[type=text]").val(); // id = 'test3' 이고 <input> 내 type='text'의 value
+	$("input[name=title]").attr("data-title"); // <input> 내 name='title'인 곳의 data-title 의 값
+	$("input[name=title]").data("title"); // <input> 내 name='title' 인곳의 'title'의 data
+	$(".table tr:eq(1) input").val(); // class="table" <tr> 인데 eq(1)=2번째 index에서 <input> 의 value
+					
+</script>
+	name : java로 넘어갈때 쓰는 것. vo.name에 담김
+	id : javascript 내에서 사용함.

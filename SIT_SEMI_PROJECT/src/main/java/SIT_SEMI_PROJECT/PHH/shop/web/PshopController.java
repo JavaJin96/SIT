@@ -1,7 +1,9 @@
 package SIT_SEMI_PROJECT.PHH.shop.web;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -11,11 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import SIT_SEMI_PROJECT.PHH.board.PboardVO;
+import SIT_SEMI_PROJECT.PHH.shop.PshopVO;
 import SIT_SEMI_PROJECT.PHH.shop.service.PshopService;
 
 @Controller
@@ -41,17 +44,27 @@ public class PshopController {
 	}	
 	
 	@RequestMapping(value="phh/pshopInsert.do")
-	public ModelAndView insertBoard(@RequestParam int userNo, @RequestParam String title, @RequestParam String contents, @RequestParam String filename) {
+	public ModelAndView insertShop(@RequestParam int userNo, @RequestParam String title, @RequestParam String contents, @RequestParam String filename, @RequestParam int price) {
 		ModelAndView mav = new ModelAndView();
-		PboardVO vo = new PboardVO();
+		PshopVO vo = new PshopVO();
 		vo.setUserNo(userNo);
 		vo.setTitle(title);
 		vo.setContents(contents);
 		vo.setFileName(filename);
-//		pshopService.insertShop(vo);
+		vo.setPrice(price);
+		pshopService.insertShop(vo);
 		mav.setView(new RedirectView("pshopList.do"));
 		return mav;
-	}	
+	}
+	
+	@RequestMapping(value="phh/pshopContent.do")
+	public ModelAndView viewShop(@RequestParam int no) {
+		ModelAndView mav = new ModelAndView();
+		PshopVO vo = pshopService.contentshop(no);
+		mav.addObject("vo", vo);
+		mav.setViewName("pshopContent");
+		return mav;
+	}
 	
 //	@RequestMapping(value="phh/pfileUpload.do")
 //	public ModelAndView fileUpload(@RequestParam MultipartFile file) {
@@ -97,18 +110,22 @@ public class PshopController {
 //		return "result";
 //	}
 	
-	@RequestMapping("phh/upload.do")
-	public ModelAndView uploadForm(MultipartFile file, HttpServletRequest request) throws Exception {
-		ModelAndView mav = new ModelAndView();
+	@RequestMapping("phh/pupload.do")
+	@ResponseBody
+	public Map<String, String> uploadForm(MultipartFile file, HttpServletRequest request) throws Exception {
+		Map<String, String> response = new HashMap<>();
 		
 		// 첨부파일이름
 		String filename = file.getOriginalFilename();
-		String path = request.getSession().getServletContext().getRealPath("/download");
+		
+//		String path = request.getSession().getServletContext().getRealPath("/download");
+		String path = "C:/Users/SIT/git/SIT/SIT_SEMI_PROJECT/src/main/webapp/download";
+		
 		filename = uploadFile(path, filename, file.getBytes());
 //		mav.setView(new RedirectView("pshopList.do"));
-		mav.addObject("filename", filename);
+		response.put("filename", filename);
 		
-		return mav;
+		return response;
 	}
 	
 	private String uploadFile(String path, String originalName, byte[] fileData) throws Exception {
