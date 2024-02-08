@@ -247,6 +247,9 @@
 </script>
 
 <div id="main_Div">
+	<div style="width:100%; height:800px;">
+		<iframe src="http://www.sit21c.com" style="width: 100%; height: 800px;" ></iframe>
+	</div>
 	<h2>일별 접속자</h2>
     <div id="chartdiv"></div>
 </div>
