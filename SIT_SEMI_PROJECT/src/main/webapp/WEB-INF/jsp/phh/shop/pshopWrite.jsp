@@ -64,8 +64,8 @@ function add(){
 			
 			success : function(data){ // 업로드된 실제파일 이름을 전달받기
 				// 파일이름 가져오기
-				var filename = data.filename;
-				$('#filename').val(filename);
+				var fileName = data.fileName;
+				$('#fileName').val(fileName);
 				alert("사진첨부가 완료되었습니다.");
 				$("#submit").removeAttr("disabled");
 			},
@@ -83,6 +83,14 @@ $( document ).ready(function() {
 });
 		
 </script>
+<style>
+	.table input.btn-success {
+	text-align: center !important;
+	width:40% !important;
+	float: right;
+	border:none;
+	}
+</style>
 </head>
 <body>
 
@@ -119,9 +127,9 @@ $( document ).ready(function() {
 					<input name="file" type="file"  />
 				</td>
 				<td colspan="1">
-					<input type="button" value="사진등록" onclick="add()" />
+					<input type="button" class="btn btn-success" value="사진등록" onclick="add()" />
 				</td>
-				<input type="hidden" name="filename" id="filename" value="" />
+				<input type="hidden" name="fileName" id="fileName" value="" />
 <!-- 				<iframe name="iframe1"></iframe> -->
 			</tr>		
 			<tr>

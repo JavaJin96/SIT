@@ -35,15 +35,27 @@ function closeModal2(replyNo){
     modal.style.display = "none";
 }
 
+function checkLimit() {
+	  var inputCount = document.getElementById('count');
+	  var maxLimit = parseInt(inputCount.max);
+	  var currentValue = parseInt(inputCount.value);
+
+	  if (currentValue > maxLimit) {
+	    alert('인당 '+maxLimit+'개 이하로만 구매가능합니다. 단체주문시 문의 바랍니다.');
+	    
+	    // 값을 상한선으로 제한
+	    inputCount.value = maxLimit;
+	  }
+}
+
 
 function deleteComment(replyNo, boardNo){
 	location.href = '<c:out value="pshopCommentDelete.do?replyNo="/>'+replyNo + '&boardNo=' + boardNo;
 }
 
 
-
-function deleteShop(no, gubun){
-	location.href = '<c:out value="pshopDelete.do?no="/>' + no + '&gubun=' + gubun;
+function deleteShop(no){
+	location.href = '<c:out value="pshopDelete.do?no="/>' + no;
 }
 
 function updateShop(no){
@@ -84,8 +96,8 @@ function add(){
 			
 			success : function(data){ // 업로드된 실제파일 이름을 전달받기
 				// 파일이름 가져오기
-				var filename = data.filename;
-				$('#filename').val(filename);
+				var fileName = data.fileName;
+				$('#fileName').val(fileName);
 				alert("사진첨부가 완료되었습니다.");
 			},
 			error : function(){ alert("error"); }
@@ -115,6 +127,23 @@ function add(){
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 그림자 효과 추가 */
 }
+
+.commentWrite .btn.btn-success {
+	text-align: center !important;
+	width: 40% !important;
+	margin-left: 1rem;
+ 	float: left;
+	border:none;
+	}
+	
+.boardTitle .btn.btn-success{
+	text-align: center !important;
+	width: 60% !important;
+	margin-left: 1rem;
+ 	float: left;
+	border:none;
+}
+
 </style>
 </head>
 <body>
@@ -130,19 +159,34 @@ function add(){
 	</colgroup>
 	<c:if test="${vo!=null}">
 		<tr class="boardTitle" >
-			<td colspan="4" style="text-align: center;"><img src="<c:out value='/SIT/download/${vo.fileName}'/>" width="400px" height="400px" ></td>
-		</tr>	
-		<tr class="boardTitle" >
-			<td>상품명</td>
-			<td colspan="3">${vo.title}</td>
-		</tr>
-		<tr class="boardContent" >
-			<td>상품설명</td>
-			<td colspan="3"> ${vo.contents} </td>
+			<td colspan="2" style="text-align: center;"><img src="<c:out value='/SIT/download/${vo.fileName}'/>" width="400px" height="400px" ></td>
+			<td colspan="2">
+			<table class="table">
+			<colgroup>
+				<col style="width:25%" >
+				<col style="width:25%" >
+				<col style="width:25%" >
+				<col style="width:25%" >
+			</colgroup>			
+				<tr class="boardTitle" >
+					<td>상품명</td>
+					<td colspan="3">${vo.title}</td>
+				</tr>
+				<tr class="boardContent" >
+					<td>상품설명</td>
+					<td colspan="3"> ${vo.contents} </td>
+				</tr>
+				<tr class="boardTitle">
+					<td colspan="1">구매수량</td>
+					<td colspan="1"><input type="number" id="count" name="count" value="1" min="1" max="10" oninput="checkLimit()" /></td>
+					<td colspan="2"><input type="button" class="btn btn-success" id="cart" name="cart" value="장바구니에 담기" onclick="" /></td>
+				</tr>
+			</table>
+			</td>			
 		</tr>
 		<tr class="boardDate" >
-			<td>작성일</td>
-			<td colspan="3">${vo.creDate}</td>
+			<td colspan="3" style="text-align : right;">작성일</td>
+			<td colspan="1" style="text-align : right;">${vo.creDate}</td>
 		</tr>
 	</c:if>
 		<tr>
@@ -150,11 +194,40 @@ function add(){
 				<input type="button" value="목록" class='btn btn-info' onclick="listFn()" />
 				<c:if test="${sessionScope.userRole == '1'}">
 					<input type="button" class="btn btn-warning" value="삭제" onclick="openModal()" />
-					<input type="button" class="btn btn-primary" value="수정하기" onclick="updateBoard(${vo.no})" />
+					<input type="button" class="btn btn-primary" value="수정하기" onclick="updateShop(${vo.no})" />
 				</c:if>
 			</td>
 		</tr>
 </table>
+
+	<!-- 댓글 입력 -->
+	<div class="container">
+	<div class="commentWrite">
+	    <h3>리뷰</h3>
+	    <c:if test="${sessionScope.userNo != null}">
+        	<textarea id="comment" name="comment" placeholder="리뷰를 100자 이내로 입력하세요..." required></textarea>
+        	<table class="table">
+				<colgroup>
+					<col style="width:25%" >
+					<col style="width:25%" >
+					<col style="width:25%" >
+					<col style="width:25%" >
+				</colgroup>        	
+        		<tr>
+        			<td colspan="2" style="vertical-align: middle;" ><input name="file" type="file"  /></td>
+        			<td colspan="1"><input type="button" class="btn btn-success" value="사진등록" onclick="add()" /></td>
+        		</tr>
+        	</table>
+        	<input type="hidden" name="fileName" id="fileName" value="" />
+        </c:if>
+        <c:if test="${sessionScope.userNo == null || sessionScope.userNo == ''}">
+<!--         	<textarea id="comment" name="comment" placeholder="로그인 후 작성해주세요..." disabled="disabled" required></textarea> -->
+			<textarea id="comment" name="comment" placeholder="로그인 후 작성해주세요..." disabled="disabled" required></textarea>
+        </c:if>
+        <input type="button" class="btn btn-primary" value="리뷰 작성" onclick="doComment()" />
+	</div>
+	</div>
+
 	<!-- 댓글 목록 -->
 	<div class="container">
 		<c:if test="${not empty co}">
@@ -180,7 +253,6 @@ function add(){
 	       		<td colspan="2">${co.comment}</td>
 	       		<c:if test="${sessionScope.userNo == co.userNo || sessionScope.userNo == '1'}">
 	       			<td colspan="1"><input type="button" class="btn btn-danger" value="삭제" onclick="openModal2(${co.replyNo})" /></td>
-<%-- 	       			<td colspan="1"><input type="button" class="btn btn-danger" value="삭제" onclick="deleteComment(${co.replyNo}, ${co.boardNo})" /></td> --%>
 	       		</c:if>
 	       	</tr>
 		</table> 
@@ -200,26 +272,7 @@ function add(){
 		</div>		
 	    </c:forEach>
 	</div>
-	
-	
-	<!-- 댓글 입력 -->
-	<div class="container">
-	<div class="commentWrite">
-	    <h3>리뷰</h3>
-	    <c:if test="${sessionScope.userNo != null}">
-        	<textarea id="comment" name="comment" placeholder="리뷰를 100자 이내로 입력하세요..." required></textarea>
-        	<input name="file" type="file"  />
-        	<input type="button" value="사진등록" onclick="add()" />
-        	<input type="hidden" name="filename" id="filename" value="" />
-        </c:if>
-        <c:if test="${sessionScope.userNo == null || sessionScope.userNo == ''}">
-<!--         	<textarea id="comment" name="comment" placeholder="로그인 후 작성해주세요..." disabled="disabled" required></textarea> -->
-			<textarea id="comment" name="comment" placeholder="로그인 후 작성해주세요..." disabled="disabled" required></textarea>
-        </c:if>
-        <input type="button" class="btn btn-primary" value="리뷰 작성" onclick="doComment()" />
-	</div>
-	</div>
-	
+
 </div>
 <div id="myModal" class="modal">
 	<div align="center">
@@ -227,7 +280,7 @@ function add(){
 			<label for="check">정말로 삭제하시겠습니까?</label>
 		</div>
 		<div>
-			<button type="button" class="btn btn-primary" onclick="deleteBoard(${vo.no}, ${vo.gubun})">확인</button>
+			<button type="button" class="btn btn-primary" onclick="deleteShop(${vo.no})">확인</button>
 			<button type="button" class="btn btn-warning" onclick="closeModal()">취소</button>
 		</div>
 	</div>

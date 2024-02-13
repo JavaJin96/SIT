@@ -48,7 +48,7 @@ $( document ).ready(function() {
   </div>
   <h2> <a href = "pshopList.do" style="color: inherit; text-decoration: none;" >혀노SHOP</a> </h2>
 	<div class='search'>
-      	<form action="pshopSearch.do" method="post">
+      	<form action="psearchShop.do" method="post">
 			<select id="selectSearch" name="selectSearch">
 				<option value="title" selected="selected">상품 제목</option>
 				<option value="contents">상품 내용</option>

@@ -54,6 +54,8 @@
 		<put-attribute name="title" value="메인" />
 	</definition>			
 	
+	<!-- ================= phh BOARD ================= -->
+	
 	<definition name="pboardList" extends="phh-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardList.jsp" />
 		<put-attribute name="title" value="메인" />
@@ -98,6 +100,11 @@
 	
 	<definition name="pshopContent" extends="phh-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopContent.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>	
+	
+	<definition name="pshopUpdatePage" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopUpdatePage.jsp" />
 		<put-attribute name="title" value="메인" />
 	</definition>	
 	
