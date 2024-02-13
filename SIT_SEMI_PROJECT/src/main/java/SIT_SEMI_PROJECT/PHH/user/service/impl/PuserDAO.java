@@ -10,7 +10,7 @@ import SIT_SEMI_PROJECT.PHH.user.PuserVO;
 @Repository("puserDAO")
 public class PuserDAO extends EgovAbstractMapper{
 	
-	public List<?> selectUser(){
+	public List<PuserVO> selectUser(){
 		return selectList("puserDAO.selectUser");
 	}
 	

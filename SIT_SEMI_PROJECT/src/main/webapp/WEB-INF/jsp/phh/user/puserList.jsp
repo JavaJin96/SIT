@@ -22,17 +22,35 @@ function userDelete(no){
 	
 }
 
+function downExcel(){
+	location.href = '<c:out value="puserExcel.do" />';	
+}
+
+
 $( document ).ready(function() {
 
 	
 });
 		
 </script>
+<style>
+.btn-info{
+/* 	text-align: right !important; */
+	width: 10% !important;
+	margin-left: 1rem;
+ 	float: right;
+	border:none;
+	border-radius: 0.8rem;
+	padding : 0.4rem;
+}
+
+</style>
 </head>
 <body>
 
 <div class="container">
-	<h2> <a href = "puserList.do" style="color: inherit; text-decoration: none;" >회원관리</a> </h2>    
+	<h2> <a href = "puserList.do" style="color: inherit; text-decoration: none;" >회원관리</a> </h2>
+		<input type="button" class="btn-info" name="excel" id="excel" value="엑셀 다운로드" onclick="downExcel()" />
   <table class="table table-striped">
     <thead>
       <tr>

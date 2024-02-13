@@ -67,6 +67,7 @@ $( document ).ready(function() {
 		<input type="hidden" name="count" value=0 />
 		<input type="hidden" name="gubun" value=1 />
 		<input type="hidden" name="userNo" value="${sessionScope.userNo}"/>
+		<input type="hidden" name="userRole" value="${sessionScope.userRole}" />
 		<table class="table">
 			<colgroup>
 				<col style="width:25%" >
