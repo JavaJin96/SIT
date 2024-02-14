@@ -122,12 +122,11 @@
 	
 	<definition name="ruserLogin" extends="ryh-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/ryh/ruser/ruserLogin.jsp" />
-		<
+	</definition>
+		
 	<definition name="pshopContent" extends="phh-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopContent.jsp" />
 		<put-attribute name="title" value="메인" />
-	</definition>	
-put-attribute name="title" value="메인" />
 	</definition>
 	
 	<definition name="rboardWrite" extends="ryh-layout">
