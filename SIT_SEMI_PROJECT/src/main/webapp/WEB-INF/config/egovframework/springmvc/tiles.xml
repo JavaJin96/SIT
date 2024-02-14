@@ -54,6 +54,8 @@
 		<put-attribute name="title" value="메인" />
 	</definition>			
 	
+	<!-- ================= phh BOARD ================= -->
+	
 	<definition name="pboardList" extends="phh-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardList.jsp" />
 		<put-attribute name="title" value="메인" />
@@ -96,6 +98,16 @@
 		<put-attribute name="title" value="메인" />
 	</definition>	
 	
+	<definition name="pshopContent" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopContent.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>	
+	
+	<definition name="pshopUpdatePage" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopUpdatePage.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>		
+	
 	<!-- ================= ryh ================= -->
 	
 	<definition name="ryhMainpage" extends="standar-layout">
@@ -110,7 +122,12 @@
 	
 	<definition name="ruserLogin" extends="ryh-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/ryh/ruser/ruserLogin.jsp" />
+		<
+	<definition name="pshopContent" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopContent.jsp" />
 		<put-attribute name="title" value="메인" />
+	</definition>	
+put-attribute name="title" value="메인" />
 	</definition>
 	
 	<definition name="rboardWrite" extends="ryh-layout">
@@ -124,5 +141,9 @@
 	</definition>
 	
 	
+	<definition name="ryhPage" extends="standar-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/ryh/ryhPage.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>
 	
 </tiles-definitions>
