@@ -11,7 +11,7 @@ public class RuserVO {
 		public int getNo() {
 			return num;
 		}
-		public void setNo(int no) {
+		public void setNo(int num) {
 			this.num = num;
 		}
 		public String getId() {
@@ -41,7 +41,7 @@ public class RuserVO {
 		public String getRegDate() {
 			return regdate;
 		}
-		public void setRegDate(String regDate) {
+		public void setRegDate(String regdate) {
 			this.regdate = regdate;
 		}
 		

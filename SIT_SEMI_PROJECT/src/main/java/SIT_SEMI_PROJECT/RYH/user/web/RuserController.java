@@ -13,11 +13,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import SIT_SEMI_PROJECT.PHH.user.PuserVO;
-import SIT_SEMI_PROJECT.PHH.user.service.PuserService;
+import SIT_SEMI_PROJECT.RYH.user.service.RuserService;
 
-// @Controller
+@Controller
 public class RuserController {
 	
+	@Resource(name = "ruserService")
+	RuserService ruserService;
+	
+	@RequestMapping(value="ryh/ruserLogin.do")
+	public ModelAndView goLogin() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("ruserLogin");
+		return mav;
+	}
 
 }

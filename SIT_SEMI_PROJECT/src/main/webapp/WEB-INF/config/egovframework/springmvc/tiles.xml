@@ -101,25 +101,15 @@
 	<definition name="ryhMainpage" extends="standar-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/ryh/ryhMainpage.jsp" />
 		<put-attribute name="title" value="메인" />
-	</definition>
+	</definition>		
 	
-	<definition name="ruserList" extends="ryh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/ryh/user/ruserList.jsp" />
+	<definition name="rboardList" extends="ryh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/ryh/board/rboardList.jsp" />
 		<put-attribute name="title" value="메인" />
 	</definition>
 	
 	<definition name="ruserLogin" extends="ryh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/ryh/user/ruserLogin.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>		
-
-	<definition name="ruserSignup" extends="ryh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/ryh/user/ruserSignup.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>			
-	
-	<definition name="rboardList" extends="ryh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/ryh/board/rboardList.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/ryh/ruser/ruserLogin.jsp" />
 		<put-attribute name="title" value="메인" />
 	</definition>
 	
@@ -133,19 +123,6 @@
 		<put-attribute name="title" value="메인" />
 	</definition>
 	
-	<definition name="rboardUpdatePage" extends="ryh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/ryh/rboard/rboardUpdatePage.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>
 	
-	<definition name="rboardNoticeList" extends="ryh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/ryh/rboard/rboardNoticeList.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>
-
-	<definition name="rboardNoticeWrite" extends="ryh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/ryh/rboard/rboardNoticeWrite.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>
 	
 </tiles-definitions>

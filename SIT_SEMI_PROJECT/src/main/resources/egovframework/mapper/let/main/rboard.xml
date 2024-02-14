@@ -2,10 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="rboardDAO">
 	
-	<select id ="rboardDAO.selectBoard" resultType= "SIT_SEMI_PROJECT.RYH.board.testVO">
-		SELECT no, content FROM test_table;
+	<select id ="rboardDAO.selectBoard" resultType= "SIT_SEMI_PROJECT.RYH.board.RboardVO">
+		SELECT title, contents, count, writer, contentDate FROM ryh_board;
 	</select>
 	
+	<insert id="rboardDAO.insertBoard" parameterType="SIT_SEMI_PROJECT.RYH.board.RboardVO">
+		INSERT into ryh_board(
+
+			 title
+			, contents
+			, count
+		) VALUES (
+
+			 #{title}
+			, #{contents}
+			, #{count}
+		)
+	</insert>
+	
+	<update id="rboardDAO.countBoard" parameterType="int">
+		UPDATE ryh_board
+			SET count = count + 1
+			WHERE num = #{num}
+	</update>
+	
+	<select id="rboardDAO.contentBoard" parameterType="int" resultType="SIT_SEMI_PROJECT.RYH.board.RboardVO">
+		SELECT 
+			title,
+			contents,
+			count,
+			writer,
+			contentDate,
+		FROM
+			ryh_board
+		WHERE num = #{num};
+	</select>
 	
 	
 </mapper>

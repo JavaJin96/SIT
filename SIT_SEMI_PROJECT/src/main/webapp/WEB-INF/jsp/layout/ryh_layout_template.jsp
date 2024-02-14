@@ -12,11 +12,11 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"  %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,12 +24,15 @@
 <title>SIT의 홈페이지</title>
 
 <!-- common.css  -->
-<link href="<c:url value='/'/>css/ryh.css" rel="stylesheet" type="text/css" >
+<link href="<c:url value='/'/>#" rel="stylesheet" type="text/css" >
 
 <!-- bootstrap 관련 -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 
 <!-- Jquery 스크립트  -->
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
@@ -39,9 +42,13 @@
 
 </head>
 <style>
-/* 	#header{
+	#header{
 		width:100%;
 		height:100px;
+	}
+	#topnavi{
+		width:100%;
+		height:100px;	
 	}
 	#main_container{
 		width: 70%;
@@ -55,16 +62,16 @@
 	}
 	a{
 		text-decoration: none;
-	} */
+	}
 </style>
 <body>
 <noscript>자바스크립트를 지원하지 않는 브라우저에서는 일부 기능을 사용하실 수 없습니다.</noscript>	
 
 <div id="wrap">
 
-<!-- 	<div id="header"> -->
+	<div id="header">
 <%-- 		<tiles:insertAttribute name="header"/> --%>
-<!-- 	</div> -->
+	</div>
 	
 	<div id="topnavi">
 		<tiles:insertAttribute name="topnav"/>

@@ -3,34 +3,13 @@ package SIT_SEMI_PROJECT.RYH.board;
 import java.sql.Timestamp;
 
 public class RboardVO {
-    private int num;
-    private int user_no;
-    private String title;
-    private String content;
-    private int count;
-    private String writer;
-    private Timestamp contentDate;
-
-    public RboardVO() { }
-
-    public RboardVO(int user_no, String title, String content, int count, String writer) {
-        super();
-        this.setUser_no(user_no);
-        this.title = title;
-        this.content = content;
-        this.count = count;
-        this.writer = writer;
-    }
-    
-    public RboardVO(int num, String title, String content, int count, String writer, Timestamp contentDate) {
-        super();
-        this.num = num;
-        this.title = title;
-        this.content = content;
-        this.count = count;
-        this.writer = writer;
-        this.contentDate = contentDate;
-    }
+    int num;
+    int user_no;
+    String title;
+    String contents;
+    int count;
+    String writer;
+    Timestamp contentDate;
 
     public int getNum() {
 		return num;
@@ -56,12 +35,12 @@ public class RboardVO {
 		this.title = title;
 	}
 
-	public String getContent() {
-		return content;
+	public String getContents() {
+		return contents;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setContents(String content) {
+		this.contents = content;
 	}
 
 	public int getCount() {

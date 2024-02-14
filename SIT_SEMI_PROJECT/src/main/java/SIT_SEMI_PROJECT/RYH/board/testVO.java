@@ -1,6 +1,10 @@
-package SIT_SEMI_PROJECT.RYH;
+package SIT_SEMI_PROJECT.RYH.board;
 
 public class testVO {
+	
+	int no;
+	String content;
+	
 	public int getNo() {
 		return no;
 	}
@@ -13,7 +17,5 @@ public class testVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	int no;
-	String content;
-
+	
 }
