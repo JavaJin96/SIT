@@ -8,7 +8,7 @@ public class SuserVO {
 	String pass;
 	String name;
 	int auth;
-	Timestamp regDate;
+	Timestamp regdate;
 	public SuserVO() { }
 	
 	public int getNum() {
@@ -41,11 +41,11 @@ public class SuserVO {
 	public void setAuth(int auth) {
 		this.auth = auth;
 	}
-	public Timestamp getRegDate() {
-		return regDate;
+	public Timestamp getRegdate() {
+		return regdate;
 	}
-	public void setRegDate(Timestamp regDate) {
-		this.regDate = regDate;
+	public void setRegDate(Timestamp regdate) {
+		this.regdate = regdate;
 	}
 	
 }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sboardDAO">
-
 	<select id="sboardDAO.selectBoard" resultType="SIT_SEMI_PROJECT.SYH.board.SboardVO">
 		SELECT 
 			b.num
@@ -9,12 +8,33 @@
 			, u.name AS name
 			, b.title
 			, b.content
-			, DATE_FORMAT(b.regdate, '%Y-%m-%d')
-			, DATE_FORMAT(b.moddate, '%Y-%m-%d')
+			, b.regdate
+			, b.moddate
 			, b.count
+			, b.type
 		FROM
 			syh_board b
-		JOIN syh_user u ON b.userNum = u.num;
+		JOIN syh_user u ON b.userNum = u.num
+		WHERE b.type = 2
+		ORDER BY b.num DESC;
+	</select>
+	
+	<select id="sboardDAO.selectNotice" resultType="SIT_SEMI_PROJECT.SYH.board.SboardVO">
+		SELECT 
+			b.num
+			, b.userNum
+			, u.name AS name
+			, b.title
+			, b.content
+			, b.regdate
+			, b.moddate
+			, b.count
+			, b.type
+		FROM
+			syh_board b
+		JOIN syh_user u ON b.userNum = u.num
+		WHERE b.type = 1
+		ORDER BY b.num DESC;
 	</select>
 	
 	<insert id="sboardDAO.insertBoard" parameterType="SIT_SEMI_PROJECT.SYH.board.SboardVO">
@@ -22,7 +42,137 @@
 			userNum, title, content, count
 		) VALUES (
 			#{userNum}, #{title}, #{content}, #{count}
-		)
+		);
 	</insert>
+	
+	<select id="sboardDAO.contentBoard" parameterType="int" resultType="SIT_SEMI_PROJECT.SYH.board.SboardVO">
+		SELECT 
+			b.num
+			, b.userNum
+			, u.name AS name
+			, b.title
+			, b.content
+			, b.regdate
+			, b.moddate
+			, b.count
+		FROM
+			syh_board b
+		JOIN syh_user u ON b.userNum = u.num
+		WHERE b.num = #{num};
+	</select>
+	
+	<update id="sboardDAO.modifyBoard" parameterType="SIT_SEMI_PROJECT.SYH.board.SboardVO">
+		UPDATE syh_board
+		SET title = #{title}
+			, content = #{content}
+			, moddate = NOW()
+		WHERE num = #{num};
+	</update>
+	
+	<delete id="sboardDAO.deleteBoard" parameterType="int">
+		DELETE FROM syh_board 
+		WHERE num = #{num};
+	</delete>
+	
+	<select id="sboardDAO.searchBoard" parameterType="map" resultType="SIT_SEMI_PROJECT.SYH.board.SboardVO">
+		SELECT 
+			b.num
+			, b.userNum
+			, u.name AS name
+			, b.title
+			, b.content
+			, b.regdate
+			, b.moddate
+			, b.count
+			, b.type
+		FROM
+			syh_board b
+		JOIN syh_user u ON b.userNum = u.num
+		WHERE b.type = 2
+		<choose>
+			<when test="selectSearch == 'title'">AND b.title</when>
+			<when test="selectSearch == 'content'">AND b.content</when>
+			<when test="selectSearch == 'name'">AND u.name</when>
+		</choose>
+		LIKE CONCAT('%', #{search}, '%')
+			
+		ORDER BY b.num DESC;
+	</select>
+	
+	<select id="sboardDAO.selectComments" parameterType="int" resultType="SIT_SEMI_PROJECT.SYH.board.ScommentsVO">
+		SELECT
+			c.commentsNum
+			, c.userNum
+			, u.name AS name
+			, c.boardNum
+			, c.comments
+			, c.regdate
+		FROM
+			syh_comments c
+		JOIN syh_user u ON c.userNum = u.num
+		JOIN syh_board b ON c.boardNum = b.num
+		WHERE b.num = #{num};
+	</select>
+	
+	<insert id="sboardDAO.insertComments" parameterType="SIT_SEMI_PROJECT.SYH.board.ScommentsVO">
+		INSERT into syh_comments(
+			userNum, boardNum, comments
+		) VALUES (
+			#{userNum}, #{boardNum}, #{comments}
+		);
+	</insert>
+	
+	<update id="sboardDAO.modifyComments" parameterType="SIT_SEMI_PROJECT.SYH.board.ScommentsVO">
+		UPDATE syh_comments
+		SET comments = #{comments}
+		WHERE commentsNum = #{commentsNum}
+	</update>
 
+	<delete id="sboardDAO.deleteComments" parameterType="int">
+		DELETE FROM syh_comments c
+			WHERE c.commentsNum = #{commentsNum}
+	</delete>
+	
+	<update id="sboardDAO.countBoard" parameterType="int">
+		UPDATE syh_board
+			SET count = count + 1
+			WHERE num = #{num}
+	</update>
+	
+	<insert id="sboardDAO.insertNotice" parameterType="SIT_SEMI_PROJECT.SYH.board.SboardVO">
+		INSERT into syh_board (
+			userNum, title, content, count, type
+		) VALUES (
+			#{userNum}, #{title}, #{content}, #{count}, #{type}
+		);
+	</insert>
+	
+	<select id="sboardDAO.contentNotice" parameterType="int" resultType="SIT_SEMI_PROJECT.SYH.board.SboardVO">
+		SELECT 
+			b.num
+			, b.userNum
+			, u.name AS name
+			, b.title
+			, b.content
+			, b.regdate
+			, b.moddate
+			, b.count
+		FROM
+			syh_board b
+		JOIN syh_user u ON b.userNum = u.num
+		WHERE b.num = #{num};
+	</select>
+	
+	<select id="sboardDAO.getTotalBoardCount" resultType="int">
+        SELECT 
+        	COUNT(*) 
+        FROM 
+        	syh_board;
+    </select>
+    
+	<select id="sboardDAO.getBoardList" parameterType="map" resultType="SIT_SEMI_PROJECT.SYH.board.SboardVO">
+	    SELECT * 
+	    FROM syh_board ORDER BY num DESC 
+	    LIMIT #{start}, #{end}
+	</select>
 </mapper>

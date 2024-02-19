@@ -12,22 +12,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<script>
-	function userDelete(num){
-		if (confirm("정말 삭제하시겠습니까?") == true){
+	function suserDelete(num){
+		if (confirm("회원을 삭제하시겠습니까?") == true){
 			location.href = '<c:out value="suserDelete.do?num=" />'+num;	
-		} else {
-			return false;
-		}
-	$(document).ready(function() {
-		
-	});
-			
+		} else { }
+	}
 	</script>
 </head>
 
 <body>
 <div class="container">
-  <h2> 유저 관리</h2>            
+  <h2>회원 관리</h2>            
   <table class="table table-hover">
     <thead>
       <tr>
@@ -37,21 +32,20 @@
         <th>닉네임</th>
         <th>권한</th>
         <th>가입일자</th>
-        <th>삭제</th>
+        <th>관리</th>
       </tr>
     </thead>
     
     <tbody>
-	<c:forEach var="list" items="${list}" varStatus="status">
+	<c:forEach var="vo" items="${list}" varStatus="status">
 	<tr>
-		<td>${list.num}</td>
-		<td>${list.id}</td>
-		<td>${list.pass}</td>
-		<td>${list.name}</td>
-		<td>${list.auth}</td>
-		<td>${list.regDate}</td>
-		
-		<td><button type="button" class="btn btn-warning" onclick="userDelete(${list.num})">삭제하기</button></td>
+		<td>${vo.num}</td>
+		<td>${vo.id}</td>
+		<td>${vo.pass}</td>
+		<td>${vo.name}</td>
+		<td>${vo.auth}</td>
+		<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${vo.regdate}"/></td>
+		<td><button type="button" class="btn btn-warning" onclick="suserDelete(${vo.num})">삭제</button></td>
 	</tr>
 	</c:forEach>    
     </tbody>

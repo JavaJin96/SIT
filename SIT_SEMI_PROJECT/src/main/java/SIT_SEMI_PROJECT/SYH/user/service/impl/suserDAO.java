@@ -10,12 +10,12 @@ import SIT_SEMI_PROJECT.SYH.user.SuserVO;
 @Repository("suserDAO")
 public class suserDAO extends EgovAbstractMapper{
 	
-	public int insertUser(SuserVO vo) {
-		return insert("suserDAO.insertUser", vo);
-	}
-	
 	public List<?> selectUser() {
 		return selectList("suserDAO.selectUser");
+	}
+	
+	public int insertUser(SuserVO vo) {
+		return insert("suserDAO.insertUser", vo);
 	}
 	
 	public int deleteUser(int no) {
@@ -30,5 +30,7 @@ public class suserDAO extends EgovAbstractMapper{
 		return selectOne("suserDAO.dbCheck", id);
 	}
 	
-	
+	public String nameCheck(String name) {
+		return selectOne("suserDAO.nameCheck", name);
+	}
 }

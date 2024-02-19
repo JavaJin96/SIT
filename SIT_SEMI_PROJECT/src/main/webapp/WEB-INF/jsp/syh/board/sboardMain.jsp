@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>서윤호 메인 게시판</title>
+<title>메인 게시판</title>
 </head>
 <body>
 	<h2>안녕하세요. <br> 여기는 메인화면 입니다.</h2>
