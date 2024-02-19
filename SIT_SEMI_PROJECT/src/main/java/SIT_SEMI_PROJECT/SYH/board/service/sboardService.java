@@ -79,4 +79,12 @@ public class sboardService {
 	public List<?> getBoardList(int start, int end) {
 		return sboardDao.getBoardList(start, end);
 	}
+	
+	public int getTotalCommentsCount(int num) {
+        return sboardDao.getTotalCommentsCount(num);
+    }
+	
+	public List<?> getCommentsList(int boardNum, int cstart, int cend) {
+		return sboardDao.getCommentsList(boardNum, cstart, cend);
+	}
 }

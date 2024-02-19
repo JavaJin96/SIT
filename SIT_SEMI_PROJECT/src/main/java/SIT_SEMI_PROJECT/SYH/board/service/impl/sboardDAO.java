@@ -82,4 +82,16 @@ public class sboardDAO extends EgovAbstractMapper{
 		map.put("end", end);
 		return selectList("sboardDAO.getBoardList", map);
 	}
+	
+	public int getTotalCommentsCount(int num) {
+		return selectOne("sboardDAO.getTotalCommentsCount", num);
+	}
+	
+	public List<?> getCommentsList(int boardNum, int cstart, int cend) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("boardNum", boardNum);
+		map.put("cstart", cstart);
+		map.put("cend", cend);
+		return selectList("sboardDAO.getCommentsList", map);
+	}
 }

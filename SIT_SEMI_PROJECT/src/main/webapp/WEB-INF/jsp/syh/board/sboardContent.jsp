@@ -129,10 +129,10 @@
 
 
 <div class="container">
-	<c:if test="${not empty co}">
+	<c:if test="${not empty list}">
 		<h3>댓글 목록</h3>
 	</c:if>
-	<c:forEach var="co" items="${co}" varStatus="status">
+	<c:forEach var="co" items="${list}" varStatus="status">
 	<table class="comments">    
 	 	    
 	    <tr class="coTitle">
@@ -153,5 +153,38 @@
 	</table> 
 	</c:forEach>
 </div>
+
+<c:if test="${not empty list}">
+    <div class="pagination">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1">
+                    <button class="btn btn-outline-dark" onclick="location.href='<c:url value='sboardContent.do'/>?num=${vo.num}&cpage=1'">
+                        &lt; 처음
+                    </button>
+                </div>
+                <c:forEach begin="1" end="${ctotalPages}" var="cpageNumber">
+                    <div class="col-md-1">
+                        <c:choose>
+                            <c:when test="${cpageNumber eq ccurrentPage}">
+                                <button class="btn btn-secondary active">${cpageNumber}</button>
+                            </c:when>
+                            <c:otherwise>
+                                <button class="btn btn-outline-dark" onclick="location.href='<c:url value='sboardContent.do'/>?num=${vo.num}&cpage=${cpageNumber}'">${cpageNumber}</button>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                </c:forEach>
+                <div class="col-md-2">
+                    <button class="btn btn-outline-dark" onclick="location.href='<c:url value='sboardContent.do'/>?num=${vo.num}&cpage=${ctotalPages}'">
+                        끝 &gt;
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</c:if>
+
+
 </body>
 </html>

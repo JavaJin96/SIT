@@ -175,4 +175,27 @@
 	    FROM syh_board ORDER BY num DESC 
 	    LIMIT #{start}, #{end}
 	</select>
+	
+	<select id="sboardDAO.getTotalCommentsCount" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			syh_comments
+		WHERE
+			boardNum = #{num};
+	</select>
+	
+	<select id="sboardDAO.getCommentsList" parameterType="map" resultType="SIT_SEMI_PROJECT.SYH.board.ScommentsVO">
+		SELECT
+			c.*
+			, u.name AS name
+		FROM 
+			syh_comments c
+		JOIN syh_user u ON c.userNum = u.num
+		JOIN syh_board b ON c.boardNum = b.num
+		WHERE
+			b.num = #{boardNum}
+		ORDER BY commentsNum ASC
+		LIMIT #{cstart}, #{cend};
+	</select>
 </mapper>

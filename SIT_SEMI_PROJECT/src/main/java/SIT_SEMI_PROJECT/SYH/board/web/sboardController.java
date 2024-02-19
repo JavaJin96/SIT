@@ -63,7 +63,35 @@ public class sboardController {
 	    mav.setViewName("sboardFree");
 	    return mav;
 	}
-	
+
+	@RequestMapping(value = "syh/sboardContent.do")
+	public ModelAndView sboardContent(int num, 
+			@RequestParam(name = "cpage", defaultValue = "1") int ccurrentPage) {
+		ModelAndView mav = new ModelAndView();
+		
+		SboardVO vo = sboardService.contentBoard(num);
+		
+		// 페이징 변수
+		int citemsPerPage = 10;
+		int cstart = (ccurrentPage - 1) * citemsPerPage;
+		int cend = citemsPerPage;
+		
+		List<?> list = sboardService.getCommentsList(num, cstart, cend);
+		
+		int ctotalItems = sboardService.getTotalCommentsCount(num);
+		int ctotalPages = (int) Math.ceil((double) ctotalItems / citemsPerPage);
+		// List<?> co = sboardService.selectComments(num);
+		
+		mav.addObject("vo", vo);
+		// mav.addObject("co", co);
+		
+		mav.addObject("list", list);
+		mav.addObject("ccurrentPage", ccurrentPage);
+		mav.addObject("ctotalPages", ctotalPages);
+		
+		mav.setViewName("sboardContent");
+		return mav;
+	}
 	
 	@RequestMapping(value = "syh/sboardWrite.do")
 	public ModelAndView sboardWrite() {  // 글 등록 페이지
@@ -85,17 +113,6 @@ public class sboardController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "syh/sboardContent.do")
-	public ModelAndView sboardContent(int num) {  // 글 상세보기
-		ModelAndView mav = new ModelAndView();
-		sboardService.countBoard(num);
-		SboardVO vo = sboardService.contentBoard(num);
-		List<?> co = sboardService.selectComments(num);
-		mav.addObject("vo", vo);
-		mav.addObject("co", co);
-		mav.setViewName("sboardContent");
-		return mav;		
-	}
 	
 	@RequestMapping(value = "syh/sboardInsert.do")
 	public ModelAndView sboardInsert(int userNum, String title, String content, int count) {  // 등록 기능
