@@ -3,25 +3,58 @@
 <mapper namespace="suserDAO">
 
 	<select id="suserDAO.selectUser" resultType="SIT_SEMI_PROJECT.SYH.user.SuserVO">
-		SELECT num, id, pass, name, auth, DATE_FORMAT(regDate, '%Y-%m-%d') AS regDate 
-		FROM syh_user
+		SELECT 
+			num
+			, id
+			, pass
+			, name
+			, auth
+			, regdate
+		FROM 
+			syh_user
 	</select>
 
 	<insert id="suserDAO.insertUser" parameterType="SIT_SEMI_PROJECT.SYH.user.SuserVO">
-		INSERT into syh_user(id, pass, name) VALUES (#{id}, #{pass}, #{name})
+		INSERT into syh_user(
+			id, pass, name
+		) VALUES (
+			#{id}, #{pass}, #{name}
+		)
 	</insert>
 	
 	<update id="suserDAO.updateUser" parameterType="SIT_SEMI_PROJECT.SYH.user.SuserVO">
-		UPDATE syh_user SET pass=#{pass}, name=#{name} where num=#{num}
+		UPDATE syh_user 
+		SET pass = #{pass}
+			, name = #{name} 
+		where num = #{num}
 	</update>
 	
 	<delete id="suserDAO.deleteUser" parameterType="int">
-		DELETE FROM syh_user WHERE num=#{num}
+		DELETE FROM syh_user 
+		WHERE num = #{num}
 	</delete>
 	
 	<select id="suserDAO.doLogin" resultType="SIT_SEMI_PROJECT.SYH.user.SuserVO" parameterType="SIT_SEMI_PROJECT.SYH.user.SuserVO">
-		SELECT num, id, pass, name, auth, DATE_FORMAT(regDate, '%Y-%m-%d') AS regDate 
+		SELECT 
+			num
+			, id
+			, pass
+			, name
+			, auth
+			, regdate
 		FROM syh_user 
-		WHERE id=#{id} and pass=#{pass}
+		WHERE id = #{id} AND pass = #{pass}
+	</select>
+	
+	<select id="suserDAO.dbCheck" resultType="String" parameterType="String">
+		SELECT id 
+		FROM syh_user
+		WHERE id = #{id}
+	</select>
+	
+	<select id="suserDAO.nameCheck" resultType="String" parameterType="String">
+		SELECT name
+		FROM syh_user
+		WHERE name = #{name}
 	</select>
 </mapper>

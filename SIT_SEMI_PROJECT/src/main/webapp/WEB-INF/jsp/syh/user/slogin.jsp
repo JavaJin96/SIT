@@ -23,15 +23,13 @@
 	});
   
   </script>
-
-
 </head>
 <body>
 
 <div class="container">
-  <h2>Login</h2>
+  <h2>로그인</h2>
   
-  <form class="form-horizontal" action="sdoLogin.do" >
+  <form class="form-horizontal" action="sdoLogin.do" method="post">
     <div class="form-group">
       <label class="control-label col-sm-2" for="id">아이디:</label>
       <div class="col-sm-10">
@@ -53,6 +51,13 @@
       </div>
     </div>
   </form>
+  <div class="col-sm-12 text-center">
+        <c:if test="${loginFailed}">
+            <div class="alert alert-danger" role="alert">
+              	로그인에 실패하였습니다. 아이디 혹은 비밀번호를 확인해주세요.
+            </div>
+        </c:if>
+	</div>
 </div>
 
 </body>

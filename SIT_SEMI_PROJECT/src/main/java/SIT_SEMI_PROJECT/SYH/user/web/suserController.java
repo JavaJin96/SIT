@@ -23,7 +23,7 @@ public class suserController {
 	suserService suserService;
 	
 	@RequestMapping(value = "syh/suserList.do")
-	public ModelAndView userList() {  // 유저 리스트 (유저 관리)
+	public ModelAndView suserList() {  // 유저 리스트 (유저 관리)
 		ModelAndView mav = new ModelAndView();
 		
 		List<?> list = suserService.selectUser();
@@ -67,7 +67,7 @@ public class suserController {
 	
 	
 	@RequestMapping(value = "syh/suserDelete.do")
-	public ModelAndView userDelete(int num) {  // 회원 삭제
+	public ModelAndView suserDelete(int num) {  // 회원 삭제
 		ModelAndView mav = new ModelAndView();
 		suserService.deleteUser(num);
 
@@ -77,7 +77,7 @@ public class suserController {
 	}
 	
 	@RequestMapping(value = "syh/sdoLogin.do")
-	public ModelAndView dologin(@RequestParam String id, @RequestParam String pass, HttpServletRequest request) {  // 로그인 기능
+	public ModelAndView sdoLogin(@RequestParam String id, @RequestParam String pass, HttpServletRequest request) {  // 로그인 기능
 		SuserVO vo = new SuserVO();
 		vo.setId(id);
 		vo.setPass(pass);
@@ -93,6 +93,7 @@ public class suserController {
 			session.setAttribute("userId", vo.getId());
 			session.setAttribute("userNum", vo.getNum());
 			session.setAttribute("userName", vo.getName());
+			session.setAttribute("userAuth", vo.getAuth());
 		} else {
 			mav.addObject("loginFailed", true);
 			mav.setViewName("slogin");
@@ -113,8 +114,17 @@ public class suserController {
 	
 	@RequestMapping(value = "syh/suserDbCheck.do", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String dbCheck(@RequestParam String id) {  // 검증 (아이디 체크)
+	public String dbCheck(String id) {  // 아이디 중복체크
+		
 	    String dbId = suserService.dbCheck(id);
 	    return "{\"dbId\":\"" + dbId + "\"}";
-	}	
+	}
+	
+	@RequestMapping(value = "syh/suserNameCheck.do", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String NameCheck(String name) {  // 닉네임 중복체크
+		
+	    String dbName = suserService.nameCheck(name);
+	    return "{\"dbName\":\"" + dbName + "\"}";
+	}
 }

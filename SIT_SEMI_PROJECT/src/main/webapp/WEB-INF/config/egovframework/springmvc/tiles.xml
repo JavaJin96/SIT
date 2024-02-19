@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
@@ -24,6 +23,12 @@
 		<put-attribute name="header" value="/WEB-INF/jsp/layout/syh_Header.jsp" />
 		<put-attribute name="topnav" value="/WEB-INF/jsp/layout/syh_Topnav.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/jsp/layout/syh_Footer.jsp" />
+	</definition>
+	
+	<!-- ryh layout -->
+	<definition name="ryh-layout" template="/WEB-INF/jsp/layout/ryh_layout_template.jsp">
+		<put-attribute name="topnav" value="/WEB-INF/jsp/layout/ryhTopnav.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/layout/ryhFooter.jsp" />
 	</definition>
 	
 	<!-- =================main================= -->
@@ -110,6 +115,11 @@
 		<put-attribute name="title" value="메인" />
 	</definition>
 	
+	<definition name="suserList" extends="syh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/syh/user/suserList.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>
+	
 	<definition name="sboardMain" extends="syh-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/syh/board/sboardMain.jsp" />
 		<put-attribute name="title" value="메인" />
@@ -130,100 +140,31 @@
 		<put-attribute name="title" value="메인" />
 	</definition>
 	
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE tiles-definitions PUBLIC
-       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
-       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
- 
-<tiles-definitions>
-	<!-- main layout -->
-	<definition name="standar-layout" template="/WEB-INF/jsp/layout/layout_template.jsp">
-		<put-attribute name="header" value="/WEB-INF/jsp/layout/Header.jsp" />
-		<put-attribute name="left" value="/WEB-INF/jsp/layout/Leftmenu.jsp" />
-		<put-attribute name="topnav" value="/WEB-INF/jsp/layout/Topnav.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/jsp/layout/Footer.jsp" />
-	</definition>
-	
-	<!-- phh layout -->
-	<definition name="phh-layout" template="/WEB-INF/jsp/layout/phh_layout_template.jsp">
-		<put-attribute name="topnav" value="/WEB-INF/jsp/layout/phhTopnav.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/jsp/layout/phhFooter.jsp" />
-	</definition>
-	
-	<!-- ryh layout -->
-	<definition name="ryh-layout" template="/WEB-INF/jsp/layout/ryh_layout_template.jsp">
-		<put-attribute name="topnav" value="/WEB-INF/jsp/layout/ryhTopnav.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/jsp/layout/ryhFooter.jsp" />
-	</definition>
-	
-	<!-- =================main================= -->
-	
-	<definition name="mainPage" extends="standar-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/main/MainPage.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>
-			
-	
-	<!-- ================= phh ================= -->
-	
-	<definition name="phhPage" extends="standar-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/phh/phhPage.jsp" />
+	<definition name="sboardContent" extends="syh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/syh/board/sboardContent.jsp" />
 		<put-attribute name="title" value="메인" />
 	</definition>
 	
-	<definition name="puserList" extends="phh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/phh/user/puserList.jsp" />
+	<definition name="sboardModifyPage" extends="syh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/syh/board/sboardModifyPage.jsp" />
 		<put-attribute name="title" value="메인" />
 	</definition>
 	
-	<definition name="puserLogin" extends="phh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/phh/user/puserLogin.jsp" />
+	<definition name="sboardModifyCommentsPage" extends="syh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/syh/board/sboardModifyCommentsPage.jsp" />
 		<put-attribute name="title" value="메인" />
-	</definition>		
+	</definition>
+	
+	<definition name="snoticeWrite" extends="syh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/syh/board/snoticeWrite.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>
+	
+	<definition name="snoticeContent" extends="syh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/syh/board/snoticeContent.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>
 
-	<definition name="puserSignup" extends="phh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/phh/user/puserSignup.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>			
-	
-	<definition name="pboardList" extends="phh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardList.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>
-	
-	<definition name="pboardWrite" extends="phh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardWrite.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>
-	
-	<definition name="pboardContent" extends="phh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardContent.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>
-	
-	<definition name="pboardUpdatePage" extends="phh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardUpdatePage.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>
-	
-	<definition name="pboardNoticeList" extends="phh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardNoticeList.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>
-	
-	<definition name="pboardNoticeWrite" extends="phh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardNoticeWrite.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>
-	
-	<!-- ================= phh SHOP ================= -->
-	
-	<definition name="pshopList" extends="phh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopList.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>
-	
 	<!-- ================= ryh ================= -->
 	
 	<definition name="ryhPage" extends="standar-layout">
@@ -271,11 +212,68 @@
 		<put-attribute name="title" value="메인" />
 	</definition>
 	
-	<definition name="pboardNoticeWrite" extends="ryh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/ryh/rboard/rboardNoticeWrite.jsp" />
+	<definition name="pboardNoticeWrite" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardNoticeWrite.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>
+	
+	<!-- ================= phh SHOP ================= -->
+	
+	<definition name="pshopList" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopList.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>
+	
+	<definition name="pshopWrite" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopWrite.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>	
+	
+	<definition name="pshopContent" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopContent.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>	
+	
+	<definition name="pshopUpdatePage" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopUpdatePage.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>		
+	
+	<!-- ================= ryh ================= -->
+	
+	<definition name="ryhMainpage" extends="standar-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/ryh/ryhMainpage.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>		
+	
+	<definition name="rboardList" extends="ryh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/ryh/board/rboardList.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>
+	
+	<definition name="ruserLogin" extends="ryh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/ryh/ruser/ruserLogin.jsp" />
+	</definition>
+		
+	<definition name="pshopContent" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopContent.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>
+	
+	<definition name="rboardWrite" extends="ryh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/ryh/board/rboardWrite.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>
+	
+	<definition name="rboardContent" extends="ryh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/ryh/board/rboardContent.jsp" />
 		<put-attribute name="title" value="메인" />
 	</definition>
 	
 	
->>>>>>> branch 'master' of https://github.com/JavaJin96/SIT.git
+	<definition name="ryhPage" extends="standar-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/ryh/ryhPage.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>
+	
 </tiles-definitions>

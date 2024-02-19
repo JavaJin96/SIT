@@ -57,8 +57,8 @@ $( document ).ready(function() {
 		<td>${list.regDate}</td>
 		<td>
 		<c:choose>
-		    <c:when test="${sessionScope.userId == 'admin' || sessionScope.userRole == '1' || sessionScope.userId==list.id }">
-		        <button type="button" class="btn btn-danger btn-xs" onclick="userDelete(${list.no})">삭제</button>
+		    <c:when test="${sessionScope.userId == 'admin' || sessionScope.userRole == '2' || sessionScope.userId==list.id }">
+		        <button type="button" class="btn btn-danger" onclick="userDelete(${list.no})">삭제</button>
 		    </c:when>
 		    <c:otherwise>
 		        <button type="button" class="btn btn-danger btn-xs" onclick="userDelete(${list.no})" disabled="disabled">삭제</button>

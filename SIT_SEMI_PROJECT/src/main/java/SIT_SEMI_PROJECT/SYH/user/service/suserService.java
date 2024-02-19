@@ -34,4 +34,8 @@ public class suserService {
 	public String dbCheck(String id) {
 		return suserDao.dbCheck(id);
 	}
+	
+	public String nameCheck(String name) {
+		return suserDao.nameCheck(name);
+	}
 }
