@@ -1,10 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pshopDAO">
+
 	<select id="pshopDAO.selectList" resultType="SIT_SEMI_PROJECT.PHH.shop.PshopVO">
-		SELECT *
-			FROM phh_shop;
+		SELECT no
+			, user_no AS userNo
+			, title
+			, contents
+			, file_name as fileName
+			, file_name2 as fileName2
+			, DATE_FORMAT(cre_date, '%Y-%m-%d') AS creDate
+			, DATE_FORMAT(mod_date, '%Y-%m-%d') AS modDate
+			, gubun
+			, price
+			, star
+			, sell
+			, use_yn AS useYn
+			FROM phh_shop
+			WHERE use_yn = 'y'
+		ORDER BY no DESC;
 	</select>
+	
+	<select id="pshopDAO.searchShop" parameterType = "map" resultType="SIT_SEMI_PROJECT.PHH.shop.PshopVO">
+		SELECT 
+			s.no
+			, s.user_no AS userNo
+			, s.title
+			, s.contents
+			, s.file_name AS fileName
+			, s.file_name AS fileName2
+			, DATE_FORMAT(s.cre_date, '%Y-%m-%d') AS creDate
+			, DATE_FORMAT(s.mod_date, '%Y-%m-%d') AS modDate
+			, s.gubun
+			, s.price
+			, s.star
+			, s.sell
+			, s.use_yn AS useYn
+		FROM phh_shop s
+		WHERE s.use_yn = 'y'
+		<choose>
+			<when test="selectSearch == 'title'">AND s.title</when>
+			<when test="selectSearch == 'contents'">AND s.contents</when>
+		</choose>
+			LIKE CONCAT('%', #{search}, '%')
+			
+		ORDER BY s.no DESC;
+	</select>		
+	
+	<select id="pshopDAO.contentShop" resultType="SIT_SEMI_PROJECT.PHH.shop.PshopVO">
+		SELECT no
+			, user_no AS userNo
+			, title
+			, contents
+			, file_name as fileName
+			, file_name2 as fileName2
+			, DATE_FORMAT(cre_date, '%Y-%m-%d') AS creDate
+			, DATE_FORMAT(mod_date, '%Y-%m-%d') AS modDate
+			, gubun
+			, price
+			, star
+			, sell
+			, use_yn AS useYn
+			FROM phh_shop
+			WHERE use_yn = 'y'
+				AND no = #{no};
+	</select>
+	
+	<update id="pshopDAO.updateShop" parameterType="SIT_SEMI_PROJECT.PHH.shop.PshopVO">
+		UPDATE phh_shop
+			SET title = #{title}
+			, contents = #{contents}
+			, price = #{price}
+			, gubun = #{gubun}
+			, file_name = #{fileName}
+			, mod_date = NOW()
+		WHERE no = #{no}
+	</update>	
+	
+	<insert id="pshopDAO.insertShop" parameterType="SIT_SEMI_PROJECT.PHH.shop.PshopVO">
+		INSERT into phh_shop(
+			user_no
+			, title
+			, contents
+			, file_name
+			, price
+		) VALUES (
+			#{userNo}
+			, #{title}
+			, #{contents}
+			, #{fileName}
+			, #{price}
+		)
+	</insert>	
+	
+	<update id="pshopDAO.deleteShop" parameterType="int">
+		UPDATE phh_shop
+			SET use_yn = 'n'
+			, mod_date = NOW()
+			WHERE no = #{no}
+	</update>
+
 	
 
 </mapper>

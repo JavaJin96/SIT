@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ruserDAO">
+
+<select id="ruserDAO.doLogin" resultType="SIT_SEMI_PROJECT.RYH.user.RuserVO" parameterType="SIT_SEMI_PROJECT.RYH.user.RuserVO">
+		SELECT num, id, pass, name, role, DATE_FORMAT(reg_date, '%Y-%m-%d') AS regDate FROM phh_user WHERE id=#{id} and pass=#{pass}
+	</select>
+	
+</mapper>

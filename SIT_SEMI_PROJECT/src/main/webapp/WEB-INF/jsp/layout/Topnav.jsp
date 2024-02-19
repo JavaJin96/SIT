@@ -34,4 +34,3 @@
 	    <li><a href="#LINK" onclick="location.href='/SIT/syh/main.do'" >SYH</a></li>
 	</ul>
 </div>
-
