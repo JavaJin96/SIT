@@ -2,7 +2,6 @@
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
- 
 <tiles-definitions>
 	<!-- main layout -->
 	<definition name="standar-layout" template="/WEB-INF/jsp/layout/layout_template.jsp">
@@ -61,6 +60,8 @@
 		<put-attribute name="title" value="메인" />
 	</definition>			
 	
+	<!-- ================= phh BOARD ================= -->
+	
 	<definition name="pboardList" extends="phh-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardList.jsp" />
 		<put-attribute name="title" value="메인" />
@@ -93,10 +94,30 @@
 	
 	<!-- ================= phh SHOP ================= -->
 	
-	<definition name="puserList" extends="phh-layout">
+	<definition name="pshopList" extends="phh-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopList.jsp" />
 		<put-attribute name="title" value="메인" />
 	</definition>
+	
+	<definition name="pshopWrite" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopWrite.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>	
+	
+	<definition name="pshopContent" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopContent.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>	
+	
+	<definition name="pshopUpdatePage" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopUpdatePage.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>
+	
+	<definition name="pshopCart" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopCart.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>			
 	
 	<!-- ================= syh ================= -->
 	
@@ -117,7 +138,7 @@
 	
 	<definition name="suserList" extends="syh-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/syh/user/suserList.jsp" />
-		<put-attribute name="title" value="메인" />
+		<put-attribute name="title" value="메인" /> 
 	</definition>
 	
 	<definition name="sboardMain" extends="syh-layout">
@@ -164,80 +185,6 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/syh/board/snoticeContent.jsp" />
 		<put-attribute name="title" value="메인" />
 	</definition>
-
-	<!-- ================= ryh ================= -->
-	
-	<definition name="ryhPage" extends="standar-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/ryh/ryhPage.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>
-	
-	<definition name="puserList" extends="ryh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/ryh/user/puserList.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>
-	
-	<definition name="puserLogin" extends="ryh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/ryh/user/ruserLogin.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>		
-
-	<definition name="puserSignup" extends="ryh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/ryh/user/ruserSignup.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>			
-	
-	<definition name="pboardList" extends="ryh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/ryh/board/rboardList.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>
-	
-	<definition name="pboardWrite" extends="ryh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/ryh/board/rboardWrite.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>
-	
-	<definition name="pboardContent" extends="ryh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/ryh/board/rboardContent.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>
-	
-	<definition name="pboardUpdatePage" extends="ryh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/ryh/rboard/rboardUpdatePage.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>
-	
-	<definition name="pboardNoticeList" extends="ryh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/ryh/rboard/rboardNoticeList.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>
-	
-	<definition name="pboardNoticeWrite" extends="phh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/phh/board/pboardNoticeWrite.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>
-	
-	<!-- ================= phh SHOP ================= -->
-	
-	<definition name="pshopList" extends="phh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopList.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>
-	
-	<definition name="pshopWrite" extends="phh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopWrite.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>	
-	
-	<definition name="pshopContent" extends="phh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopContent.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>	
-	
-	<definition name="pshopUpdatePage" extends="phh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopUpdatePage.jsp" />
-		<put-attribute name="title" value="메인" />
-	</definition>		
 	
 	<!-- ================= ryh ================= -->
 	
@@ -253,11 +200,6 @@
 	
 	<definition name="ruserLogin" extends="ryh-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/ryh/ruser/ruserLogin.jsp" />
-	</definition>
-		
-	<definition name="pshopContent" extends="phh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopContent.jsp" />
-		<put-attribute name="title" value="메인" />
 	</definition>
 	
 	<definition name="rboardWrite" extends="ryh-layout">
