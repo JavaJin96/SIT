@@ -106,7 +106,12 @@
 	<definition name="pshopUpdatePage" extends="phh-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopUpdatePage.jsp" />
 		<put-attribute name="title" value="메인" />
-	</definition>		
+	</definition>
+	
+	<definition name="pshopCart" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopCart.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>			
 	
 	<!-- ================= ryh ================= -->
 	
@@ -123,7 +128,7 @@
 	<definition name="ruserLogin" extends="ryh-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/ryh/ruser/ruserLogin.jsp" />
 	</definition>
-			
+	
 	<definition name="rboardWrite" extends="ryh-layout">
 		<put-attribute name="body" value="/WEB-INF/jsp/ryh/board/rboardWrite.jsp" />
 		<put-attribute name="title" value="메인" />
