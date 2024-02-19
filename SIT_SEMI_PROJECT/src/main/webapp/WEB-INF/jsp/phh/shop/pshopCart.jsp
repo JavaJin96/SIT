@@ -19,7 +19,6 @@ function goCart(){
 	var count = countElement.value;
 	
 	location.href = '<c:out value="pshopPutCart.do?shopNo="/>'+shopNo + '&userNo=' + userNo + '&count' + count;
-	
 }
 
 function deleteCart(no){

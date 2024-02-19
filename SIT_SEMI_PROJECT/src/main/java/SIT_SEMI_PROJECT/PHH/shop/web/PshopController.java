@@ -108,7 +108,7 @@ public class PshopController {
 		
 		mav.setView(new RedirectView("pshopList.do"));
 		return mav;
-	}	
+	}
 	
 	@RequestMapping("phh/pupload.do")
 	@ResponseBody
@@ -138,6 +138,8 @@ public class PshopController {
 		
 		return fileName;
 	}
+	
+
 	
 	// 미구현 (상품 주문 기능 먼저 만든 뒤 구현 예정)
 	@RequestMapping("phh/pshopCommentWrite.do")

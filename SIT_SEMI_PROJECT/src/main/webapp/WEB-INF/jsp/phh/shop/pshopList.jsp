@@ -83,9 +83,11 @@ $( document ).ready(function() {
   
   
   <div align='right'>
-      <c:if test="${sessionScope.userRole='1'}">
+<%--   	<c:if test="${sessionScope.userId =='admin'}"> --%>
+      <c:if test="${sessionScope.userRole=='1'}">
       	<button type="button" class="btn btn-primary" onclick="shopWrite()">상품 등록</button>
       </c:if>
+<%--     </c:if> --%>
   </div>
 
 </div>
