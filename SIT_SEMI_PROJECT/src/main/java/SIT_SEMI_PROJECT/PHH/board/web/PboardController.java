@@ -135,8 +135,14 @@ public class PboardController {
 	}	
 	
 	@RequestMapping(value="phh/pboardNoticeInsert.do")
-	public ModelAndView insertNoticeBoard(@RequestParam int userNo, @RequestParam String title, @RequestParam String contents, @RequestParam int count, @RequestParam int gubun) {
+	public ModelAndView insertNoticeBoard(@RequestParam int userNo, @RequestParam String title, @RequestParam String contents, @RequestParam int count, @RequestParam int gubun, @RequestParam int userRole) {
 		ModelAndView mav = new ModelAndView();
+		
+		if (userRole != 1) {
+			mav.setView(new RedirectView("pboardNoticeList.do"));
+			return mav;
+		}
+		
 		PboardVO vo = new PboardVO();
 		vo.setUserNo(userNo);
 		vo.setTitle(title);

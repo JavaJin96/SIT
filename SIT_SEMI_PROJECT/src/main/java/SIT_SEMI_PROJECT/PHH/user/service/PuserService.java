@@ -15,7 +15,7 @@ public class PuserService {
 	@Resource(name = "puserDAO")
 	PuserDAO puserDao;
 	
-	public List<?> selectUser(){
+	public List<PuserVO> selectUser(){
 		return puserDao.selectUser();
 	}
 	
