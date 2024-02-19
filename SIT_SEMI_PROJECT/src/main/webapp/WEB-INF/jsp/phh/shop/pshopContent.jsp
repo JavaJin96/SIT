@@ -16,6 +16,15 @@ function listFn(){
 	location.href = '<c:out value="pshopList.do"/>';	
 }
 
+function goCart(){
+	var shopNo = "${vo.no}";
+	var userNo = "${sessionScope.userNo}";
+	var countElement = document.getElementById("count");
+	var count = countElement.value;
+	
+	location.href = '<c:out value="pshopPutCart.do?shopNo="/>'+shopNo + '&userNo=' + userNo + '&count' + count;
+}
+
 function openModal(){
     var modal = document.getElementById("myModal");
     modal.style.display = "block";
@@ -179,7 +188,7 @@ function add(){
 				<tr class="boardTitle">
 					<td colspan="1">구매수량</td>
 					<td colspan="1"><input type="number" id="count" name="count" value="1" min="1" max="10" oninput="checkLimit()" /></td>
-					<td colspan="2"><input type="button" class="btn btn-success" id="cart" name="cart" value="장바구니에 담기" onclick="" /></td>
+					<td colspan="2"><input type="button" class="btn btn-success" id="cart" name="cart" value="장바구니에 담기" onclick="goCart()" /></td>
 				</tr>
 			</table>
 			</td>			
