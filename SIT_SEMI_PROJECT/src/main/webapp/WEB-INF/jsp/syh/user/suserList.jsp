@@ -43,7 +43,19 @@
 		<td>${vo.id}</td>
 		<td>${vo.pass}</td>
 		<td>${vo.name}</td>
-		<td>${vo.auth}</td>
+		<td>
+		<c:choose>
+                <c:when test="${vo.auth eq 1}">
+                    ${vo.auth} (사용자)
+                </c:when>
+                <c:when test="${vo.auth eq 2}">
+                    ${vo.auth} (관리자)
+                </c:when>
+                <c:otherwise>
+                    ${vo.auth}
+                </c:otherwise>
+            </c:choose>
+        </td>
 		<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${vo.regdate}"/></td>
 		<td><button type="button" class="btn btn-warning" onclick="suserDelete(${vo.num})">삭제</button></td>
 	</tr>
