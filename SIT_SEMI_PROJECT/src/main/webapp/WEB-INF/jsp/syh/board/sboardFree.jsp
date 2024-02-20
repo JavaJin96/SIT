@@ -25,10 +25,19 @@
 	    }
 	}
 	
+	function sboardpoi() {
+		location.href = '<c:out value="sboardpoi.do"/>';
+	}
+	
 	</script>
 </head>
 <body>
 	<h2>자유게시판</h2>
+	
+	<c:if test="${sessionScope.userNum == '2'}"> <!-- 관리자일때 -->
+		<input type="button" class="btn btn-outline-warning" name="boardDatapoi" id="boardDatapoi" value="게시글 데이터 Excel 다운로드" onclick="sboardpoi()" />
+	</c:if>
+	
 	<div class="search">
 		<form id="searchForm" action="sboardSearch.do" method="POST" onsubmit="return searchForm()">
 			<select id="selectSearch" name="selectSearch">
@@ -99,8 +108,5 @@
         </div>
     </div>
 </div>
-
-
-
 </body>
 </html>

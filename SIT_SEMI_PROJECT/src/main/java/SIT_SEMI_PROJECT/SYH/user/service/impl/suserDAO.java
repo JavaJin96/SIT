@@ -10,7 +10,7 @@ import SIT_SEMI_PROJECT.SYH.user.SuserVO;
 @Repository("suserDAO")
 public class suserDAO extends EgovAbstractMapper{
 	
-	public List<?> selectUser() {
+	public List<SuserVO> selectUser() {
 		return selectList("suserDAO.selectUser");
 	}
 	

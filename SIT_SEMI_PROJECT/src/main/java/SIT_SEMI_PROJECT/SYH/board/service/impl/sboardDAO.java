@@ -13,7 +13,7 @@ import SIT_SEMI_PROJECT.SYH.board.ScommentsVO;
 @Repository("sboardDAO")
 public class sboardDAO extends EgovAbstractMapper{
 	
-	public List<?> selectBoard() {
+	public List<SboardVO> selectBoard() {
 		return selectList("sboardDAO.selectBoard");
 	}
 	
@@ -76,7 +76,7 @@ public class sboardDAO extends EgovAbstractMapper{
         return selectOne("sboardDAO.getTotalBoardCount");
     }
 	
-	public List<?> getBoardList(int start, int end) {
+	public List<SboardVO> getBoardList(int start, int end) {
 		Map<String, Integer> map = new HashMap<>();
 		map.put("start", start);
 		map.put("end", end);

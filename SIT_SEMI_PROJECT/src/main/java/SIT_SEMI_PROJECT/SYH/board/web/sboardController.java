@@ -1,9 +1,15 @@
 package SIT_SEMI_PROJECT.SYH.board.web;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,7 +57,7 @@ public class sboardController {
 	    int start = (currentPage - 1) * itemsPerPage;
 	    int end = itemsPerPage;
 	    
-	    List<?> list = sboardService.getBoardList(start, end);
+	    List<SboardVO> list = sboardService.getBoardList(start, end);
 	    
 	    int totalItems = sboardService.getTotalBoardCount();
 	    int totalPages = (int) Math.ceil((double) totalItems / itemsPerPage);
@@ -69,6 +75,7 @@ public class sboardController {
 			@RequestParam(name = "cpage", defaultValue = "1") int ccurrentPage) {
 		ModelAndView mav = new ModelAndView();
 		
+		sboardService.countBoard(num);
 		SboardVO vo = sboardService.contentBoard(num);
 		
 		// 페이징 변수
@@ -93,11 +100,29 @@ public class sboardController {
 		return mav;
 	}
 	
+	/*
+	@RequestMapping(value = "syh/sboardContent.do")
+	public ModelAndView sboardContent(int num) {  // 글 상세보기
+		ModelAndView mav = new ModelAndView();
+		
+		sboardService.countBoard(num);
+		SboardVO vo = sboardService.contentBoard(num);
+		List<?> co = sboardService.selectComments(num);
+		
+		mav.addObject("vo", vo);
+		mav.addObject("co", co);
+		mav.setViewName("sboardContent");
+		
+		return mav;		
+	}
+	*/
+	
 	@RequestMapping(value = "syh/sboardWrite.do")
 	public ModelAndView sboardWrite() {  // 글 등록 페이지
 		ModelAndView mav = new ModelAndView();
 		
 		mav.setViewName("sboardWrite");
+		
 		return mav;		
 	}
 	
@@ -107,9 +132,11 @@ public class sboardController {
 		
 		SboardVO vo = sboardService.contentBoard(num);
 		List<?> co = sboardService.selectComments(num);
+		
 		mav.addObject("vo", vo);
 		mav.addObject("co", co);
 		mav.setViewName("sboardModifyCommentsPage");
+		
 		return mav;
 	}
 	
@@ -141,6 +168,7 @@ public class sboardController {
 		
 		sboardService.insertComments(co);
 		mav.setView(new RedirectView("sboardContent.do?num=" + boardNum));
+		
 		return mav;
 	}
 	
@@ -151,6 +179,7 @@ public class sboardController {
 		SboardVO vo = sboardService.contentBoard(num);
 		mav.addObject("vo", vo);
 		mav.setViewName("sboardModifyPage");
+		
 		return mav;
 	}
 	
@@ -175,6 +204,7 @@ public class sboardController {
 		
 		sboardService.deleteBoard(num);
 		mav.setView(new RedirectView("sboardFree.do"));
+		
 		return mav;
 	}
 	
@@ -183,6 +213,7 @@ public class sboardController {
 		ModelAndView mav = new ModelAndView();
 		
 		List<?> list = sboardService.searchBoard(selectSearch, search);
+		
 		mav.addObject("list", list);
 		
 		mav.setViewName("sboardFree");
@@ -195,7 +226,6 @@ public class sboardController {
 		
 		sboardService.deleteComments(commentsNum);
 		mav.setView(new RedirectView("sboardContent.do?num=" + boardNum));
-		
 		return mav;
 	}
 	
@@ -220,6 +250,7 @@ public class sboardController {
 		ModelAndView mav = new ModelAndView();
 		
 		List<?> list = sboardService.selectNotice();
+		
 		mav.addObject("list", list);
 		mav.setViewName("sboardNotice");
 		return mav;		
@@ -244,19 +275,84 @@ public class sboardController {
 		vo.setCount(count);
 		vo.setType(type);
 		sboardService.insertNotice(vo);
-		mav.setView(new RedirectView("sboardNotice.do"));
 		
+		mav.setView(new RedirectView("sboardNotice.do"));
 		return mav;
 	}
 	
 	@RequestMapping(value = "syh/snoticeContent.do")
-	public ModelAndView snoticeContent(int num) {  // 글 상세보기
+	public ModelAndView snoticeContent(int num) {  // 공지글 상세보기
 		ModelAndView mav = new ModelAndView();
+		
 		sboardService.countBoard(num);
 		SboardVO vo = sboardService.contentNotice(num);
+		
 		mav.addObject("vo", vo);
+		
 		mav.setViewName("snoticeContent");
 		return mav;		
+	}
+	
+	@RequestMapping(value = "syh/sboardpoi.do")
+	public void sboardpoi(HttpServletResponse response) throws IOException {
+		
+		XSSFWorkbook workbook = new XSSFWorkbook();
+		XSSFSheet sheet = workbook.createSheet("syhPoi");
+		XSSFRow row = sheet.createRow(0);
+		XSSFCell cell;
+		
+		// 헤더(Header) 생성 (상단바)
+		cell = row.createCell(0);
+		cell.setCellValue("글 번호");
+		
+		cell = row.createCell(1);
+		cell.setCellValue("제목");
+		
+		cell = row.createCell(2);
+		cell.setCellValue("내용");
+		
+		cell = row.createCell(3);
+		cell.setCellValue("작성자");
+		
+		cell = row.createCell(4);
+		cell.setCellValue("작성일자");
+		
+		cell = row.createCell(5);
+		cell.setCellValue("조회수");
+		
+		List<SboardVO> list = sboardService.selectBoard();
+		
+		// 리스트의 Size만큼 row 생성
+		SboardVO vo;
+		for(int rowIdx = 0; rowIdx < list.size(); rowIdx++) {
+			vo = list.get(rowIdx);
+			
+			row = sheet.createRow(rowIdx + 1);
+			
+			cell = row.createCell(0);
+			cell.setCellValue(vo.getNum());
+			
+			cell = row.createCell(1);
+			cell.setCellValue(vo.getTitle());
+			
+			cell = row.createCell(2);
+			cell.setCellValue(vo.getContent());
+			
+			cell = row.createCell(3);
+			cell.setCellValue(vo.getName());
+			
+			cell = row.createCell(4);
+			cell.setCellValue(vo.getRegdate());
+			
+			cell = row.createCell(5);
+			cell.setCellValue(vo.getCount());
+		}
+		
+		// 다운로드 폴더에 응답됨 -> 현호님 코드 참고 (타입, 헤더, 파일명 지정 후 데이터 write)
+		response.setContentType("ms-vnd/excel");
+		response.setHeader("Content-Disposition", "attachment;filename=boardDataPoi.xlsx");  // 파일명
+		// 데이터 쓰기
+		workbook.write(response.getOutputStream());
 	}
 
 }

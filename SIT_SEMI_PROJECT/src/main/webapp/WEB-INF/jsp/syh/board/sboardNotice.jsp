@@ -25,7 +25,7 @@
 				<th width="15%">글 번호</th>
 				<th width="40%">제목</th>
 				<th width="15%">작성자</th>
-				<th width="15%">작성잉자</th>
+				<th width="15%">작성일자</th>
 				<th width="15%">조회수</th>
 			</tr>
 		</thead>

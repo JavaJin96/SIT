@@ -16,7 +16,7 @@ public class sboardService {
 	@Resource(name = "sboardDAO")
 	sboardDAO sboardDao;
 	
-	public List<?> selectBoard() {
+	public List<SboardVO> selectBoard() {
 		return sboardDao.selectBoard();
 	}
 	
@@ -76,7 +76,7 @@ public class sboardService {
         return sboardDao.getTotalBoardCount();
     }
 	
-	public List<?> getBoardList(int start, int end) {
+	public List<SboardVO> getBoardList(int start, int end) {
 		return sboardDao.getBoardList(start, end);
 	}
 	

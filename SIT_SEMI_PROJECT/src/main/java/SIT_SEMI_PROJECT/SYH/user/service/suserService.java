@@ -19,7 +19,7 @@ public class suserService {
 		return suserDao.insertUser(vo);
 	}
 	
-	public List<?> selectUser() {
+	public List<SuserVO> selectUser() {
 		return suserDao.selectUser();
 	}
 	

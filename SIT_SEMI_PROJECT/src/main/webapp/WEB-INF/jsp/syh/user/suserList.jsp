@@ -12,17 +12,24 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<script>
+	
 	function suserDelete(num){
 		if (confirm("회원을 삭제하시겠습니까?") == true){
 			location.href = '<c:out value="suserDelete.do?num=" />'+num;	
 		} else { }
 	}
+	
+	function suserpoi() {
+		location.href = '<c:out value="suserpoi.do"/>';
+	}
+	
 	</script>
 </head>
 
 <body>
 <div class="container">
-  <h2>회원 관리</h2>            
+  <h2>회원 관리</h2>
+  <input type="button" class="btn btn-outline-warning" name="userDatapoi" id="userDatapoi" value="유저 데이터 Excel 다운로드" onclick="suserpoi()" />   
   <table class="table table-hover">
     <thead>
       <tr>
