@@ -187,6 +187,13 @@
 		<put-attribute name="title" value="메인" />
 	</definition>
 	
+	<!-- ========== syh shopping mall ========== -->
+	
+	<definition name="sshoppingMain" extends="syh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/syh/shopping/sshoppingMain.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>
+	
 	<!-- ================= ryh ================= -->
 	
 	<definition name="ryhMainpage" extends="standar-layout">

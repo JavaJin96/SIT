@@ -21,4 +21,8 @@
 		text-align: center;
 	}
 </style>
-<div id="copyright">seo Board<br/>yhseo@sit21.com</div>
+<div id="copyright">
+	seo Board <br/>
+	yhseo@sit21.com <br/>
+	대전광역시 유성구 죽동로 69 소프트아이텍 빌딩
+</div>

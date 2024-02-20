@@ -29,6 +29,7 @@
 		<li><a href="#" onclick="location.href='/SIT/main/main.do'">SIT_MAIN</a></li>
 		<li><a href="#" onclick="location.href='/SIT/syh/sboardNotice.do'">공지사항</a></li>
 		<li><a href="#" onclick="location.href='/SIT/syh/sboardFree.do'">자유게시판</a></li>
+		<li><a href="#" onclick="location.href='/SIT/syh/sshoppingMain.do'">SYH SHOP</a></li>
 		
 		<c:if test="${sessionScope.userNum == '2'}"> <!-- 관리자일때 -->
 			<li><a href="/SIT/syh/suserList.do">회원관리</a></li>
