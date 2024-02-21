@@ -27,5 +27,12 @@ public class RuserController {
 		mav.setViewName("ruserLogin");
 		return mav;
 	}
+	
+	@RequestMapping(value="ryh/ruserRegister.do")
+	public ModelAndView goRegister() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("ruserRegister");
+		return mav;
+	}
 
 }

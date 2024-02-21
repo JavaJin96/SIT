@@ -71,7 +71,7 @@
                 </li>
             </c:if>
             <li>
-                <a href="/SIT/ryh/contact.do">
+                <a href="/SIT/ryh/ruserRegister.do">
                     <i class="fa fa-heart-o fa-lg"></i>
                     <span class="nav-text">회원가입</span>
                 </a>
