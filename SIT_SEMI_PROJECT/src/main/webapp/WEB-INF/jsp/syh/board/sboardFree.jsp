@@ -34,7 +34,7 @@
 <body>
 	<h2>자유게시판</h2>
 	
-	<c:if test="${sessionScope.userNum == '2'}"> <!-- 관리자일때 -->
+	<c:if test="${sessionScope.userId == 'manager'}"> <!-- 관리자일때 -->
 		<input type="button" class="btn btn-outline-warning" name="boardDatapoi" id="boardDatapoi" value="게시글 데이터 Excel 다운로드" onclick="sboardpoi()" />
 	</c:if>
 	

@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import SIT_SEMI_PROJECT.SYH.shopping.SshoppingVO;
 import SIT_SEMI_PROJECT.SYH.shopping.service.impl.sshoppingDAO;
 
 @Service("sshoppingService")
@@ -16,5 +17,9 @@ public class sshoppingService {
 	
 	public List<sshoppingDAO> shopList(){
 		return sshoppingDao.shopList();
+	}
+	
+	public int insertProduct(SshoppingVO vo) {
+		return sshoppingDao.insertProduct(vo);
 	}
 }

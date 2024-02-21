@@ -6,7 +6,7 @@ public class SshoppingVO {
 	int num;
 	int userNum;
 	String prodTitle;
-	String pordContents;
+	String prodContents;
 	String fileName;
 	Timestamp regdate;
 	String prodType;
@@ -39,12 +39,12 @@ public class SshoppingVO {
 		this.prodTitle = prodTitle;
 	}
 
-	public String getPordContents() {
-		return pordContents;
+	public String getProdContents() {
+		return prodContents;
 	}
 
-	public void setPordContents(String pordContents) {
-		this.pordContents = pordContents;
+	public void setProdContents(String prodContents) {
+		this.prodContents = prodContents;
 	}
 
 	public String getFileName() {

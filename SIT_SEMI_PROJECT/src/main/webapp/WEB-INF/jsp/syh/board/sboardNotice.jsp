@@ -42,10 +42,10 @@
 	</tbody>
 </table>
 <div align='right'>
-      <c:if test="${sessionScope.userNum != '2'}">
+      <c:if test="${sessionScope.userId != 'manager'}">
       	<button type="button" class="btn btn-primary" onclick="noticeWrite()" disabled="disabled">글 작성</button>
       </c:if>
-      <c:if test="${sessionScope.userNum == '2'}">
+      <c:if test="${sessionScope.userId == 'manager'}">
       	<button type="button" class="btn btn-primary" onclick="noticeWrite()">글 작성</button>
       </c:if>
   </div>

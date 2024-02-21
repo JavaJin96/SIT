@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -9,8 +8,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-	<script type="text/javascript">
+<title>SYH SHOP</title>
+<script type="text/javascript">
 		$(function(){
 			$('form[name="regist"]').submit(function(){
 				
@@ -43,11 +42,10 @@
 	</script>
 </head>
 <body>
-	<div class="container">
-	<h2>게시글 등록</h2>
+<div class="container">
+	<h2>상품 등록</h2>
 	
-	<form name="regist" id="regist" action="sboardInsert.do" >
-		<input type="hidden" name="count" value=0 />
+	<form name="regProd" id="regProd" action="sboardInsert.do" >
 		<input type="hidden" name="userNum" value="${sessionScope.userNum}"/>
 		<table class="table">
 			<colgroup>
@@ -56,24 +54,43 @@
 				<col style="width:25%" >
 				<col style="width:25%" >
 			</colgroup>
-			<tr class="boardTitle" >
-				<td><h5>글 제목</h5></td>
+			
+			<tr class="prodTitle" >
+				<td><h5>상품명</h5></td>
 				<td colspan="3">
-					<input type="text" id="title" name="title" required/>
+					<input type="text" id="prodTitle" name="prodTitle" required/>
 				</td>
 			</tr>
-			<tr class="boardContent" >
-				<td><h5>글 내용</h5></td>
-				<td colspan="3"><textarea id="content" name="content" rows="10" cols="50" required></textarea>
+			<tr class="prodContents" >
+				<td><h5>상품 상세설명</h5></td>
+				<td colspan="3"><textarea id="prodContents" name="prodContents" rows="10" cols="50" required></textarea>
 			</tr>
+			<tr class="price" >
+				<td><h5>상품 가격</h5></td>
+				<td colspan="3">
+					<input type="text" id="price" name="price" required/>
+				</td>
+			</tr>
+			<%--
+			<tr class="imgfile" >
+				<td><h5>상품 이미지</h5></td>
+				
+				<td colspan="1">
+					<input type="button" value="이미지 첨부" onclick="imgFileUpload()" />
+				</td>
+				<input type="hidden" name="fileName" id="fileName" value="" />
+			</tr>
+			--%>
 			<tr>
 				<td colspan="4" align="right">
-					<input type="submit" class="btn btn-primary" value="작성완료" />
+					<input type="submit" class="btn btn-primary" value="등록하기" />
 					<input type="button" class="btn btn-warning" value="취소" onclick="history.back()" />
 				</td>
 			</tr>
+			 
 		</table>
 	</form>
 </div>
+</body>
 </body>
 </html>

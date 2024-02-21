@@ -66,11 +66,11 @@
 		</div>
 		
 	<div align='right'>
-		<c:if test="${sessionScope.userNum == '2'}">
+		<c:if test="${sessionScope.userId=='manager'}">
 			<button type="button" class="btn btn-primary" id="modify">글 수정</button>
 			<button type="button" class="btn btn-danger" onclick="confirmDelete()">삭제</button>
 		</c:if>
-		<c:if test="${sessionScope.userNum != '2'}">
+		<c:if test="${sessionScope.userId!='manager'}">
 			<button type="button" class="btn btn-success" onclick="back()">돌아가기</button>
 		</c:if>
 	</div>

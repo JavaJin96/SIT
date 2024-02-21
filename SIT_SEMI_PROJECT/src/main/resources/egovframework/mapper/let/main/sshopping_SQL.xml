@@ -5,8 +5,8 @@
 	<select id="sshoppingDAO.shopList" resultType="SIT_SEMI_PROJECT.SYH.shopping.SshoppingVO">
 		SELECT s.num
 			, s.userNum
-			, s.prodtitle
-			, s.prodcontents
+			, s.prodTitle
+			, s.prodContents
 			, s.fileName
 			, s.regdate
 			, s.prodType
@@ -19,4 +19,12 @@
 		WHERE s.prodState = 'y'
 		ORDER BY s.num DESC;
 	</select>
+	
+	<insert id="sshoppingDAO.insertProduct" parameterType="SIT_SEMI_PROJECT.SYH.shopping.SshoppingVO">
+		INSERT INTO syh_shopping
+		  (userNum, prodTitle, prodContents, fileName, price)
+		VALUES
+		  (#{userNum}, #{prodTitle}, #{prodContents}, #{fileName}, #{price})
+	</insert>
+	
 </mapper>

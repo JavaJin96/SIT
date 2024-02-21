@@ -8,9 +8,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메인 게시판</title>
+<title>SYH SHOP</title>
+<script>
+	function regProduct() {
+		location.href = '<c:out value="regProductPage.do"/>';
+	}
+
+</script>
+
 </head>
 <body>
 	<h2>안녕하세요. <br> 여기는 SYH SHOP 페이지 입니다..!!</h2>
+	<input type="button" class="btn btn-primary" value="등록" onclick="regProduct()">
 </body>
 </html>
