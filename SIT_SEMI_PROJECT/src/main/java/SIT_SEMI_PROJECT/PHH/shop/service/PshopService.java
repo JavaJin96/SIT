@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import SIT_SEMI_PROJECT.PHH.shop.PreviewVO;
 import SIT_SEMI_PROJECT.PHH.shop.PshopVO;
 import SIT_SEMI_PROJECT.PHH.shop.service.impl.PshopDAO;
 
@@ -37,6 +38,46 @@ public class PshopService {
 	
 	public int updateShop(PshopVO vo) {
 		return pshopDao.updateShop(vo);
+	}
+	
+	public int putCart(PshopVO vo) {
+		return pshopDao.putCart(vo);
+	}
+	
+	public List<PshopVO> listCart(int userNo){
+		return pshopDao.listCart(userNo);
+	}
+	
+	public int deleteCart(int cartNo) {
+		return pshopDao.deleteCart(cartNo);
+	}
+	
+	public int putSell(PshopVO vo) {
+		return pshopDao.putSell(vo);
+	}
+	
+	public int sellShop(PshopVO vo) {
+		return pshopDao.sellShop(vo);
+	}	
+	
+	public int sellCart(int cartNo) {
+		return pshopDao.sellCart(cartNo);
+	}
+	
+	public List<PshopVO> sellList(){
+		return pshopDao.sellList();
+	}
+	
+	public List<?> viewReview(int no){
+		return pshopDao.viewReview(no);
+	}
+	
+	public int checkSell(int userNo, int no) {
+		return pshopDao.checkSell(userNo, no);
+	}
+	
+	public int doReview(PreviewVO vo) {
+		return pshopDao.doReview(vo);
 	}
 	
 }

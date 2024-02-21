@@ -15,6 +15,11 @@ function shopWrite(){
 	location.href = '<c:out value="pshopWrite.do"/>';
 }
 
+function goCart(){
+	var userNo = "${sessionScope.userNo}";
+	location.href = '<c:out value="pshopCart.do?userNo="/>' + userNo;
+}
+
 $( document ).ready(function() {
 	var selectSearch = "<c:out value='${selectSearch}' />"
 	
@@ -27,6 +32,11 @@ $( document ).ready(function() {
 });
 		
 </script>
+<style>
+.btn-info {
+ 	float: left;
+	}
+</style>
 </head>
 <body>
 
@@ -48,6 +58,9 @@ $( document ).ready(function() {
   </div>
   <h2> <a href = "pshopList.do" style="color: inherit; text-decoration: none;" >혀노SHOP</a> </h2>
 	<div class='search'>
+		<c:if test = "${sessionScope.userNo != null}" >
+		<input type="button" class='btn btn-info' value="장바구니" onclick ="goCart()"/>
+		</c:if>
       	<form action="pshopSearch.do" method="post">
 			<select id="selectSearch" name="selectSearch">
 				<option value="title" selected="selected">상품 제목</option>
@@ -72,7 +85,7 @@ $( document ).ready(function() {
 			<div style='text-align : center'><img src="<c:out value='/SIT/download/${list.fileName}'/>" width="200px" height="200px" ></div>
 			<div style='text-align : center'>${list.title}</div>
 			<div style='text-align : center'>${list.price}</div>
-			<div style='text-align : center'>${list.star}</div>
+			<div style='text-align : center'>판매량 ${list.sell}</div>
 		</td>
 	<c:if test="${status.index % 3 == 2}">
 	</tr>

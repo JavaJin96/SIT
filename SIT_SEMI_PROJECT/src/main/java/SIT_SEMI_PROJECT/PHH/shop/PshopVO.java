@@ -17,6 +17,13 @@ public class PshopVO {
 	String pass;
 	String selectSearch;
 	String search;
+	int cartNo;
+	int shopNo;
+	int count;
+	String sellYn;
+	int sellNo;
+	String sellDate;
+	int totalPrice;
 	
 	
 	public int getNo() {
@@ -115,6 +122,47 @@ public class PshopVO {
 	public void setSearch(String search) {
 		this.search = search;
 	}
-	
+	public int getCartNo() {
+		return cartNo;
+	}
+	public void setCartNo(int cartNo) {
+		this.cartNo = cartNo;
+	}
+	public int getShopNo() {
+		return shopNo;
+	}
+	public void setShopNo(int shopNo) {
+		this.shopNo = shopNo;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public String getSellYn() {
+		return sellYn;
+	}
+	public void setSellYn(String sellYn) {
+		this.sellYn = sellYn;
+	}
+	public int getSellNo() {
+		return sellNo;
+	}
+	public void setSellNo(int sellNo) {
+		this.sellNo = sellNo;
+	}
+	public String getSellDate() {
+		return sellDate;
+	}
+	public void setSellDate(String sellDate) {
+		this.sellDate = sellDate;
+	}
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 	
 }

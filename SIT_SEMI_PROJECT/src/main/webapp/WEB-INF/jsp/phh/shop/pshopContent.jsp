@@ -22,7 +22,7 @@ function goCart(){
 	var countElement = document.getElementById("count");
 	var count = countElement.value;
 	
-	location.href = '<c:out value="pshopPutCart.do?shopNo="/>'+shopNo + '&userNo=' + userNo + '&count' + count;
+	location.href = '<c:out value="pshopPutCart.do?shopNo="/>'+shopNo + '&userNo=' + userNo + '&count=' + count;
 }
 
 function openModal(){
@@ -34,13 +34,13 @@ function closeModal(){
     modal.style.display = "none";
 }
 
-function openModal2(replyNo){
-    var modal = document.getElementById("myModal2-"+replyNo);
+function openModal2(reNo){
+    var modal = document.getElementById("myModal2-"+reNo);
     modal.style.display = "block";
 }
 
-function closeModal2(replyNo){
-    var modal = document.getElementById("myModal2-"+replyNo);
+function closeModal2(reNo){
+    var modal = document.getElementById("myModal2-"+reNo);
     modal.style.display = "none";
 }
 
@@ -58,8 +58,8 @@ function checkLimit() {
 }
 
 
-function deleteComment(replyNo, boardNo){
-	location.href = '<c:out value="pshopCommentDelete.do?replyNo="/>'+replyNo + '&boardNo=' + boardNo;
+function deleteReview(reNo, shopNo){
+	location.href = '<c:out value="pshopReviewDelete.do?reNo="/>'+reNo + '&shopNo=' + shopNo;
 }
 
 
@@ -69,26 +69,6 @@ function deleteShop(no){
 
 function updateShop(no){
 	location.href = '<c:out value="pshopUpdatePage.do?no="/>'+no; 
-}
-
-
-function doReview(){
-	var comment = $('#comment').val();
-	var userNo = "${sessionScope.userNo}";
-	var boardNo = "${vo.no}";
-	
-	if (comment =='' || comment == null){
-		alert('댓글을 작성 후 클릭바랍니다.');
-		return false;
-	}
-	if (comment.length >= 101){
-		alert('댓글의 내용이 너무 깁니다. 100자 이하로 작성해주세요');
-		return false;
-	}
-	
-	comment = comment.replace(/(?:\r\n|\r|\n)/g, '<br/>');
-	
-	location.href = '<c:out value="pcommentWrite.do?boardNo="/>' + boardNo + '&userNo=' + userNo + '&comment=' + comment;
 }
 
 function add(){
@@ -117,9 +97,29 @@ function add(){
 	}
 }
 
-// function deleteComment(replyNo, boardNo){
-// 	location.href = '<c:out value="pcommentDelete.do?replyNo="/>'+replyNo + '&boardNo=' + boardNo;
-// }
+
+function doReview(){
+	var review = $('#review').val();
+	var userNo = "${sessionScope.userNo}";
+	var shopNo = "${vo.no}";
+	var fileName = $('#fileName').val();
+	
+	if (review == '' || review == null){
+		alert('리뷰를 작성 후 클릭바랍니다.');
+		return false;
+	}
+	if (review.length >= 101){
+		alert('리뷰의 내용이 너무 깁니다. 100자 이하로 작성해주세요');
+		return false;
+	}
+	
+	review = review.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+	
+	location.href = '<c:out value="pshopReviewWrite.do?shopNo="/>' + shopNo + '&userNo=' + userNo + '&review=' + review + '&fileName=' + fileName;
+	
+}
+ 
+
 		
 </script>
 <style>
@@ -188,7 +188,12 @@ function add(){
 				<tr class="boardTitle">
 					<td colspan="1">구매수량</td>
 					<td colspan="1"><input type="number" id="count" name="count" value="1" min="1" max="10" oninput="checkLimit()" /></td>
-					<td colspan="2"><input type="button" class="btn btn-success" id="cart" name="cart" value="장바구니에 담기" onclick="goCart()" /></td>
+					<c:if test="${sessionScope.userNo == '' || sessionScope.userNo == null }">
+						<td colspan="2"><input type="button" class="btn btn-success" id="cart" name="cart" value="장바구니에 담기" onclick="alert('로그인 후 이용 바랍니다.'')" /></td>
+					</c:if>
+					<c:if test="${sessionScope.userNo != null && sessionScope.userNo != '' }">
+						<td colspan="2"><input type="button" class="btn btn-success" id="cart" name="cart" value="장바구니에 담기" onclick="goCart()" /></td>
+					</c:if>
 				</tr>
 			</table>
 			</td>			
@@ -210,11 +215,24 @@ function add(){
 </table>
 
 	<!-- 댓글 입력 -->
+	<c:if test="${sessionScope.userNo != null}">
 	<div class="container">
 	<div class="commentWrite">
 	    <h3>리뷰</h3>
-	    <c:if test="${sessionScope.userNo != null}">
-        	<textarea id="comment" name="comment" placeholder="리뷰를 100자 이내로 입력하세요..." required></textarea>
+        <c:choose>
+		    <c:when test="${sessionScope.userNo == null || sessionScope.userNo == ''}">
+		        <!-- 로그인하지 않은 경우 -->
+		        <textarea id="review" name="review" placeholder="로그인 후 작성해주세요..." disabled="disabled" required></textarea>
+		    </c:when>
+		    <c:when test="${chk != sessionScope.userNo}">
+		        <!-- 로그인은 했지만 상품을 구매하지 않은 경우 -->
+		        <textarea id="review" name="review" placeholder="상품구매 후 작성해주세요..." disabled="disabled" required></textarea>
+		    </c:when>
+		    <c:otherwise>
+		        <!-- 로그인도 하고 상품도 구매한 경우 -->
+		        <textarea id="review" name="review" placeholder="리뷰를 작성해주세요..." required></textarea>
+		    </c:otherwise>
+		</c:choose>
         	<table class="table">
 				<colgroup>
 					<col style="width:25%" >
@@ -228,14 +246,10 @@ function add(){
         		</tr>
         	</table>
         	<input type="hidden" name="fileName" id="fileName" value="" />
-        </c:if>
-        <c:if test="${sessionScope.userNo == null || sessionScope.userNo == ''}">
-<!--         	<textarea id="comment" name="comment" placeholder="로그인 후 작성해주세요..." disabled="disabled" required></textarea> -->
-			<textarea id="comment" name="comment" placeholder="로그인 후 작성해주세요..." disabled="disabled" required></textarea>
-        </c:if>
-        <input type="button" class="btn btn-primary" value="리뷰 작성" onclick="doComment()" />
+        <input type="button" class="btn btn-primary" value="리뷰 작성" onclick="doReview()" />
 	</div>
 	</div>
+	</c:if>
 
 	<!-- 댓글 목록 -->
 	<div class="container">
@@ -254,28 +268,27 @@ function add(){
 	       		<td colspan="1" style="text-align:center;"><strong>${co.name}</strong></td>
 	       		<td colspan="1">${co.creDate}</td>     
 	       		<c:if test="${co.fileName != null || co.fileName != ''}">
-	       		<td colspan="2"><img src="<c:out value='/SIT/download/${co.fileName}'/>" width="200px" height="200px" ></td>
+	       		<td colspan="2"><img src="<c:out value='/SIT/download/${co.fileName}'/>" width="100px" height="100px" ></td>
 	       		</c:if>
 	       	</tr>
 	       	<tr class="coComment">
 	       		<td colsapn="1"></td>
-	       		<td colspan="2">${co.comment}</td>
+	       		<td colspan="2">${co.review}</td>
 	       		<c:if test="${sessionScope.userNo == co.userNo || sessionScope.userNo == '1'}">
-	       			<td colspan="1"><input type="button" class="btn btn-danger" value="삭제" onclick="openModal2(${co.replyNo})" /></td>
+	       			<td colspan="1"><input type="button" class="btn btn-danger" value="삭제" onclick="openModal2(${co.reNo})" /></td>
 	       		</c:if>
 	       	</tr>
 		</table> 
 		
 <!-- 		각 댓글 번호에 맞는 Modal창을 열기 위함 -->
-		<div id="myModal2-${co.replyNo}" class="modal">
+		<div id="myModal2-${co.reNo}" class="modal">
 			<div align="center">
 				<div>
 					<label for="check">정말로 삭제하시겠습니까?</label>
 				</div>
 				<div>
-		<%-- 			<button type="button" class="btn btn-primary" onclick="deleteComment(${co.replyNo}, ${co.boardNo})">확인</button> --%>
-					<button type="button" class="btn btn-primary" onclick="deleteComment(${co.replyNo}, ${co.boardNo})">확인</button>
-					<button type="button" class="btn btn-warning" onclick="closeModal2(${co.replyNo})">취소</button>
+					<button type="button" class="btn btn-primary" onclick="deleteComment(${co.reNo}, ${co.shopNo})">확인</button>
+					<button type="button" class="btn btn-warning" onclick="closeModal2(${co.reNo})">취소</button>
 				</div>
 			</div>
 		</div>		

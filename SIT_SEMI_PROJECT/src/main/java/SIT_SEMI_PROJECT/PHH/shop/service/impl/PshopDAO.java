@@ -7,6 +7,7 @@ import java.util.Map;
 import org.egovframe.rte.psl.dataaccess.EgovAbstractMapper;
 import org.springframework.stereotype.Repository;
 
+import SIT_SEMI_PROJECT.PHH.shop.PreviewVO;
 import SIT_SEMI_PROJECT.PHH.shop.PshopVO;
 
 @Repository("pshopDAO")
@@ -37,6 +38,49 @@ public class PshopDAO extends EgovAbstractMapper{
 	
 	public int updateShop(PshopVO vo) {
 		return update("pshopDAO.updateShop", vo);
+	}
+	
+	public int putCart(PshopVO vo) {
+		return insert("pshopDAO.putCart", vo);
+	}
+	
+	public List<PshopVO> listCart(int userNo){
+		return selectList("pshopDAO.listCart", userNo);
+	}
+	
+	public int deleteCart(int cartNo) {
+		return update("pshopDAO.deleteCart", cartNo);
+	}
+	
+	public int putSell(PshopVO vo) {
+		return insert("pshopDAO.putSell", vo);
+	}
+	
+	public int sellShop(PshopVO vo) {
+		return update("pshopDAO.sellShop", vo);
+	}		
+	
+	public int sellCart(int cartNo) {
+		return update("pshopDAO.sellCart", cartNo);
+	}
+	
+	public List<PshopVO> sellList(){
+		return selectList("pshopDAO.sellList");
+	}
+	
+	public List<?> viewReview(int no){
+		return selectList("pshopDAO.viewReview", no);
+	}
+	
+	public int checkSell(int userNo, int no) {
+		Map<String, Integer> para = new HashMap<>();
+		para.put("userNo", userNo);
+		para.put("no", no);
+		return selectOne("pshopDAO.checkSell", para);
+	}
+	
+	public int doReview(PreviewVO vo) {
+		return insert("pshopDAO.doReview", vo);
 	}
 
 }

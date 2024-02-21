@@ -99,7 +99,113 @@
 			, mod_date = NOW()
 			WHERE no = #{no}
 	</update>
+	
+	<insert id="pshopDAO.putCart" parameterType="SIT_SEMI_PROJECT.PHH.shop.PshopVO">
+		INSERT into phh_cart(
+			user_no
+			, shop_no
+			, count
+		) VALUES (
+			#{userNo}
+			, #{shopNo}
+			, #{count}
+		)
+	</insert>
+	
+	<select id="pshopDAO.listCart" parameterType="int" resultType="SIT_SEMI_PROJECT.PHH.shop.PshopVO">
+		SELECT c.cart_no AS cartNo
+			, c.user_no AS userNo
+			, c.shop_no AS shopNo
+			, c.count
+			, c.use_yn AS useYn
+			, s.file_name AS fileName
+			, s.title
+			, s.price
+			FROM phh_cart c
+				JOIN phh_shop s ON s.no = c.shop_no
+			WHERE c.use_yn = 'y'
+				AND c.sell_yn = 'n'
+				AND c.user_no = #{userNo};		
+	</select>
+	
+	<update id="pshopDAO.deleteCart" parameterType="int">
+		UPDATE phh_cart
+			SET use_yn = 'n'
+			WHERE cart_no = #{cartNo}	
+	</update>
+	
+	<insert id="pshopDAO.putSell" parameterType="SIT_SEMI_PROJECT.PHH.shop.PshopVO">
+		INSERT into phh_sell(
+			shop_no
+			, count
+			, total_price
+			, user_no
+		) VALUES (
+			#{shopNo}
+			, #{count}
+			, #{totalPrice}
+			, #{userNo}
+		)
+	</insert>
+	
+	<update id="pshopDAO.sellShop" parameterType="SIT_SEMI_PROJECT.PHH.shop.PshopVO">
+		UPDATE phh_shop
+			SET sell = sell + #{sell}
+			WHERE no = #{shopNo}	
+	</update>	
+	
+	<update id="pshopDAO.sellCart" parameterType="int">
+		UPDATE phh_cart
+			SET sell_yn = 'y'
+			WHERE cart_no = #{cartNo}	
+	</update>	
+	
+	<select id="pshopDAO.sellList" resultType="SIT_SEMI_PROJECT.PHH.shop.PshopVO">
+		SELECT DATE(sell_date) AS sellDate, SUM(total_price) AS totalPrice
+			FROM phh_sell
+			GROUP BY DATE(sell_date)
+			ORDER BY DATE(sell_date);
+	</select>
+	
+	<select id="pshopDAO.viewReview" parameterType="int" resultType="SIT_SEMI_PROJECT.PHH.shop.PreviewVO">
+		SELECT
+			r.re_no AS reNo
+			, r.user_no AS userNo
+			, u.name
+			, r.shop_no AS shopNo
+			, r.review
+			, r.file_name AS fileName
+			, DATE_FORMAT(r.cre_date, '%Y-%m-%d') AS creDate
+		FROM
+			phh_review r
+		JOIN phh_user u ON r.user_no = u.no
+		JOIN phh_shop s ON  r.shop_no = s.no
+		WHERE s.no = #{no};
+	</select>
+	
+	<select id="pshopDAO.checkSell" parameterType="map" resultType="int">
+	    SELECT DISTINCT user_no FROM phh_sell
+		    WHERE user_no = #{userNo}
+		    AND shop_no = #{no}
+	</select>	
 
+	<insert id="pshopDAO.doReview" parameterType="SIT_SEMI_PROJECT.PHH.shop.PreviewVO">
+		INSERT into phh_review(
+			user_no
+			, shop_no
+			, review
+			<if test="fileName != null">
+			, file_name
+			</if>
+		) VALUES (
+			#{userNo}
+			, #{shopNo}
+			, #{review}
+	        <if test="fileName != null">
+				, #{fileName}
+	        </if>
+		)
+	</insert>
 	
 
 </mapper>

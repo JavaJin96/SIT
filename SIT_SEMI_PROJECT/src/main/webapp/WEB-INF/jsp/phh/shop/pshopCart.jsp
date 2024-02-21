@@ -28,6 +28,16 @@ function deleteCart(no){
 function updateShop(no){
 	location.href = '<c:out value="pshopUpdatePage.do?no="/>'+no; 
 }
+
+function deleteCart(cartNo){
+	var userNo = "${sessionScope.userNo}";
+	location.href = '<c:out value="pshopDeleteCart.do?cartNo="/>'+cartNo+ '&userNo=' + userNo;
+}
+
+function payCart(){
+	var userNo = "${sessionScope.userNo}";
+	location.href = '<c:out value="pshopBuyCart.do?userNo="/>'+ userNo;
+}
 	
 </script>
 <style>
@@ -45,7 +55,7 @@ function updateShop(no){
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 그림자 효과 추가 */
 }
 
-.commentWrite .btn.btn-success {
+.commentWrite .btn-success {
 	text-align: center !important;
 	width: 40% !important;
 	margin-left: 1rem;
@@ -53,12 +63,24 @@ function updateShop(no){
 	border:none;
 	}
 	
-.boardTitle .btn.btn-success{
+.boardTitle .btn-danger{
 	text-align: center !important;
-	width: 60% !important;
-	margin-left: 1rem;
- 	float: left;
+	width: 40% !important;
+ 	float: left !important;
 	border:none;
+}
+
+.btn-primary{
+	text-align: center !important;
+ 	width: 10% !important;
+  	float: right;
+	border:none;
+}
+
+.emptyCart{
+	text-align : center !important;
+	font-size : 4rem !important;
+	color : #0c43a8 !important;
 }
 
 </style>
@@ -69,29 +91,44 @@ function updateShop(no){
 	<h2> <a href = "pshopList.do" style="color: inherit; text-decoration: none;" >혀노SHOP</a> </h2>
 	  <table class="table table-striped">
 		<colgroup>
-			<col style="width:20%" >
-			<col style="width:20%" >
+			<col style="width:10%" >
+			<col style="width:30%" >
 			<col style="width:20%" >
 			<col style="width:20%" >
 			<col style="width:20%" >
 		</colgroup>    
+		<c:if test="${not empty list}">
 		<thead>
 			<tr>
 				<td colspan="1"></td>
-				<td colspan="2">물품제목</td>
+				<td colspan="1">물품제목</td>
 				<td colspan="1">구매수량</td>
+				<td colspan="1">상품가격</td>
 				<td colspan="1"></td>
 			</tr>
 		</thead>
+		</c:if>
 		<c:forEach var="vo" items="${list}" varStatus="status">
 				<tr class="boardTitle" >
-					<td colspan="1"><img src="<c:out value='/SIT/download/${vo.fileName}'/>" width="50px" height="50px" ></td>
-					<td colspan="2"> ${vo.title} </td>
+					<td colspan="1"><img src="<c:out value='/SIT/download/${vo.fileName}'/>" width="60px" height="60px" ></td>
+					<td colspan="1"> ${vo.title} </td>
 					<td colspan="1"> ${vo.count} </td>
-					<td colspan="1"> ${vo.count} </td>
+					<td colspan="1"> ${vo.count * vo.price} </td>
+					<td colspan="1"> <input type="button" class="btn btn-danger" value="삭제" onclick="deleteCart(${vo.cartNo})" /> </td>
 				</tr>	
 		</c:forEach>
 	  </table>
+	  
+	  <c:if test="${not empty list}">
+	  <input type="button" class="btn btn-primary" value="구매" onclick="payCart()" />
+	  </c:if>
+	  <c:if test="${empty list}">
+	  	<div class="emptyCart">
+	  		장바구니에 담긴 물품이 없습니다.
+	  	</div>
+	  </c:if>
+	  
+	  
 </div>
 
 
