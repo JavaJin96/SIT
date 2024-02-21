@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 public class SshoppingVO {
 	int num;
 	int userNum;
+	String name;
 	String prodTitle;
 	String prodContents;
 	String fileName;
@@ -14,6 +15,14 @@ public class SshoppingVO {
 	int prodRate;
 	String prodState;
 	public SshoppingVO() { }
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public int getNum() {
 		return num;

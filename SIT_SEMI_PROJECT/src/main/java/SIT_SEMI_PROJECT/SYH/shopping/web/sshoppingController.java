@@ -42,8 +42,8 @@ public class sshoppingController {
 	public ModelAndView insertProduct(int userNum, String prodTitle, 
 			String prodContents, String fileName, int price) {
 		ModelAndView mav = new ModelAndView();
-		SshoppingVO vo = new SshoppingVO();
 		
+		SshoppingVO vo = new SshoppingVO();
 		vo.setUserNum(userNum);
 		vo.setProdTitle(prodTitle);
 		vo.setProdContents(prodContents);
@@ -52,7 +52,7 @@ public class sshoppingController {
 		
 		sshoppingService.insertProduct(vo);
 		
-		mav.setView(new RedirectView("sshoppingMain"));
+		mav.setView(new RedirectView("sshoppingMain.do"));
 		return mav;
 	}
 	

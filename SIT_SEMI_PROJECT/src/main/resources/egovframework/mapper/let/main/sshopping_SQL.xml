@@ -3,8 +3,10 @@
 <mapper namespace="sshoppingDAO">
 	
 	<select id="sshoppingDAO.shopList" resultType="SIT_SEMI_PROJECT.SYH.shopping.SshoppingVO">
-		SELECT s.num
+		SELECT 
+			s.num
 			, s.userNum
+			, u.name AS name
 			, s.prodTitle
 			, s.prodContents
 			, s.fileName
@@ -21,10 +23,10 @@
 	</select>
 	
 	<insert id="sshoppingDAO.insertProduct" parameterType="SIT_SEMI_PROJECT.SYH.shopping.SshoppingVO">
-		INSERT INTO syh_shopping
-		  (userNum, prodTitle, prodContents, fileName, price)
-		VALUES
-		  (#{userNum}, #{prodTitle}, #{prodContents}, #{fileName}, #{price})
+		INSERT INTO syh_shopping (
+			userNum, prodTitle, prodContents, fileName, price)
+		VALUES (
+			#{userNum}, #{prodTitle}, #{prodContents}, #{fileName}, #{price});
 	</insert>
 	
 </mapper>

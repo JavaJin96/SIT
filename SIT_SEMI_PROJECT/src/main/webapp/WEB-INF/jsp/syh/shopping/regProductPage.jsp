@@ -9,43 +9,12 @@
 <head>
 <meta charset="UTF-8">
 <title>SYH SHOP</title>
-<script type="text/javascript">
-		$(function(){
-			$('form[name="regist"]').submit(function(){
-				
-					var title = $('#title').val();
-					var content = $('#content').val();
-					
-					if (title =='' || title == null){
-						alert('글 제목은 필수요소입니다.');
-						return false;
-					} else if(content =='' || content == null){
-						alert('글 내용은 필수요소입니다.');
-						return false;
-					}
-					
-					if (title.length >= 50){
-						alert('제목은 50자 이하로 작성해주세요');
-						return false;
-					}
-					if (contents.length >= 300){
-						alert('내용은 300자 이하로 작성해주세요');
-						return false;
-					}		
-					
-			        // 개행처리
-			        content = content.replace(/(?:\r\n|\r|\n)/g, '<br/>');
-			        $('#content').val(content);
-				});	
-		})
-	
-	</script>
 </head>
 <body>
 <div class="container">
 	<h2>상품 등록</h2>
 	
-	<form name="regProd" id="regProd" action="sboardInsert.do" >
+	<form name="regProd" id="regProd" action="insertProduct.do" >
 		<input type="hidden" name="userNum" value="${sessionScope.userNum}"/>
 		<table class="table">
 			<colgroup>
