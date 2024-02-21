@@ -267,7 +267,7 @@ function doReview(){
 	       	<tr class="coTitle">
 	       		<td colspan="1" style="text-align:center;"><strong>${co.name}</strong></td>
 	       		<td colspan="1">${co.creDate}</td>     
-	       		<c:if test="${co.fileName != null || co.fileName != ''}">
+	       		<c:if test="${co.fileName != null}">
 	       		<td colspan="2"><img src="<c:out value='/SIT/download/${co.fileName}'/>" width="100px" height="100px" ></td>
 	       		</c:if>
 	       	</tr>
