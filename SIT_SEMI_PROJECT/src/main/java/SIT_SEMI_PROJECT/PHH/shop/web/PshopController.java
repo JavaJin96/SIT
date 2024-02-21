@@ -84,11 +84,14 @@ public class PshopController {
 	public ModelAndView viewShop(@RequestParam int no, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		
-		
+		int chk = 0;
 		HttpSession session = request.getSession();
 		if(session.getAttribute("userNo") != null) {
 		Integer userNo = (Integer) session.getAttribute("userNo");
-		int chk = pshopService.checkSell(userNo, no);
+		System.out.println(userNo);
+		System.out.println("구매여부 확인");
+		chk = pshopService.checkSell(userNo, no);
+		System.out.println("쿼리문 이상 X");
 		mav.addObject("chk", chk);
 		System.out.println(chk);
 		}

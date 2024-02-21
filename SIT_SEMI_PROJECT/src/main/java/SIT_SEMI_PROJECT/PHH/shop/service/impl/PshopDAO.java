@@ -76,7 +76,13 @@ public class PshopDAO extends EgovAbstractMapper{
 		Map<String, Integer> para = new HashMap<>();
 		para.put("userNo", userNo);
 		para.put("no", no);
-		return selectOne("pshopDAO.checkSell", para);
+		Integer result = selectOne("pshopDAO.checkSell", para);
+		if(result != null) {
+			
+		}else {
+			result = -1;
+		}
+		 return result;
 	}
 	
 	public int doReview(PreviewVO vo) {
