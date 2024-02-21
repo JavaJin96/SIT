@@ -214,9 +214,10 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/ryh/board/rboardList.jsp" />
 		<put-attribute name="title" value="메인" />
 	</definition>
-	
-	<definition name="ruserLogin" extends="ryh-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/ryh/ruser/ruserLogin.jsp" />
+		
+	<definition name="pshopContent" extends="phh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/phh/shop/pshopContent.jsp" />
+		<put-attribute name="title" value="메인" />
 	</definition>
 	
 	<definition name="rboardWrite" extends="ryh-layout">
@@ -229,9 +230,19 @@
 		<put-attribute name="title" value="메인" />
 	</definition>
 	
+	<definition name="rboardUpdate" extends="ryh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/ryh/board/rboardUpdate.jsp" />
+		<put-attribute name="title" value="메인" />
+	</definition>
 	
-	<definition name="ryhPage" extends="standar-layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/ryh/ryhPage.jsp" />
+	<!-- ================= ryh user ================= -->
+	
+	<definition name="ruserLogin" extends="ryh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/ryh/ruser/ruserLogin.jsp" />
+	</definition>
+	
+	<definition name="ruserRegister" extends="ryh-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/ryh/ruser/ruserRegister.jsp" />
 		<put-attribute name="title" value="메인" />
 	</definition>
 	

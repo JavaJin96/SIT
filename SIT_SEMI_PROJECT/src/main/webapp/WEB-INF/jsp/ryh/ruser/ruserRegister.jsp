@@ -54,7 +54,7 @@
 <div class="container">
     <h2>회원가입</h2>
     <form action="register" method="post">
-        <label for="name">이름:</label>
+        <label for="id">아이디:</label>
         <input type="text" id="name" name="name" required>
 
         <label for="password">비밀번호:</label>

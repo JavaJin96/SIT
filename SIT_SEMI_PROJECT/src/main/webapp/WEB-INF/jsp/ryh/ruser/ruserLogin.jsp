@@ -66,7 +66,7 @@
 
         <button type="submit">로그인</button>
         <div class="form-footer">
-            <p>계정이 없으신가요? <a href="register.jsp">회원가입</a></p>
+            <p>계정이 없으신가요? <a href="ruserRegister.do">회원가입</a></p>
         </div>
     </form>
 </div>

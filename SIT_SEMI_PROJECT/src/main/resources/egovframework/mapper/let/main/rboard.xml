@@ -3,7 +3,7 @@
 <mapper namespace="rboardDAO">
 	
 	<select id ="rboardDAO.selectBoard" resultType= "SIT_SEMI_PROJECT.RYH.board.RboardVO">
-		SELECT title, contents, count, writer, contentDate FROM ryh_board;
+		SELECT num, title, contents, count, writer, contentDate FROM ryh_board;
 	</select>
 	
 	<insert id="rboardDAO.insertBoard" parameterType="SIT_SEMI_PROJECT.RYH.board.RboardVO">
@@ -20,6 +20,13 @@
 		)
 	</insert>
 	
+	<update id="rboardDAO.updateBoard" parameterType="SIT_SEMI_PROJECT.RYH.board.RboardVO">
+		UPDATE ryh_board
+			SET title = '${title}'
+			,contents = '${contents}'
+			WHERE num = #{num}
+	</update>
+	
 	<update id="rboardDAO.countBoard" parameterType="int">
 		UPDATE ryh_board
 			SET count = count + 1
@@ -28,15 +35,38 @@
 	
 	<select id="rboardDAO.contentBoard" parameterType="int" resultType="SIT_SEMI_PROJECT.RYH.board.RboardVO">
 		SELECT 
+			num,
 			title,
 			contents,
-			count,
 			writer,
 			contentDate,
+			count
 		FROM
 			ryh_board
-		WHERE num = #{num};
+		WHERE num = #{num}
 	</select>
+	
+	<delete id="rboardDAO.deleteBoard">
+		
+		delete from ryh_board WHERE num = #{num}
+		
+	</delete>
+	
+	<select id="rboardDAO.searchBoard" parameterType="map" resultType="SIT_SEMI_PROJECT.RYH.board.RboardVO">
+    SELECT 
+        num,
+        title,
+        contents,
+        writer,
+        contentDate,
+        count
+    FROM
+        ryh_board
+    WHERE
+        title LIKE CONCAT('%', #{search}, '%')
+    ORDER BY b.no DESC;
+	</select>
+
 	
 	
 </mapper>

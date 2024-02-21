@@ -30,7 +30,7 @@
 		    white-space: pre-wrap;
         }
         
-        .boardContent td {
+        .boardContent td  {
 		    max-width: 500px; 
 		    height: 350px; 
 		    overflow: auto; 
@@ -42,22 +42,18 @@
     </style>
 </head>
 <body>
+
 	<script type="text/javascript">
-    
-    function updateBoard(num){
-    	location.href = 'rboardUpdatepage.do?num='+ num;
-    }
-    
-    function deleteBoard(num){
-    	location.href = 'deleteBoard.do?num=' + num;
-    }
-    
+	
     function backlist(){
     	location.href = 'rboardList.do';
     }
     
+
+    
     </script>
     
+<form name="update" id="update" action = "updateBoard.do">
 <input type="hidden" name="num" value="${vo.num}" />
 <div class="container">
     <h2>게시글 상세 보기</h2>
@@ -69,11 +65,11 @@
         </colgroup>
         <tr class="boardTitle">
             <td>글 제목</td>
-            <td>${vo.title}</td>
+            <td><input type="text" name="title" value="${vo.title}" /></td>
         </tr>
         <tr class="boardContent">
             <td>글 내용</td>
-            <td>${vo.contents}</td>
+            <td><input type="text" name="contents" value="${vo.contents}" /></td>
         </tr>
         <tr>
             <td>작성자</td>
@@ -90,12 +86,12 @@
       </c:if>
         <tr>
             <td colspan="2">
-	            <button type="button" class="btn btn-warning" onclick="updateBoard(${vo.num});">수정</button>
-	            <button type="button" class="btn btn-warning" onclick="deleteBoard(${vo.num});">삭제</button>
-                <button type="button" class="btn btn-warning" onclick="backlist();" >목록으로 돌아가기</button>
+	            <input type="submit" class="btn btn-warning" value="수정하기">
+                <button type="button" class="btn btn-warning" onclick="backlist();" >취소</button>
             </td>
         </tr>
     </table>
+</form>
 </div>
 
 </body>

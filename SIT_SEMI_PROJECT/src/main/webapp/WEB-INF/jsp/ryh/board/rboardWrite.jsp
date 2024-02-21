@@ -6,12 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>글 작성</title>
     <script type="text/javascript">
-    function boardInsert(){
-    	location.href = '<c:out value="rboardList.do"/>';
-    }
     
     function backlist(){
-    	location.href = '<c:out value="rboardList.do"/>';
+    	location.href = 'rboardList.do';
     }
     
     </script>
@@ -70,12 +67,13 @@
     <form action="rboardInsert.do" method="post">
     <input type="hidden" name="count" value=0 />
         <label for="title">제목:</label>
-        <input type="text" id="title" name="title" required>
+        <input type="text" id="title" name="title" required maxlength=50>
 
         <label for="content">내용:</label>
-        <textarea id="content" name="contents" required></textarea>
+        <textarea id="content" name="contents" required maxlength=1000></textarea>
 
-        <input type="submit" class="btn btn-warning">등록
+        <input type="submit" class="btn btn-warning" value="등록">
+        <br>
         <input type="button" class="btn btn-warning" value="취소" onclick="backlist()" />
     </form>
 </div>

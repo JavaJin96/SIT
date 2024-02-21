@@ -12,9 +12,14 @@
     	location.href = '<c:out value="rboardWrite.do"/>';
     }
     
+    function goToContent(num) {
+        location.href = 'rboardContent.do?num=' + num; 
+    }
+    
     </script>
     
     <style>
+         
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -84,22 +89,32 @@
         .wrap button:hover {
             background-color: #218838;
         }
+        
+        .board-table td {
+		    max-width: 100px;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    white-space: nowrap;
+		}
+        
+
     </style>
 </head>
 <body>
+
 <section class="notice">
     <div class="page-title">
         <h3>게시판</h3>
     </div>
     <div id="board-search">
         <div class="search-window">
-            <form action="" method="post" accept-charset="UTF-8">
-                <div class="search-wrap">
-                    <input id="search" type="search" name="search" placeholder="검색어를 입력해주세요." required>
-                    <button type="submit">검색</button>
-                </div>
-            </form>
+    <form action="ryh/rsearchList.do" method="post" accept-charset="UTF-8">
+        <div class="search-wrap">
+            <input id="search" type="search" name="search" placeholder="검색어를 입력해주세요." required>
+            <button type="submit">검색</button> 
         </div>
+    </form>
+</div>
     </div>
    
     <div id="board-list">
@@ -116,14 +131,14 @@
             </thead>
             <tbody>
                 <c:forEach var="vo" items="${list}" varStatus="status">
-                    <tr onclick="location.href='rboardContent.do?no=${vo.num}'" style="cursor: pointer;">
-                        <td>${status.index + 1}</td>
-                        <td>${vo.title}</td>
-                        <td>${vo.contents}</td>
-                        <td>${vo.count}</td>
-                        <td>${vo.writer}</td>
-                        <td>${vo.contentDate}</td>
-                    </tr>
+                    <tr onclick="goToContent(${vo.num})" style="cursor: pointer;"> 
+                            <td>${status.index + 1}</td>
+                            <td>${vo.title}</td>
+                            <td>${vo.contents}</td>
+                            <td>${vo.count}</td>
+                            <td>${vo.writer}</td>
+                            <td>${vo.contentDate}</td>
+                        </tr>
                 </c:forEach>
             </tbody>				
         </table>
