@@ -64,7 +64,9 @@
             </c:choose>
         </td>
 		<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${vo.regdate}"/></td>
-		<td><button type="button" class="btn btn-warning" onclick="suserDelete(${vo.num})">삭제</button></td>
+		<c:if test="${vo.auth ne 2}">
+            <td><button type="button" class="btn btn-warning" onclick="suserDelete(${vo.num})">삭제</button></td>
+        </c:if>
 	</tr>
 	</c:forEach>    
     </tbody>

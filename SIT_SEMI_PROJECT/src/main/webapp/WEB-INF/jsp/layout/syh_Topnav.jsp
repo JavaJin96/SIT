@@ -41,8 +41,18 @@
 		</c:if>
 	
 		<c:if test="${sessionScope.userId!=null && sessionScope.userId!=''}"> <!-- 로그아웃 기능 -->
-      		<li><a href="/SIT/syh/sdoLogout.do">로그아웃</a></li>
+      		<li><a href="#" id="logout">로그아웃</a></li>
       		<li><a>${userId}님 안녕하세요! (닉네임: ${sessionScope.userName})</a></li>
+      		
+      		<script>
+		    document.getElementById('logout').addEventListener('click', function() {
+		      var clogout = confirm('정말 로그아웃하시겠습니까?');
+		      
+		      if (clogout) {
+		        window.location.href = "/SIT/syh/sdoLogout.do";
+		      } else { }
+		    });
+		  </script>
 		</c:if>
 	</ul>
 </nav>

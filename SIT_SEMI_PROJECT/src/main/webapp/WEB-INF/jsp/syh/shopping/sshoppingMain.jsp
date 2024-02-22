@@ -31,24 +31,24 @@
 			</tr>
 		</thead>  
 		<tbody>
-		<c:forEach var="vo" items="${list}" varStatus="status">
+		<c:forEach var="list" items="${list}" varStatus="status">
 		<tr>
-			<td>이미지 추가 예정</td>
-			<td><h5>${vo.prodTitle}</h5></td>
-			<td>${vo.prodContents}</td>
-			<td>${vo.name}</td>
-			<td><h4>${vo.price}</h4></td>
+			<td><img src="<c:out value='/SIT/download/${list.fileName}'/>" width="200px" height="200px" ></td>
+			<td><h5>${list.prodTitle}</h5></td>
+			<td>${list.prodContents}</td>
+			<td>${list.name}</td>
+			<td><h4>${list.price} 원</h4></td>
 		</tr>
-	</c:forEach>
-	</tbody>
-</table>
-<div align='right'>
-      <c:if test="${sessionScope.userId==null || sessionScope.userId==''}">
-      	<button type="button" class="btn btn-primary" onclick="regProduct()" disabled="disabled">등록</button>
-      </c:if>
-      <c:if test="${sessionScope.userId!=null && sessionScope.userId!=''}">
-      	<button type="button" class="btn btn-primary" onclick="regProduct()">등록</button>
-      </c:if>
-  </div>
+		</c:forEach>
+		</tbody>
+	</table>
+	<div align='right'>
+	      <c:if test="${sessionScope.userId==null || sessionScope.userId==''}">
+	      	<button type="button" class="btn btn-primary" onclick="regProduct()" disabled="disabled">등록</button>
+	      </c:if>
+	      <c:if test="${sessionScope.userId!=null && sessionScope.userId!=''}">
+	      	<button type="button" class="btn btn-primary" onclick="regProduct()">등록</button>
+	      </c:if>
+	</div>
 </body>
 </html>

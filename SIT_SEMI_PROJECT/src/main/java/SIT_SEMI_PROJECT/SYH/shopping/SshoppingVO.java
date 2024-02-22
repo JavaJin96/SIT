@@ -2,6 +2,8 @@ package SIT_SEMI_PROJECT.SYH.shopping;
 
 import java.sql.Timestamp;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class SshoppingVO {
 	int num;
 	int userNum;
@@ -14,7 +16,16 @@ public class SshoppingVO {
 	int price;
 	int prodRate;
 	String prodState;
+	MultipartFile uploadFile;
 	public SshoppingVO() { }
+	
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
 
 	public String getName() {
 		return name;
