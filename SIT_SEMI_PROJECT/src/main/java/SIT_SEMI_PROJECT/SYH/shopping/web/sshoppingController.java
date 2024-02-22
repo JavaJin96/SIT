@@ -20,6 +20,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import SIT_SEMI_PROJECT.SYH.shopping.SshoppingVO;
 import SIT_SEMI_PROJECT.SYH.shopping.service.sshoppingService;
 import SIT_SEMI_PROJECT.SYH.shopping.service.impl.sshoppingDAO;
+import SIT_SEMI_PROJECT.SYH.user.SuserVO;
 
 @Controller
 public class sshoppingController {
@@ -31,7 +32,7 @@ public class sshoppingController {
 	public ModelAndView sshoppingMain() {
 		ModelAndView mav = new ModelAndView();
 		
-		List<sshoppingDAO> list = sshoppingService.shopList();
+		List<SshoppingVO> list = sshoppingService.shopList();
 		
 		mav.addObject("list", list);
 		mav.setViewName("sshoppingMain");
@@ -105,9 +106,53 @@ public class sshoppingController {
 		
 	}
 	
+	@RequestMapping(value = "syh/modProductPage.do")
+	public ModelAndView modProductPage(int num) {
+		ModelAndView mav = new ModelAndView();
+		
+		SshoppingVO vo = sshoppingService.contentProduct(num);
+		mav.addObject("vo", vo);		
+		mav.setViewName("modProductPage");
+		return mav;
+	}
 	
+	@RequestMapping(value = "syh/modifyProduct.do")
+	public ModelAndView modifyProduct(int num, String prodTitle, String prodContents,
+			int price, String fileName) {
+		ModelAndView mav = new ModelAndView();
+		SshoppingVO vo = new SshoppingVO();
+		
+		vo.setNum(num);
+		vo.setProdTitle(prodTitle);
+		vo.setProdContents(prodContents);
+		vo.setPrice(price);
+		vo.setFileName(fileName);
+		
+		sshoppingService.modifyProduct(vo);
+		mav.setView(new RedirectView("sshoppingMain.do"));
+		
+		return mav;
+	}
 	
+	@RequestMapping(value = "syh/prodList.do")
+	public ModelAndView prodList() {  // 유저 리스트 (유저 관리)
+		ModelAndView mav = new ModelAndView();
+		
+		List<SshoppingVO> list = sshoppingService.shopList();
+		mav.addObject("list", list);
+		mav.setViewName("prodList");
+		
+		return mav;
+	}
 	
-	
+	@RequestMapping(value = "syh/deleteProduct.do")
+	public ModelAndView deleteProduct(int num) {
+		ModelAndView mav = new ModelAndView();
+		
+		sshoppingService.deleteProduct(num);
+		mav.setView(new RedirectView("sshoppingMain.do"));
+		
+		return mav;
+	}
 	
 }

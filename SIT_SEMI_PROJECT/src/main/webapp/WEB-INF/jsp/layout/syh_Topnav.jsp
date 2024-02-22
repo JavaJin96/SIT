@@ -33,6 +33,7 @@
 		
 		<c:if test="${sessionScope.userId == 'manager'}"> <!-- 관리자일때 -->
 			<li><a href="/SIT/syh/suserList.do">회원관리</a></li>
+			<li><a href="/SIT/syh/prodList.do">Shop 상품관리</a></li>
 		</c:if>
 		
 		

@@ -15,7 +15,7 @@ public class sshoppingService {
 	@Resource(name = "sshoppingDAO")
 	sshoppingDAO sshoppingDao;
 	
-	public List<sshoppingDAO> shopList(){
+	public List<SshoppingVO> shopList(){
 		return sshoppingDao.shopList();
 	}
 	
@@ -25,5 +25,13 @@ public class sshoppingService {
 	
 	public SshoppingVO contentProduct(int num) {
 		return sshoppingDao.contentProduct(num);
+	}
+	
+	public int modifyProduct(SshoppingVO vo) {
+		return sshoppingDao.modifyProduct(vo);
+	}
+	
+	public int deleteProduct(int num) {
+		return sshoppingDao.deleteProduct(num);
 	}
 }

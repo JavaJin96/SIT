@@ -10,7 +10,7 @@ import SIT_SEMI_PROJECT.SYH.shopping.SshoppingVO;
 @Repository("sshoppingDAO")
 public class sshoppingDAO extends EgovAbstractMapper{
 	
-	public List<sshoppingDAO> shopList(){
+	public List<SshoppingVO> shopList(){
 		return selectList("sshoppingDAO.shopList");
 	}
 	
@@ -20,5 +20,13 @@ public class sshoppingDAO extends EgovAbstractMapper{
 	
 	public SshoppingVO contentProduct(int num) {
 		return selectOne("sshoppingDAO.contentProduct", num);
+	}
+	
+	public int modifyProduct(SshoppingVO vo) {
+		return update("sshoppingDAO.modifyProduct", vo);
+	}
+	
+	public int deleteProduct(int num) {
+		return delete("sshoppingDAO.deleteProduct", num);
 	}
 }

@@ -47,7 +47,20 @@
 		JOIN syh_user u ON s.userNum = u.num
 		WHERE s.prodState = 'y'
 		  AND s.num = #{num};
-		
 	</select>
+	
+	<update id="sshoppingDAO.modifyProduct" parameterType="SIT_SEMI_PROJECT.SYH.shopping.SshoppingVO">
+		UPDATE syh_shopping s
+			SET s.prodTitle = #{prodTitle}
+			, s.prodContents = #{prodContents}
+			, s.price = #{price}
+			, s.fileName = #{fileName}
+		WHERE s.num = #{num}
+	</update>
+	
+	<delete id="sshoppingDAO.deleteProduct" parameterType="int">
+		DELETE FROM syh_shopping s
+		WHERE s.num = #{num};
+	</delete>
 	
 </mapper>

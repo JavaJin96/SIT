@@ -22,12 +22,9 @@
 	</script>
 </head>
 <body>
-	<text align="center"><h2>안녕하세요.<br>여기는 SYH SHOP 페이지 입니다★</h2></text>
+	<text align="center"><h2>안녕하세요.<br>SYH SHOP</h2></text>
 	<div align='right'>
-	      <c:if test="${sessionScope.userId==null || sessionScope.userId==''}">
-	      	<button type="button" class="btn btn-primary" onclick="regProduct()" disabled="disabled">상품 등록</button>
-	      </c:if>
-	      <c:if test="${sessionScope.userId!=null && sessionScope.userId!=''}">
+	      <c:if test="${sessionScope.userId == 'manager'}">
 	      	<button type="button" class="btn btn-primary" onclick="regProduct()">상품 등록</button>
 	      </c:if>
 	</div>
@@ -50,7 +47,8 @@
 			<td><h3><a href="<c:url value='regProductContent.do?num=${list.num}'/>">${list.prodTitle}</a></h3></td>
 			<td>${list.prodContents}</td>
 			<td>${list.name}</td>
-			<td><h4>${list.price} 원</h4></td>
+			<td><h4><fmt:formatNumber value="${list.price}" /> 원</h4></td>
+			
 		</tr>
 		</c:forEach>
 		</tbody>

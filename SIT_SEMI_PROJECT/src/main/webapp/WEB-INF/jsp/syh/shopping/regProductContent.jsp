@@ -12,26 +12,19 @@
 <title>서윤호 자유게시판</title>
 	<script type="text/javascript">
 	
-	$(function() {
-		$('form[name="regProd"]').submit(function() {
-			
-			var prodTitle = $('#prodTitle').val();
-			var prodContents = $('#prodContents').val();
-			
-			if (prodTitle.length >= 20){
-				alert('상품명은 20자 이하로 작성해주세요');
-				return false;
-			}
-			if (contents.length >= 200){
-				alert('상품 설명은 200자 이하로 작성해주세요');
-				return false;
-			}
-			
-			// 개행처리 
-			prodContents = prodContents.replace(/(?:\r\n|\r|\n)/g, '<br/>');
-	        $('#prodContents').val(prodContents);
-		});
-	})
+	function back() {
+		location.href = '<c:out value="sshoppingMain.do"/>';
+	}
+	
+	$(document).ready(() => {
+	    $("#modProductPage").click(() => {
+	        var check = confirm("수정하시겠습니까?");
+	        
+	        if (check) {
+	            location.href = "<c:url value='modProductPage.do'/>?num=${vo.num}";
+	        } else { }
+	    });
+	});
 	
 	</script>
 </head>
@@ -77,14 +70,24 @@
 						<td>등록일 :</td>
 						<td colspan="3"> <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${vo.regdate}"/></td>
 					</tr>
-					
-					
 				</table>
-				<text align="right"><h2>${vo.price} 원</h2></text>
+				<text align="right"><h2><fmt:formatNumber value="${vo.price}" /> 원</h2></text>
 			</td>
 		</tr>
 	</c:if>
 </table>
+
+<div align='right'>
+	<c:if test="${sessionScope.userId == 'manager'}">
+		<button type="button" class="btn btn-primary" id="modProductPage">상품정보 수정</button>
+		<button type="button" class="btn btn-danger" onclick="confirmDelete()">삭제</button>
+		<button type="button" class="btn btn-success" onclick="back()">돌아가기</button>
+	</c:if>
+	<c:if test="${sessionScope.userId != 'manager'}">
+		<button type="button" class="btn btn-success" onclick="back()">돌아가기</button>
+	</c:if>
+</div>
+	
 리뷰 남기는 공간
 </div>
 </body>
