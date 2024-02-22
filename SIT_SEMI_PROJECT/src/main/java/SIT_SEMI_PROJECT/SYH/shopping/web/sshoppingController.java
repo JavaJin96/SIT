@@ -118,7 +118,7 @@ public class sshoppingController {
 	
 	@RequestMapping(value = "syh/modifyProduct.do")
 	public ModelAndView modifyProduct(int num, String prodTitle, String prodContents,
-			int price, String fileName) {
+			int price) {
 		ModelAndView mav = new ModelAndView();
 		SshoppingVO vo = new SshoppingVO();
 		
@@ -126,7 +126,6 @@ public class sshoppingController {
 		vo.setProdTitle(prodTitle);
 		vo.setProdContents(prodContents);
 		vo.setPrice(price);
-		vo.setFileName(fileName);
 		
 		sshoppingService.modifyProduct(vo);
 		mav.setView(new RedirectView("sshoppingMain.do"));

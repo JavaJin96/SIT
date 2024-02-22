@@ -105,7 +105,7 @@
 		--%>
 		
 		<div align='right'>
-			<button type="submit" class="btn btn-primary">글 수정</button>
+			<button type="submit" class="btn btn-primary">상품정보 수정</button>
 			<button type="button" class="btn btn-success" onclick="sback()">돌아가기</button>
 		</div>
 	</form>

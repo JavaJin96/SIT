@@ -80,7 +80,6 @@
 <div align='right'>
 	<c:if test="${sessionScope.userId == 'manager'}">
 		<button type="button" class="btn btn-primary" id="modProductPage">상품정보 수정</button>
-		<button type="button" class="btn btn-danger" onclick="confirmDelete()">삭제</button>
 		<button type="button" class="btn btn-success" onclick="back()">돌아가기</button>
 	</c:if>
 	<c:if test="${sessionScope.userId != 'manager'}">

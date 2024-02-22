@@ -54,7 +54,6 @@
 			SET s.prodTitle = #{prodTitle}
 			, s.prodContents = #{prodContents}
 			, s.price = #{price}
-			, s.fileName = #{fileName}
 		WHERE s.num = #{num}
 	</update>
 	

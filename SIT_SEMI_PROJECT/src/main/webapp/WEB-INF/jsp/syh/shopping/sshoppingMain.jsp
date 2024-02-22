@@ -22,7 +22,7 @@
 	</script>
 </head>
 <body>
-	<text align="center"><h2>안녕하세요.<br>SYH SHOP</h2></text>
+	<text align="center"><h2>안녕하세요.<br>SYH GOODS SHOP</h2></text>
 	<div align='right'>
 	      <c:if test="${sessionScope.userId == 'manager'}">
 	      	<button type="button" class="btn btn-primary" onclick="regProduct()">상품 등록</button>

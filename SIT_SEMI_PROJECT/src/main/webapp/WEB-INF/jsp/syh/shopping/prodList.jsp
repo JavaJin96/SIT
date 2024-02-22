@@ -30,7 +30,7 @@
 
 <body>
 <div class="container">
-  <h2>회원 관리</h2>
+  <h2>상품 관리</h2>
   <!-- 
   <input type="button" class="btn btn-outline-warning" name="userDatapoi" id="userDatapoi" value="유저 데이터 Excel 다운로드" onclick="suserpoi()" />   
    -->
@@ -50,7 +50,7 @@
 	<c:forEach var="vo" items="${list}" varStatus="status">
 	<tr>
 		<td>${vo.num}</td>
-		<td>${vo.prodTitle}</td>
+		<td><h5><a href="<c:url value='regProductContent.do?num=${vo.num}'/>">${vo.prodTitle}</a></h5></td>
 		<td>${vo.name}</td>
 		<td><fmt:formatNumber value="${vo.price}" /> 원</td>
 		<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${vo.regdate}"/></td>
