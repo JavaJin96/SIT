@@ -1,11 +1,19 @@
 package SIT_SEMI_PROJECT.SYH.shopping.web;
 
+import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -56,5 +64,28 @@ public class sshoppingController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "syh/uploadForm.do")
+	@ResponseBody  // 서버 -> 클라이언트로 응답 데이터 전송 (자바 객체를 http 응답 본문의 객체로 변환 후 전송)
+	public Map<String, String> uploadForm(MultipartFile file, HttpServletRequest request) throws Exception {  // 파일 업로드처리
+		Map<String, String> response = new HashMap<>();
+		
+		String fileName = file.getOriginalFilename();  // 원래의 파일명
+		// String path = request.getSession().getServletContext().getRealPath("/download");  // 파일경로
+		String path = "C:/Users/SIT/git/SIT/SIT_SEMI_PROJECT/src/main/webapp/download";
+		
+		fileName = uploadFile(path, fileName, file.getBytes());  // 파일 업로드 후 얻은 파일명을 fileName에 저장
+		
+		response.put("fileName", fileName);
+		return response;
+	}
 	
+	private String uploadFile(String path, String originalName, byte[] fileData) throws Exception {  // 파일 저장
+		UUID uuid = UUID.randomUUID();  // 네트워크 상에서 고유 id
+		String fileName = uuid.toString() + "_" + originalName;  // 새 파일명 생성
+		
+		File target = new File(path, fileName);  // 저장될 파일의 경로와 파일명 설정
+		FileCopyUtils.copy(fileData, target);	 // 파일을 지정된 경로에 복사
+		
+		return fileName;
+	}
 }
