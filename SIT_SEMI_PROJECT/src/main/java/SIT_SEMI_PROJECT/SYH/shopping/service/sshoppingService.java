@@ -22,4 +22,8 @@ public class sshoppingService {
 	public int insertProduct(SshoppingVO vo) {
 		return sshoppingDao.insertProduct(vo);
 	}
+	
+	public SshoppingVO contentProduct(int num) {
+		return sshoppingDao.contentProduct(num);
+	}
 }

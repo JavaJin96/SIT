@@ -14,11 +14,23 @@
 		function regProduct() {
 			location.href = '<c:out value="regProductPage.do"/>';
 		}
+		
+		function imgClick(num) {
+			location.href = '<c:url value="regProductContent.do"/>?num='+num;
+		}
 	
 	</script>
 </head>
 <body>
-	<h2>안녕하세요. <br> 여기는 SYH SHOP 페이지 입니다..!!</h2>
+	<text align="center"><h2>안녕하세요.<br>여기는 SYH SHOP 페이지 입니다★</h2></text>
+	<div align='right'>
+	      <c:if test="${sessionScope.userId==null || sessionScope.userId==''}">
+	      	<button type="button" class="btn btn-primary" onclick="regProduct()" disabled="disabled">상품 등록</button>
+	      </c:if>
+	      <c:if test="${sessionScope.userId!=null && sessionScope.userId!=''}">
+	      	<button type="button" class="btn btn-primary" onclick="regProduct()">상품 등록</button>
+	      </c:if>
+	</div>
 	
 	<table class='table table-striped'>
 		<thead>
@@ -33,8 +45,9 @@
 		<tbody>
 		<c:forEach var="list" items="${list}" varStatus="status">
 		<tr>
-			<td><img src="<c:out value='/SIT/download/${list.fileName}'/>" width="200px" height="200px" ></td>
-			<td><h5>${list.prodTitle}</h5></td>
+			<td><img src="<c:out value='/SIT/download/${list.fileName}'/>" width="200px" height="200px" 
+				 onclick="imgClick(${list.num})" style="cursor: pointer;"></td>
+			<td><h3><a href="<c:url value='regProductContent.do?num=${list.num}'/>">${list.prodTitle}</a></h3></td>
 			<td>${list.prodContents}</td>
 			<td>${list.name}</td>
 			<td><h4>${list.price} 원</h4></td>
@@ -42,13 +55,5 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div align='right'>
-	      <c:if test="${sessionScope.userId==null || sessionScope.userId==''}">
-	      	<button type="button" class="btn btn-primary" onclick="regProduct()" disabled="disabled">등록</button>
-	      </c:if>
-	      <c:if test="${sessionScope.userId!=null && sessionScope.userId!=''}">
-	      	<button type="button" class="btn btn-primary" onclick="regProduct()">등록</button>
-	      </c:if>
-	</div>
 </body>
 </html>

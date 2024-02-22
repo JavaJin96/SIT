@@ -17,4 +17,8 @@ public class sshoppingDAO extends EgovAbstractMapper{
 	public int insertProduct(SshoppingVO vo) {  // 상품 등록
 		return insert("sshoppingDAO.insertProduct", vo);
 	}
+	
+	public SshoppingVO contentProduct(int num) {
+		return selectOne("sshoppingDAO.contentProduct", num);
+	}
 }

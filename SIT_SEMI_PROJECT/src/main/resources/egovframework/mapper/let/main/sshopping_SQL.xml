@@ -29,4 +29,25 @@
 			#{userNum}, #{prodTitle}, #{prodContents}, #{fileName}, #{price});
 	</insert>
 	
+	<select id="sshoppingDAO.contentProduct" resultType="SIT_SEMI_PROJECT.SYH.shopping.SshoppingVO">
+		SELECT 
+			s.num
+			, s.userNum
+			, u.name AS name
+			, s.prodTitle
+			, s.prodContents
+			, s.fileName
+			, s.regdate
+			, s.prodType
+			, s.price
+			, s.prodRate
+			, s.prodState
+		FROM 
+			syh_shopping s
+		JOIN syh_user u ON s.userNum = u.num
+		WHERE s.prodState = 'y'
+		  AND s.num = #{num};
+		
+	</select>
+	
 </mapper>

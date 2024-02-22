@@ -65,13 +65,15 @@ public class sshoppingController {
 	}
 	
 	@RequestMapping(value = "syh/uploadForm.do")
-	@ResponseBody  // 서버 -> 클라이언트로 응답 데이터 전송 (자바 객체를 http 응답 본문의 객체로 변환 후 전송)
+	@ResponseBody  // 서버 -> 클라이언트로 응답 데이터 전송 (Map을 http 응답의 json형식으로 변환 후 전송)
 	public Map<String, String> uploadForm(MultipartFile file, HttpServletRequest request) throws Exception {  // 파일 업로드처리
 		Map<String, String> response = new HashMap<>();
 		
 		String fileName = file.getOriginalFilename();  // 원래의 파일명
 		// String path = request.getSession().getServletContext().getRealPath("/download");  // 파일경로
 		String path = "C:/Users/SIT/git/SIT/SIT_SEMI_PROJECT/src/main/webapp/download";
+		// String path = "C:\\Users\\SIT\\git\\SIT\\SIT_SEMI_PROJECT\\src\\main\\webapp\\download";
+		
 		
 		fileName = uploadFile(path, fileName, file.getBytes());  // 파일 업로드 후 얻은 파일명을 fileName에 저장
 		
@@ -88,4 +90,24 @@ public class sshoppingController {
 		
 		return fileName;
 	}
+	
+	
+	@RequestMapping(value = "syh/regProductContent.do")
+	public ModelAndView regProductContent(int num) {
+		ModelAndView mav = new ModelAndView();
+		
+		sshoppingService.contentProduct(num);
+		SshoppingVO vo = sshoppingService.contentProduct(num);
+		mav.addObject("vo", vo);
+		
+		mav.setViewName("regProductContent");
+		return mav;
+		
+	}
+	
+	
+	
+	
+	
+	
 }
